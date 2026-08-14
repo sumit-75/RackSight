@@ -5,7 +5,6 @@ export async function proxy(request: NextRequest) {
   const token = request.cookies.get('token')?.value;
   const { pathname } = request.nextUrl;
 
-  // Protect path routes
   const isProtectedPath =
     pathname === '/' ||
     pathname.startsWith('/rooms') ||
@@ -24,7 +23,6 @@ export async function proxy(request: NextRequest) {
     }
   }
 
-  // Redirect authenticated user away from login page
   if (pathname === '/login' && token) {
     const payload = await verifyJWT(token);
     if (payload) {
@@ -36,12 +34,5 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  /*
-   * Match all request paths except for the ones starting with:
-   * - api (API routes)
-   * - _next/static (static files)
-   * - _next/image (image optimization files)
-   * - favicon.ico (favicon file)
-   */
   matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
 };
