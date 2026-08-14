@@ -15,17 +15,17 @@ export default function HeaderAuth({ session }: HeaderAuthProps) {
 
   if (session) {
     return (
-      <div className="flex items-center gap-4">
-        <span className="text-xs text-slate-500 flex items-center gap-1.5 bg-slate-50 border border-slate-200/80 px-3 py-1.5 rounded-lg">
-          <User size={12} className="text-emerald-500" />
-          <span className="font-semibold text-slate-700 font-mono">{session.user}</span>
+      <div className="flex items-center gap-3 font-sans">
+        <span className="text-xs text-[#a3a39e] hidden sm:flex items-center gap-1.5 bg-[#1b1915] border border-[#2e2d27] px-3 py-1.5 rounded-full font-bold">
+          <User size={12} className="text-emerald-400" />
+          <span className="font-extrabold text-[#f5f5f4]">{session.user}</span>
         </span>
         <form action={logoutAdmin}>
           <button
             type="submit"
-            className="text-xs font-semibold px-3 py-1.5 rounded-md border border-slate-200 bg-white text-slate-600 hover:text-slate-950 hover:bg-slate-50 transition-all flex items-center gap-1 cursor-pointer"
+            className="text-xs font-extrabold px-3.5 py-1.5 rounded-full border border-[#2e2d27] bg-[#161512] text-[#e5e5e0] hover:text-white hover:border-[#383630] hover:bg-[#201e19] transition-all flex items-center gap-1.5 cursor-pointer font-sans"
           >
-            <LogOut size={12} />
+            <LogOut size={13} />
             Sign Out
           </button>
         </form>
@@ -33,17 +33,19 @@ export default function HeaderAuth({ session }: HeaderAuthProps) {
     );
   }
 
-  // Hide the Sign In button if we are already on the login page
+  // If already on login page, don't show duplicate Get Started button in navbar
   if (pathname === '/login') {
     return null;
   }
 
   return (
-    <Link
-      href="/login"
-      className="text-xs font-semibold px-3 py-1.5 rounded-md border border-slate-200 bg-white text-slate-600 hover:text-slate-950 hover:bg-slate-50 transition-all"
-    >
-      Sign In
-    </Link>
+    <div className="flex items-center font-sans">
+      <Link
+        href="/login"
+        className="rounded-full bg-white text-black font-extrabold text-xs sm:text-sm px-4 py-2 hover:bg-[#e5e5e0] transition-all shadow-md active:scale-95 font-sans flex items-center gap-1 cursor-pointer"
+      >
+        Get Started
+      </Link>
+    </div>
   );
 }

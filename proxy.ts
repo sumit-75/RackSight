@@ -5,10 +5,13 @@ export async function proxy(request: NextRequest) {
   const token = request.cookies.get('token')?.value;
   const { pathname } = request.nextUrl;
 
+  // Protect dashboard & data routes (require authentication)
   const isProtectedPath =
-    pathname === '/' ||
+    pathname === '/dashboard' ||
+    pathname.startsWith('/dashboard/') ||
     pathname.startsWith('/rooms') ||
-    pathname.startsWith('/racks');
+    pathname.startsWith('/racks') ||
+    pathname.startsWith('/settings');
 
   if (isProtectedPath) {
     if (!token) {
@@ -23,10 +26,11 @@ export async function proxy(request: NextRequest) {
     }
   }
 
+  // Redirect authenticated user away from login page to dashboard
   if (pathname === '/login' && token) {
     const payload = await verifyJWT(token);
     if (payload) {
-      return NextResponse.redirect(new URL('/', request.url));
+      return NextResponse.redirect(new URL('/dashboard', request.url));
     }
   }
 

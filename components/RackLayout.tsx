@@ -533,7 +533,7 @@ export default function RackLayout({
               <div className="space-y-4">
                 <div className="flex justify-between items-center mb-2">
                   <h3 className="font-bold text-lg text-slate-900">Edit Server</h3>
-                  <button onClick={() => setIsEditing(false)} className="text-slate-400 hover:text-slate-800 cursor-pointer">
+                  <button onClick={() => setIsEditing(false)} className="text-slate-400 hover:text-white cursor-pointer">
                     <X size={16} />
                   </button>
                 </div>
@@ -617,7 +617,7 @@ export default function RackLayout({
                     <button
                       type="button"
                       onClick={() => setIsEditing(false)}
-                      className="px-4 py-2 border border-slate-200 bg-slate-50 rounded-lg text-sm text-slate-700 hover:text-slate-950 cursor-pointer"
+                      className="px-4 py-2 border border-[#2e2d27] bg-[#1b1915] rounded-lg text-sm text-[#e5e5e0] hover:text-white hover:bg-[#24231f] cursor-pointer"
                     >
                       Cancel
                     </button>

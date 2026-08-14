@@ -1,234 +1,328 @@
-import { prisma } from '@/lib/prisma';
+import React from 'react';
 import Link from 'next/link';
-import { Server, Zap, AlertTriangle, Layers, Thermometer, ArrowRight, Activity } from 'lucide-react';
 import { getCurrentUser } from '@/app/actions';
-import { redirect } from 'next/navigation';
+import { Button } from '@/components/ui/Button';
+import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/Card';
+import { Badge } from '@/components/ui/Badge';
+import { Accordion } from '@/components/ui/Accordion';
+import InteractiveRackDemo from '@/components/InteractiveRackDemo';
+import {
+  Zap,
+  ShieldCheck,
+  Cpu,
+  Layers,
+  ArrowRight,
+  CheckCircle2,
+  Database,
+  Lock,
+  Sparkles,
+  Terminal,
+} from 'lucide-react';
+
+import ScrollToHash from '@/components/ScrollToHash';
+import TryDemoButton from '@/components/TryDemoButton';
 
 export const dynamic = 'force-dynamic';
 
-export default async function OverviewPage() {
+export default async function LandingPage() {
   const user = await getCurrentUser();
-  if (!user) {
-    redirect('/login');
-  }
 
-  const rooms = await prisma.room.findMany({
-    where: { userId: user.id },
-    include: {
-      racks: {
-        include: {
-          servers: {
-            include: {
-              readings: {
-                orderBy: { timestamp: 'desc' },
-                take: 1,
-              },
-            },
-          },
-        },
-      },
+  const faqItems = [
+    {
+      id: 'faq-1',
+      title: 'What is RackSight?',
+      content:
+        'RackSight is a Next-gen Data Center Infrastructure Management (DCIM) platform that provides real-time 42U cabinet slot mapping, power consumption telemetry, thermal threshold warnings, and hardware control APIs.',
     },
-  });
-
-  // Calculate high-level stats
-  const totalRooms = rooms.length;
-  let totalRacks = 0;
-  let totalServers = 0;
-  let activeServers = 0;
-  let totalPowerDraw = 0;
-  let activeAlerts = 0;
-
-  const roomSummaries = rooms.map((room) => {
-    let roomPower = 0;
-    let roomAlerts = 0;
-    const rackCount = room.racks.length;
-
-    room.racks.forEach((rack) => {
-      totalRacks++;
-      let rackPower = 0;
-
-      rack.servers.forEach((server) => {
-        totalServers++;
-        if (server.status === 'active') activeServers++;
-
-        const latestReading = server.readings[0];
-        if (latestReading) {
-          rackPower += latestReading.watts;
-        }
-      });
-
-      totalPowerDraw += rackPower;
-      roomPower += rackPower;
-
-      if (rackPower > rack.powerLimitWatts) {
-        activeAlerts++;
-        roomAlerts++;
-      }
-    });
-
-    return {
-      id: room.id,
-      name: room.name,
-      tempThreshold: room.tempThresholdC,
-      racksCount: rackCount,
-      powerDraw: roomPower,
-      alertsCount: roomAlerts,
-    };
-  });
+    {
+      id: 'faq-2',
+      title: 'How does the hardware telemetry simulator work?',
+      content:
+        'RackSight includes an integrated standalone mock telemetry engine (`dcim-simulator`) that generates real-time wattage spikes, idle load drops, and server telemetry ticks via REST & control APIs.',
+    },
+    {
+      id: 'faq-3',
+      title: 'Can I monitor multiple data center rooms?',
+      content:
+        'Yes! You can organize your infrastructure into multiple custom rooms, each with configured thermal limits and individual rack cabinets.',
+    },
+    {
+      id: 'faq-4',
+      title: 'How are power threshold alerts handled?',
+      content:
+        'When the combined wattage of servers mounted in a cabinet exceeds its configured limit, RackSight immediately highlights the rack with animated visual warnings and power spike alerts.',
+    },
+  ];
 
   return (
-    <div className="space-y-8">
-      {/* Header */}
-      <div>
-        <h1 className="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-slate-800 to-slate-950 bg-clip-text text-transparent flex items-center gap-3">
-          <Activity className="text-cyan-600" size={32} />
-          RackSight Overview
-        </h1>
-        <p className="text-slate-500 text-sm mt-1">
-          Infrastructure health, power utilization, and active threshold monitoring.
-        </p>
-      </div>
-
-      {/* Metrics Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {/* Total Rooms */}
-        <div className="rounded-xl border border-slate-200 bg-white p-5 flex items-center justify-between shadow-sm">
-          <div>
-            <span className="text-[0.65rem] uppercase text-slate-500 font-semibold tracking-wider">Total Rooms</span>
-            <div className="text-2xl font-black text-slate-900 mt-1">{totalRooms}</div>
+    <div className="space-y-24 py-6 animate-in fade-in duration-500 font-sans text-[#e5e5e0]">
+      <ScrollToHash />
+      {/* Logged in User Quick Banner */}
+      {user && (
+        <div className="rounded-2xl border border-[#2e2d27] bg-[#161512] p-4.5 flex flex-col sm:flex-row items-center justify-between gap-4 font-sans">
+          <div className="flex items-center gap-3">
+            <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></div>
+            <span className="text-sm font-bold text-[#e5e5e0]">
+              Welcome back, <strong className="text-white">{user.username}</strong>! Your live dashboard telemetry is active.
+            </span>
           </div>
-          <div className="p-3 bg-purple-500/10 border border-purple-500/20 rounded-xl text-purple-400 shadow-[0_0_12px_rgba(168,85,247,0.15)] flex items-center justify-center">
-            <Layers size={20} className="text-purple-400" />
-          </div>
-        </div>
-
-        {/* Total Racks */}
-        <div className="rounded-xl border border-slate-200 bg-white p-5 flex items-center justify-between shadow-sm">
-          <div>
-            <span className="text-[0.65rem] uppercase text-slate-500 font-semibold tracking-wider">Active Racks</span>
-            <div className="text-2xl font-black text-slate-900 mt-1">{totalRacks}</div>
-          </div>
-          <div className="p-3 bg-cyan-500/10 border border-cyan-500/20 rounded-xl text-cyan-400 shadow-[0_0_12px_rgba(6,182,212,0.15)] flex items-center justify-center">
-            <Server size={20} className="text-cyan-400" />
-          </div>
-        </div>
-
-        {/* Total Power Draw */}
-        <div className="rounded-xl border border-slate-200 bg-white p-5 flex items-center justify-between shadow-sm">
-          <div>
-            <span className="text-[0.65rem] uppercase text-slate-500 font-semibold tracking-wider">Total Power Draw</span>
-            <div className="text-2xl font-black text-emerald-400 mt-1">{totalPowerDraw.toFixed(0)} W</div>
-          </div>
-          <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-xl text-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.15)] flex items-center justify-center">
-            <Zap size={20} className="text-emerald-400" />
-          </div>
-        </div>
-
-        {/* Active Threshold Alerts */}
-        <div className={`rounded-xl border p-5 flex items-center justify-between shadow-sm ${
-          activeAlerts > 0
-            ? 'border-rose-500/30 bg-white shadow-sm'
-            : 'border-slate-200 bg-white'
-        }`}>
-          <div>
-            <span className="text-[0.65rem] uppercase text-slate-500 font-semibold tracking-wider">Active Alerts</span>
-            <div className={`text-2xl font-black mt-1 ${activeAlerts > 0 ? 'text-rose-400' : 'text-slate-900'}`}>
-              {activeAlerts}
-            </div>
-          </div>
-          <div className={`p-3 rounded-xl border flex items-center justify-center ${
-            activeAlerts > 0
-              ? 'bg-rose-500/10 border-rose-500/20 text-rose-400 shadow-[0_0_12px_rgba(244,63,94,0.15)]'
-              : 'bg-slate-500/10 border-slate-500/20 text-slate-400'
-          }`}>
-            <AlertTriangle size={20} className={activeAlerts > 0 ? 'text-rose-400' : 'text-slate-400'} />
-          </div>
-        </div>
-      </div>
-
-      {/* Threshold alerts block */}
-      {activeAlerts > 0 && (
-        <div className="rounded-xl border border-rose-200 bg-rose-50 text-rose-800 px-5 py-4 flex items-start gap-3 shadow-sm">
-          <AlertTriangle className="text-rose-600 shrink-0 mt-0.5" size={20} />
-          <div>
-            <h4 className="font-bold text-sm">Critical Threshold Exceeded!</h4>
-            <p className="text-xs text-rose-700 mt-0.5">
-              There are currently {activeAlerts} cabinet(s) exceeding their configured power limits. Verify server workloads and layouts.
-            </p>
-          </div>
+          <Link href="/dashboard">
+            <Button variant="gradient" size="sm">
+              Launch Dashboard Matrix <ArrowRight size={14} className="ml-1.5" />
+            </Button>
+          </Link>
         </div>
       )}
 
-      {/* Room summary breakdown */}
-      <div className="space-y-4">
-        <div className="flex justify-between items-center">
-          <h2 className="text-lg font-bold text-slate-900">Room Status Matrix</h2>
-          <Link
-            href="/rooms"
-            className="text-xs font-semibold text-cyan-600 hover:text-cyan-700 transition-colors flex items-center gap-1"
-          >
-            Manage Rooms <ArrowRight size={14} />
-          </Link>
+      {/* Hero Section */}
+      <section className="relative text-center space-y-8 max-w-4xl mx-auto pt-4 font-sans">
+        {/* Release Pill */}
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#2e2d27] bg-[#161512] text-[#e5e5e0] text-xs font-extrabold font-sans">
+          <Sparkles size={14} className="text-emerald-400 animate-pulse" />
+          <span>RackSight v1.0 — Next-Gen Cabinet Infrastructure Visibility</span>
         </div>
 
-        {roomSummaries.length === 0 ? (
-          <div className="rounded-xl border border-dashed border-slate-200 bg-slate-50 p-8 text-center text-slate-500">
-            No rooms created yet. Click "Manage Rooms" to add one.
+        {/* Headline */}
+        <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-[#f5f5f4] leading-[1.1] font-sans">
+          Real-Time Data Center Visibility &{' '}
+          <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent">
+            Cabinet Telemetry
+          </span>
+        </h1>
+
+        {/* Subtitle */}
+        <p className="text-base sm:text-xl text-[#a3a39e] max-w-2xl mx-auto leading-relaxed font-sans font-normal">
+          Monitor 42U rack cabinet slot occupancy, live server power consumption, thermal thresholds, and hardware telemetry with zero vendor lock-in.
+        </p>
+
+        {/* Action Buttons */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+          {user ? (
+            <Link href="/dashboard">
+              <Button variant="gradient" size="lg" className="w-full sm:w-auto text-base">
+                Go to Dashboard Matrix <ArrowRight size={18} className="ml-2" />
+              </Button>
+            </Link>
+          ) : (
+            <>
+              <Link href="/login">
+                <Button variant="gradient" size="lg" className="w-full sm:w-auto text-base">
+                  Get Started Free <ArrowRight size={18} className="ml-2" />
+                </Button>
+              </Link>
+              <TryDemoButton />
+            </>
+          )}
+        </div>
+      </section>
+
+      {/* Interactive Sandbox Section */}
+      <section id="interactive-demo" className="scroll-mt-36 space-y-6 font-sans">
+        <div className="text-center space-y-2">
+          <Badge variant="secondary">Live Interactive Sandbox</Badge>
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-[#f5f5f4] tracking-tight font-sans">
+            Test Cabinet Telemetry Right Now
+          </h2>
+          <p className="text-xs sm:text-sm text-[#a3a39e] max-w-xl mx-auto font-sans">
+            Interact with the 42U cabinet grid below. Click slots to toggle load states or trigger simulated power spikes.
+          </p>
+        </div>
+
+        <InteractiveRackDemo />
+      </section>
+
+      {/* Trust & Performance Metrics Banner */}
+      <section className="grid grid-cols-2 lg:grid-cols-4 gap-6 p-7 sm:p-9 rounded-3xl border border-[#24231f] bg-[#161512] font-sans">
+        <div className="text-center space-y-1">
+          <div className="text-3xl sm:text-4xl font-black text-[#f5f5f4] font-sans">42 U</div>
+          <div className="text-xs text-[#a3a39e] font-extrabold uppercase tracking-wider">Slot Matrix Density</div>
+        </div>
+        <div className="text-center space-y-1">
+          <div className="text-3xl sm:text-4xl font-black text-emerald-400 font-sans">&lt; 50ms</div>
+          <div className="text-xs text-[#a3a39e] font-extrabold uppercase tracking-wider">Telemetry Latency</div>
+        </div>
+        <div className="text-center space-y-1">
+          <div className="text-3xl sm:text-4xl font-black text-[#f5f5f4] font-sans">99.99%</div>
+          <div className="text-xs text-[#a3a39e] font-extrabold uppercase tracking-wider">Engine Uptime</div>
+        </div>
+        <div className="text-center space-y-1">
+          <div className="text-3xl sm:text-4xl font-black text-emerald-400 font-sans">100%</div>
+          <div className="text-xs text-[#a3a39e] font-extrabold uppercase tracking-wider">Open API Architecture</div>
+        </div>
+      </section>
+
+      {/* Core Capabilities Feature Grid */}
+      <section id="features" className="scroll-mt-36 space-y-12 font-sans">
+        <div className="text-center space-y-2 max-w-2xl mx-auto">
+          <Badge variant="secondary">Infrastructure Matrix</Badge>
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-[#f5f5f4] tracking-tight font-sans">
+            Engineered for Modern Data Center Operations
+          </h2>
+          <p className="text-xs sm:text-sm text-[#a3a39e] font-sans">
+            Everything you need to inspect server slots, track power draw, and prevent infrastructure outages.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Card 1 */}
+          <Card>
+            <CardHeader>
+              <div className="p-3 w-fit rounded-xl bg-[#1b1915] border border-[#282620] text-[#e5e5e0] mb-2">
+                <Layers size={22} />
+              </div>
+              <CardTitle>42U Physical Rack Mapping</CardTitle>
+              <CardDescription>
+                Visual top-to-bottom U-slot mapping from U1 to U42. Inspect server size, start unit, and occupancy map instantly.
+              </CardDescription>
+            </CardHeader>
+          </Card>
+
+          {/* Card 2 */}
+          <Card>
+            <CardHeader>
+              <div className="p-3 w-fit rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 mb-2">
+                <Zap size={22} />
+              </div>
+              <CardTitle>Live Power Draw Telemetry</CardTitle>
+              <CardDescription>
+                Real-time wattage telemetry charting, load percentage monitoring, and automatic power spike alert detection.
+              </CardDescription>
+            </CardHeader>
+          </Card>
+
+          {/* Card 3 */}
+          <Card>
+            <CardHeader>
+              <div className="p-3 w-fit rounded-xl bg-[#1b1915] border border-[#282620] text-[#e5e5e0] mb-2">
+                <Database size={22} />
+              </div>
+              <CardTitle>Multi-Room Infrastructure</CardTitle>
+              <CardDescription>
+                Organize your cluster into dedicated room facilities with configurable thermal threshold limits (°C).
+              </CardDescription>
+            </CardHeader>
+          </Card>
+
+          {/* Card 4 */}
+          <Card>
+            <CardHeader>
+              <div className="p-3 w-fit rounded-xl bg-[#1b1915] border border-[#282620] text-[#e5e5e0] mb-2">
+                <Cpu size={22} />
+              </div>
+              <CardTitle>Mock Hardware Simulator</CardTitle>
+              <CardDescription>
+                Built-in hardware simulation engine (`dcim-simulator`) emitting realistic telemetry ticks and REST control API hooks.
+              </CardDescription>
+            </CardHeader>
+          </Card>
+
+          {/* Card 5 */}
+          <Card>
+            <CardHeader>
+              <div className="p-3 w-fit rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 mb-2">
+                <ShieldCheck size={22} />
+              </div>
+              <CardTitle>Critical Threshold Guard</CardTitle>
+              <CardDescription>
+                Visual pulse alerts whenever a rack cabinet power draw exceeds configured limit thresholds.
+              </CardDescription>
+            </CardHeader>
+          </Card>
+
+          {/* Card 6 */}
+          <Card>
+            <CardHeader>
+              <div className="p-3 w-fit rounded-xl bg-[#1b1915] border border-[#282620] text-[#e5e5e0] mb-2">
+                <Lock size={22} />
+              </div>
+              <CardTitle>JWT Session Authentication</CardTitle>
+              <CardDescription>
+                Secure administrative authentication, cookie-based session verification, and instant credential updates.
+              </CardDescription>
+            </CardHeader>
+          </Card>
+        </div>
+      </section>
+
+      {/* Developer API & Architecture Section */}
+      <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center p-8 sm:p-12 rounded-3xl border border-[#24231f] bg-[#12110e] font-sans">
+        <div className="lg:col-span-6 space-y-4">
+          <Badge variant="secondary">Developer First API</Badge>
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-[#f5f5f4] tracking-tight font-sans">
+            Seamless Hardware Ingestion & Control API
+          </h2>
+          <p className="text-sm text-[#a3a39e] leading-relaxed font-sans">
+            RackSight connects seamlessly with any telemetry agent or mock hardware simulator. Query current wattage, trigger load shifts, or post server state changes using simple REST payloads.
+          </p>
+          <div className="space-y-2.5 pt-2 text-xs sm:text-sm font-bold text-[#e5e5e0]">
+            <div className="flex items-center gap-2">
+              <CheckCircle2 size={16} className="text-emerald-400 shrink-0" />
+              <span>Standard REST API endpoints for telemetry ticks (`POST /api/simulate`)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle2 size={16} className="text-emerald-400 shrink-0" />
+              <span>High-speed Prisma ORM integration with PostgreSQL database</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle2 size={16} className="text-emerald-400 shrink-0" />
+              <span>Zero external agent installation required</span>
+            </div>
           </div>
-        ) : (
-          <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
-            <table className="min-w-full divide-y divide-slate-200 text-left text-sm">
-              <thead className="bg-slate-50 text-slate-500 text-xs font-semibold uppercase tracking-wider">
-                <tr>
-                  <th className="px-6 py-4">Room Name</th>
-                  <th className="px-6 py-4">Cabinet Count</th>
-                  <th className="px-6 py-4">Power Draw</th>
-                  <th className="px-6 py-4">Temp Limit</th>
-                  <th className="px-6 py-4">Status</th>
-                  <th className="px-6 py-4 text-right">Action</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-200">
-                {roomSummaries.map((room) => {
-                  const hasAlert = room.alertsCount > 0;
-                  return (
-                    <tr
-                      key={room.id}
-                      className="hover:bg-slate-50/50 transition-colors duration-200"
-                    >
-                      <td className="px-6 py-4 font-bold text-slate-900">{room.name}</td>
-                      <td className="px-6 py-4 text-slate-650">{room.racksCount} racks</td>
-                      <td className="px-6 py-4 text-slate-700 font-mono">{room.powerDraw.toFixed(0)} W</td>
-                      <td className="px-6 py-4 text-slate-600 flex items-center gap-1">
-                        <Thermometer size={14} className="text-amber-600" />
-                        {room.tempThreshold}°C
-                      </td>
-                      <td className="px-6 py-4">
-                        <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[0.65rem] font-extrabold uppercase border ${
-                          hasAlert
-                            ? 'bg-rose-50 text-rose-600 border-rose-200'
-                            : 'bg-emerald-50 text-emerald-700 border-emerald-200'
-                        }`}>
-                          <span className={`w-1.5 h-1.5 rounded-full ${hasAlert ? 'bg-rose-600' : 'bg-emerald-600'}`}></span>
-                          {hasAlert ? `${room.alertsCount} Alert` : 'Optimal'}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 text-right">
-                        <Link
-                          href={`/rooms/${room.id}`}
-                          className="inline-flex items-center gap-1 text-xs font-semibold text-cyan-600 hover:text-cyan-700 transition-colors"
-                        >
-                          View <ArrowRight size={12} />
-                        </Link>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+        </div>
+
+        {/* Code Snippet Box */}
+        <div className="lg:col-span-6 rounded-2xl border border-[#24231f] bg-[#161512] p-6 space-y-3 font-sans text-xs shadow-md">
+          <div className="flex justify-between items-center pb-3 border-b border-[#24231f] text-[#a3a39e]">
+            <span className="flex items-center gap-2 font-bold">
+              <Terminal size={14} className="text-[#a3a39e]" />
+              telemetryPayload.json
+            </span>
+            <Badge variant="emerald">200 OK</Badge>
           </div>
-        )}
-      </div>
+          <pre className="text-emerald-400 font-bold overflow-x-auto leading-relaxed">
+{`{
+  "rackId": 1,
+  "cabinetName": "Cabinet Alpha",
+  "powerLimitWatts": 1200.0,
+  "totalPowerWatts": 816.6,
+  "isOverLimit": false,
+  "servers": [
+    { "id": 101, "name": "AppServer-01", "watts": 215.0, "status": "active" },
+    { "id": 102, "name": "AppServer-02", "watts": 385.2, "status": "spike" }
+  ]
+}`}
+          </pre>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section id="faq" className="scroll-mt-36 max-w-3xl mx-auto space-y-8 font-sans">
+        <div className="text-center space-y-2">
+          <Badge variant="secondary">Got Questions?</Badge>
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-[#f5f5f4] tracking-tight font-sans">
+            Frequently Asked Questions
+          </h2>
+        </div>
+
+        <Accordion items={faqItems} />
+      </section>
+
+      {/* CTA Footer Banner */}
+      <section className="text-center p-10 sm:p-14 rounded-3xl bg-[#161512] border border-[#24231f] shadow-md space-y-6 font-sans">
+        <h2 className="text-3xl sm:text-4xl font-black text-[#f5f5f4] tracking-tight font-sans">
+          Ready to Monitor Your Data Center Cabinet Matrix?
+        </h2>
+        <p className="text-[#a3a39e] text-sm max-w-xl mx-auto font-sans">
+          Start inspecting your 42U rack cabinets, power consumption graphs, and room infrastructure in seconds.
+        </p>
+        <div>
+          <Link href={user ? '/dashboard' : '/login'}>
+            <Button variant="gradient" size="lg" className="text-base px-8">
+              {user ? 'Open Overview Dashboard' : 'Get Started Now'} <ArrowRight size={18} className="ml-2" />
+            </Button>
+          </Link>
+        </div>
+      </section>
     </div>
   );
 }

@@ -98,7 +98,7 @@ export default async function RackDetailPage({ params }: PageProps) {
       <div className="space-y-4">
         <Link
           href={`/rooms/${rack.roomId}`}
-          className="inline-flex items-center gap-1 text-xs font-semibold text-slate-500 hover:text-slate-950 transition-colors"
+          className="inline-flex items-center gap-1 text-xs font-semibold text-slate-400 hover:text-cyan-400 transition-colors"
         >
           <ArrowLeft size={14} /> Back to Room: {rack.room.name}
         </Link>
