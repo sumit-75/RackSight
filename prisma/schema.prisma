@@ -1,0 +1,69 @@
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Room {
+  id              Int      @id @default(autoincrement())
+  userId          Int      @default(1)
+  user            User     @relation(fields: [userId], references: [id])
+  name            String
+  tempThresholdC  Float
+  racks           Rack[]
+  createdAt       DateTime @default(now())
+}
+
+model Rack {
+  id              Int      @id @default(autoincrement())
+  roomId          Int
+  room            Room     @relation(fields: [roomId], references: [id])
+  name            String
+  totalUnits      Int      @default(42)
+  powerLimitWatts Float
+  servers         Server[]
+  createdAt       DateTime @default(now())
+
+  @@index([roomId])
+}
+
+model Server {
+  id            Int            @id @default(autoincrement())
+  rackId        Int
+  rack          Rack           @relation(fields: [rackId], references: [id])
+  name          String
+  startUnit     Int
+  sizeUnits     Int
+  status        ServerStatus   @default(active)
+  readings      PowerReading[]
+  createdAt     DateTime       @default(now())
+
+  @@index([rackId])
+}
+
+enum ServerStatus {
+  active
+  idle
+  decommissioned
+}
+
+model PowerReading {
+  id        Int      @id @default(autoincrement())
+  serverId  Int
+  server    Server   @relation(fields: [serverId], references: [id])
+  watts     Float
+  timestamp DateTime @default(now())
+
+  @@index([serverId])
+  @@index([serverId, timestamp])
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  password  String   // Hashed password
+  rooms     Room[]
+  createdAt DateTime @default(now())
+}
