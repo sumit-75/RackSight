@@ -20,16 +20,15 @@ export default function SettingsClient({ currentUsername }: SettingsClientProps)
     setChangeSuccess(null);
     setIsChanging(true);
 
-    const formData = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
     try {
       await changeAdminPassword(formData);
+      setChangeError(null);
       setChangeSuccess('Credentials updated successfully!');
-      // Clear form inputs except username
-      const form = e.currentTarget;
-      form.currentPassword.value = '';
-      form.newPassword.value = '';
-      form.confirmNewPassword.value = '';
+      form.reset();
     } catch (err: any) {
+      setChangeSuccess(null);
       setChangeError(err.message || 'Failed to update credentials.');
     } finally {
       setIsChanging(false);
@@ -55,7 +54,7 @@ export default function SettingsClient({ currentUsername }: SettingsClientProps)
             <h2 className="font-extrabold text-lg text-[#f5f5f4]">Change Credentials</h2>
           </div>
 
-          {changeError && (
+          {!changeSuccess && changeError && (
             <div className="rounded-xl border border-rose-500/30 bg-rose-500/10 text-rose-300 p-4 text-xs sm:text-sm font-semibold flex items-center gap-2 animate-in fade-in duration-200">
               <AlertCircle size={16} className="text-rose-400 shrink-0" />
               <span>{changeError}</span>
