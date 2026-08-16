@@ -90,9 +90,9 @@ export default function InteractiveRackDemo() {
   };
 
   return (
-    <div className="relative rounded-3xl border border-[#2e2d27] bg-[#12110e] shadow-[0_25px_70px_-15px_rgba(0,0,0,0.95),0_0_60px_rgba(16,185,129,0.18)] font-sans overflow-hidden hover:shadow-[0_30px_80px_-15px_rgba(0,0,0,0.95),0_0_80px_rgba(16,185,129,0.25)] hover:border-emerald-500/30 transition-all duration-300">
+    <div className="rounded-3xl border border-[#2e2d27]/80 bg-[#141310]/65 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] font-sans overflow-hidden">
       {/* macOS Window Top TitleBar */}
-      <div className="bg-[#1b1915] border-b border-[#282620] px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-md">
+      <div className="bg-[#1b1915]/50 backdrop-blur-md border-b border-[#282620]/80 px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-3">
         {/* macOS Traffic Lights (Top Left) */}
         <div className="flex items-center gap-2 shrink-0">
           <span className="w-3 h-3 rounded-full bg-[#ff5f56] border border-[#e0443e] block shadow-sm"></span>
@@ -101,7 +101,7 @@ export default function InteractiveRackDemo() {
         </div>
 
         {/* macOS URL Address Bar (Center) */}
-        <div className="flex items-center gap-2 bg-[#12110e] border border-[#282620] px-3.5 py-1 rounded-full text-xs text-[#a3a39e] font-sans font-bold shadow-inner">
+        <div className="flex items-center gap-2 bg-[#12110e]/70 border border-[#282620]/80 backdrop-blur-sm px-3.5 py-1 rounded-full text-xs text-[#a3a39e] font-sans font-bold">
           <Lock size={12} className="text-emerald-400 shrink-0" />
           <span>racksight://cabinet-matrix-sandbox</span>
         </div>
@@ -112,7 +112,7 @@ export default function InteractiveRackDemo() {
             variant="outline"
             size="sm"
             onClick={triggerGlobalSpike}
-            className="text-rose-400 hover:text-rose-300 text-xs py-1 h-7 shadow-sm"
+            className="text-rose-400 hover:text-rose-300 text-xs py-1 h-7 bg-rose-500/10 border-rose-500/30 backdrop-blur-sm"
           >
             <AlertTriangle size={13} className="mr-1" />
             Spike Load
@@ -121,7 +121,7 @@ export default function InteractiveRackDemo() {
             variant="ghost"
             size="sm"
             onClick={resetNormalLoad}
-            className="text-[#a3a39e] hover:text-white text-xs py-1 h-7"
+            className="text-[#a3a39e] hover:text-white text-xs py-1 h-7 bg-white/5 backdrop-blur-sm"
           >
             <RefreshCw size={13} className="mr-1" />
             Reset
@@ -130,26 +130,26 @@ export default function InteractiveRackDemo() {
       </div>
 
       {/* macOS Window Tab Bar */}
-      <div className="bg-[#181714] border-b border-[#282620] px-4 pt-2 flex items-center gap-1.5 overflow-x-auto shadow-[inset_0_-2px_10px_rgba(0,0,0,0.5)]">
+      <div className="bg-[#161512]/40 backdrop-blur-md border-b border-[#282620]/80 px-4 pt-2 flex items-center gap-1.5 overflow-x-auto">
         <button
           onClick={() => setActiveTab('matrix')}
           className={`flex items-center gap-2 px-4 py-2 rounded-t-xl text-xs font-extrabold transition-all cursor-pointer border-t border-x ${
             activeTab === 'matrix'
-              ? 'bg-[#161512] text-white border-[#2e2d27] border-t-emerald-400 shadow-[0_-4px_16px_rgba(16,185,129,0.18),0_6px_12px_rgba(0,0,0,0.7)]'
-              : 'bg-[#1b1915] text-[#a3a39e] border-transparent hover:text-white hover:bg-[#201e19]'
+              ? 'bg-[#181714]/90 backdrop-blur-md text-white border-[#333028] border-t-emerald-400 shadow-lg'
+              : 'bg-[#141310]/30 backdrop-blur-sm text-[#a3a39e] border-transparent hover:text-white hover:bg-[#1b1915]/50'
           }`}
         >
           <ServerIcon size={14} />
           <span>Cabinet Matrix (U42)</span>
-          <Badge variant="emerald" className="ml-1 text-[0.6rem] px-1.5 py-0 shadow-sm">Live</Badge>
+          <Badge variant="emerald" className="ml-1 text-[0.6rem] px-1.5 py-0">Live</Badge>
         </button>
 
         <button
           onClick={() => setActiveTab('analytics')}
           className={`flex items-center gap-2 px-4 py-2 rounded-t-xl text-xs font-extrabold transition-all cursor-pointer border-t border-x ${
             activeTab === 'analytics'
-              ? 'bg-[#161512] text-emerald-400 border-[#2e2d27] border-t-emerald-400 shadow-[0_-4px_16px_rgba(16,185,129,0.18),0_6px_12px_rgba(0,0,0,0.7)]'
-              : 'bg-[#1b1915] text-[#a3a39e] border-transparent hover:text-white hover:bg-[#201e19]'
+              ? 'bg-[#181714]/90 backdrop-blur-md text-emerald-400 border-[#333028] border-t-emerald-400 shadow-lg'
+              : 'bg-[#141310]/30 backdrop-blur-sm text-[#a3a39e] border-transparent hover:text-white hover:bg-[#1b1915]/50'
           }`}
         >
           <Zap size={14} />
@@ -160,8 +160,8 @@ export default function InteractiveRackDemo() {
           onClick={() => setActiveTab('logs')}
           className={`flex items-center gap-2 px-4 py-2 rounded-t-xl text-xs font-extrabold transition-all cursor-pointer border-t border-x ${
             activeTab === 'logs'
-              ? 'bg-[#161512] text-[#e5e5e0] border-[#2e2d27] border-t-emerald-400 shadow-[0_-4px_16px_rgba(16,185,129,0.18),0_6px_12px_rgba(0,0,0,0.7)]'
-              : 'bg-[#1b1915] text-[#a3a39e] border-transparent hover:text-white hover:bg-[#201e19]'
+              ? 'bg-[#181714]/90 backdrop-blur-md text-[#e5e5e0] border-[#333028] border-t-emerald-400 shadow-lg'
+              : 'bg-[#141310]/30 backdrop-blur-sm text-[#a3a39e] border-transparent hover:text-white hover:bg-[#1b1915]/50'
           }`}
         >
           <Terminal size={14} />
@@ -170,13 +170,13 @@ export default function InteractiveRackDemo() {
       </div>
 
       {/* Main Tab Content Area */}
-      <div className="p-6 sm:p-8 bg-[#12110e]">
+      <div className="p-6 sm:p-8 bg-transparent backdrop-blur-sm">
         {activeTab === 'matrix' && (
           <div className="space-y-6 animate-in fade-in duration-200">
             {/* Grid: Left Cabinet Layout, Right Live Inspector */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
               {/* Left Column: Cabinet Slot View (7 cols) */}
-              <div className="lg:col-span-7 space-y-4 bg-[#161512] border border-[#24231f] rounded-2xl p-5">
+              <div className="lg:col-span-7 space-y-4 bg-[#161512]/60 backdrop-blur-xl border border-[#2e2d27]/80 rounded-2xl p-5 shadow-lg">
                 <div className="flex justify-between items-center text-xs font-extrabold text-[#a3a39e]">
                   <span>42U Cabinet Physical Slots</span>
                   <span className="flex items-center gap-2 text-emerald-400">
@@ -191,17 +191,17 @@ export default function InteractiveRackDemo() {
                 <div className="space-y-2">
                   {slots.map((slot) => {
                     const isSelected = selectedSlot?.u === slot.u;
-                    let statusBg = 'bg-emerald-500/10 border-emerald-500/20 text-emerald-300 hover:bg-emerald-500/20 hover:text-white';
+                    let statusBg = 'bg-emerald-500/10 border-emerald-500/25 text-emerald-300 backdrop-blur-sm hover:bg-emerald-500/20 hover:text-white';
                     let dotColor = 'bg-emerald-400';
 
                     if (slot.status === 'spike') {
-                      statusBg = 'bg-rose-500/20 border-rose-500/40 text-rose-300 animate-pulse hover:bg-rose-500/30 hover:text-white';
+                      statusBg = 'bg-rose-500/20 border-rose-500/40 text-rose-300 animate-pulse backdrop-blur-sm hover:bg-rose-500/30 hover:text-white';
                       dotColor = 'bg-rose-500';
                     } else if (slot.status === 'idle') {
-                      statusBg = 'bg-amber-500/10 border-amber-500/20 text-amber-300 hover:bg-amber-500/20 hover:text-white';
+                      statusBg = 'bg-amber-500/10 border-amber-500/25 text-amber-300 backdrop-blur-sm hover:bg-amber-500/20 hover:text-white';
                       dotColor = 'bg-amber-400';
                     } else if (slot.status === 'empty') {
-                      statusBg = 'bg-[#1b1915] border-[#24231f] text-[#73726c] hover:bg-[#201e19] hover:text-[#a3a39e]';
+                      statusBg = 'bg-[#1b1915]/50 border-[#282620]/80 text-[#73726c] backdrop-blur-sm hover:bg-[#201e19]/70 hover:text-[#a3a39e]';
                       dotColor = 'bg-[#73726c]';
                     }
 
@@ -223,7 +223,7 @@ export default function InteractiveRackDemo() {
                         </div>
                         <div className="flex items-center gap-3">
                           <span className="text-[#e5e5e0] font-extrabold">{slot.watts} W</span>
-                          <span className="uppercase text-[0.6rem] font-extrabold px-2 py-0.5 rounded bg-[#0e0d09] border border-[#24231f]">
+                          <span className="uppercase text-[0.6rem] font-extrabold px-2 py-0.5 rounded bg-[#0e0d09]/80 border border-[#24231f]">
                             {slot.status}
                           </span>
                         </div>
@@ -236,10 +236,10 @@ export default function InteractiveRackDemo() {
               {/* Right Column: Live Meter & Inspector (5 cols) */}
               <div className="lg:col-span-5 space-y-5">
                 {/* Power Draw Meter */}
-                <div className={`p-5 rounded-2xl border transition-all ${
+                <div className={`p-5 rounded-2xl border backdrop-blur-xl shadow-lg transition-all ${
                   isOverLimit || hasSpike
-                    ? 'border-rose-500/40 bg-rose-500/5'
-                    : 'border-[#24231f] bg-[#161512]'
+                    ? 'border-rose-500/40 bg-rose-500/10'
+                    : 'border-[#2e2d27]/80 bg-[#161512]/60'
                 }`}>
                   <div className="flex justify-between items-start">
                     <div>
@@ -260,7 +260,7 @@ export default function InteractiveRackDemo() {
 
                   {/* Progress Bar */}
                   <div className="mt-4 space-y-1.5">
-                    <div className="w-full h-2.5 bg-[#201e19] rounded-full overflow-hidden">
+                    <div className="w-full h-2.5 bg-[#201e19]/80 rounded-full overflow-hidden">
                       <div
                         className={`h-full transition-all duration-500 ${
                           isOverLimit || hasSpike ? 'bg-gradient-to-r from-amber-500 to-rose-500' : 'bg-gradient-to-r from-emerald-400 to-teal-400'
@@ -278,7 +278,7 @@ export default function InteractiveRackDemo() {
 
                 {/* Selected Slot Details */}
                 {selectedSlot && (
-                  <div className="p-5 rounded-2xl border border-[#24231f] bg-[#161512] space-y-3">
+                  <div className="p-5 rounded-2xl border border-[#2e2d27]/80 bg-[#161512]/60 backdrop-blur-xl shadow-lg space-y-3">
                     <div className="flex items-center gap-2">
                       <Badge variant={selectedSlot.status === 'spike' ? 'rose' : selectedSlot.status === 'active' ? 'emerald' : 'secondary'}>
                         U{selectedSlot.u} Inspection
@@ -288,11 +288,11 @@ export default function InteractiveRackDemo() {
                     <h4 className="font-extrabold text-base text-[#f5f5f4]">{selectedSlot.name}</h4>
 
                     <div className="grid grid-cols-2 gap-3 pt-2 text-xs">
-                      <div className="p-3 rounded-xl bg-[#1b1915] border border-[#24231f]">
+                      <div className="p-3 rounded-xl bg-[#1b1915]/60 border border-[#282620]/80 backdrop-blur-sm">
                         <div className="text-[0.65rem] text-[#a3a39e] font-semibold">Live Power</div>
                         <div className="font-extrabold text-[#f5f5f4] mt-0.5">{selectedSlot.watts} Watts</div>
                       </div>
-                      <div className="p-3 rounded-xl bg-[#1b1915] border border-[#24231f]">
+                      <div className="p-3 rounded-xl bg-[#1b1915]/60 border border-[#282620]/80 backdrop-blur-sm">
                         <div className="text-[0.65rem] text-[#a3a39e] font-semibold">Status</div>
                         <div className="font-extrabold uppercase text-[#f5f5f4] mt-0.5">{selectedSlot.status}</div>
                       </div>
@@ -310,21 +310,21 @@ export default function InteractiveRackDemo() {
         {activeTab === 'analytics' && (
           <div className="space-y-6 animate-in fade-in duration-200">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="p-5 rounded-2xl border border-[#24231f] bg-[#161512]">
+              <div className="p-5 rounded-2xl border border-[#2e2d27]/80 bg-[#161512]/60 backdrop-blur-xl shadow-lg">
                 <span className="text-xs text-[#a3a39e] font-bold uppercase tracking-wider">Active Nodes</span>
                 <div className="text-3xl font-black text-emerald-400 mt-1">
                   {slots.filter((s) => s.status === 'active').length}
                 </div>
               </div>
 
-              <div className="p-5 rounded-2xl border border-[#24231f] bg-[#161512]">
+              <div className="p-5 rounded-2xl border border-[#2e2d27]/80 bg-[#161512]/60 backdrop-blur-xl shadow-lg">
                 <span className="text-xs text-[#a3a39e] font-bold uppercase tracking-wider">Spike Alerts</span>
                 <div className="text-3xl font-black text-rose-400 mt-1">
                   {slots.filter((s) => s.status === 'spike').length}
                 </div>
               </div>
 
-              <div className="p-5 rounded-2xl border border-[#24231f] bg-[#161512]">
+              <div className="p-5 rounded-2xl border border-[#2e2d27]/80 bg-[#161512]/60 backdrop-blur-xl shadow-lg">
                 <span className="text-xs text-[#a3a39e] font-bold uppercase tracking-wider">Available U-Slots</span>
                 <div className="text-3xl font-black text-emerald-400 mt-1">
                   {slots.filter((s) => s.status === 'empty').length}
@@ -332,7 +332,7 @@ export default function InteractiveRackDemo() {
               </div>
             </div>
 
-            <div className="p-6 rounded-2xl border border-[#24231f] bg-[#161512] space-y-4">
+            <div className="p-6 rounded-2xl border border-[#2e2d27]/80 bg-[#161512]/60 backdrop-blur-xl shadow-lg space-y-4">
               <h4 className="font-extrabold text-base text-[#f5f5f4] flex items-center gap-2">
                 <Activity size={18} className="text-emerald-400" />
                 Live Power Breakdown by Shelf
@@ -342,7 +342,7 @@ export default function InteractiveRackDemo() {
                   const shelfSlots = slots.filter((s) => s.shelf === shelf);
                   const shelfWatts = shelfSlots.reduce((acc, s) => acc + s.watts, 0);
                   return (
-                    <div key={shelf} className="p-4 rounded-xl bg-[#1b1915] border border-[#24231f] flex justify-between items-center">
+                    <div key={shelf} className="p-4 rounded-xl bg-[#1b1915]/60 border border-[#282620]/80 backdrop-blur-sm flex justify-between items-center">
                       <div>
                         <div className="font-extrabold text-sm text-[#f5f5f4]">{shelf} Shelf Array</div>
                         <div className="text-xs text-[#a3a39e]">{shelfSlots.length} Monitored Slots</div>
@@ -360,7 +360,7 @@ export default function InteractiveRackDemo() {
         )}
 
         {activeTab === 'logs' && (
-          <div className="p-6 rounded-2xl border border-[#24231f] bg-[#161512] space-y-4 font-mono text-xs animate-in fade-in duration-200">
+          <div className="p-6 rounded-2xl border border-[#2e2d27]/80 bg-[#161512]/60 backdrop-blur-xl shadow-lg space-y-4 font-mono text-xs animate-in fade-in duration-200">
             <div className="flex justify-between items-center pb-3 border-b border-[#24231f] text-[#a3a39e]">
               <span className="flex items-center gap-2 font-bold">
                 <Terminal size={15} className="text-[#a3a39e]" />
