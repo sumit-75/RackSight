@@ -58,7 +58,23 @@ export default async function LandingPage() {
   ];
 
   return (
-    <div className="space-y-24 py-6 animate-in fade-in duration-500 font-sans text-[#e5e5e0]">
+    <div className="relative space-y-24 py-6 animate-in fade-in duration-500 font-sans text-[#e5e5e0]">
+      {/* Cool Data Center Ambient Background Layer */}
+      <div className="pointer-events-none absolute -top-12 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[820px] overflow-hidden -z-10 rounded-3xl">
+        {/* Data Center Server Hall Image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.24] mix-blend-luminosity scale-105"
+          style={{ backgroundImage: `url('/images/datacenter_bg.jpg')` }}
+        />
+        {/* Ambient Emerald Radial Spotlight */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_20%,rgba(16,185,129,0.16),transparent_80%)]" />
+        {/* Cyber Grid Overlay */}
+        <div className="absolute inset-0 datacenter-grid-overlay opacity-70" />
+        {/* Vignette Gradients for 100% Text Legibility */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0e0d09]/70 via-transparent to-[#0e0d09]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_85%_85%_at_50%_50%,transparent_35%,#0e0d09_100%)]" />
+      </div>
+
       <ScrollToHash />
       {/* Logged in User Quick Banner */}
       {user && (
