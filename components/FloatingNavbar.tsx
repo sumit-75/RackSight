@@ -20,7 +20,7 @@ export default function FloatingNavbar({ session }: FloatingNavbarProps) {
         isLoginPage ? 'max-w-xl' : 'max-w-5xl'
       }`}
     >
-      <div className="rounded-full border border-[#2e2d27] bg-[#141310]/80 backdrop-blur-xl px-4 sm:px-5 py-2.5 flex items-center justify-between shadow-2xl shadow-black/80">
+      <div className="rounded-full macos-glass-pill px-4 sm:px-5 py-2.5 flex items-center justify-between">
         {/* Left Brand Logo */}
         <Link href="/" className="flex items-center gap-2 group shrink-0">
           <span className="text-xl sm:text-2xl font-black tracking-tight font-sans bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent group-hover:opacity-90 transition-opacity">

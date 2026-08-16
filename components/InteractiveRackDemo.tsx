@@ -130,13 +130,13 @@ export default function InteractiveRackDemo() {
       </div>
 
       {/* macOS Window Tab Bar */}
-      <div className="bg-[#12110e]/60 backdrop-blur-md border-b border-white/10 px-4 pt-2.5 flex items-center gap-2 overflow-x-auto">
+      <div className="bg-[#12110e]/40 backdrop-blur-xl border-b border-white/10 px-4 pt-2.5 flex items-center gap-2 overflow-x-auto">
         <button
           onClick={() => setActiveTab('matrix')}
-          className={`flex items-center gap-2 px-4 py-2 rounded-t-xl text-xs font-extrabold transition-all cursor-pointer border-t border-x ${
+          className={`flex items-center gap-2 px-4 py-2 rounded-t-xl text-xs font-extrabold transition-all cursor-pointer ${
             activeTab === 'matrix'
-              ? 'bg-[#181714]/90 backdrop-blur-md text-white border-[#2e2d27] border-t-emerald-400 shadow-lg'
-              : 'bg-white/[0.03] backdrop-blur-sm text-[#a3a39e] border-transparent hover:text-white hover:bg-white/[0.08] hover:border-white/10'
+              ? 'macos-glass-tab-active text-white shadow-lg'
+              : 'macos-glass-tab-inactive text-[#a3a39e]'
           }`}
         >
           <ServerIcon size={14} />
@@ -146,10 +146,10 @@ export default function InteractiveRackDemo() {
 
         <button
           onClick={() => setActiveTab('analytics')}
-          className={`flex items-center gap-2 px-4 py-2 rounded-t-xl text-xs font-extrabold transition-all cursor-pointer border-t border-x ${
+          className={`flex items-center gap-2 px-4 py-2 rounded-t-xl text-xs font-extrabold transition-all cursor-pointer ${
             activeTab === 'analytics'
-              ? 'bg-[#181714]/90 backdrop-blur-md text-emerald-400 border-[#2e2d27] border-t-emerald-400 shadow-lg'
-              : 'bg-white/[0.03] backdrop-blur-sm text-[#a3a39e] border-transparent hover:text-white hover:bg-white/[0.08] hover:border-white/10'
+              ? 'macos-glass-tab-active text-emerald-400 shadow-lg'
+              : 'macos-glass-tab-inactive text-[#a3a39e]'
           }`}
         >
           <Zap size={14} />
@@ -158,10 +158,10 @@ export default function InteractiveRackDemo() {
 
         <button
           onClick={() => setActiveTab('logs')}
-          className={`flex items-center gap-2 px-4 py-2 rounded-t-xl text-xs font-extrabold transition-all cursor-pointer border-t border-x ${
+          className={`flex items-center gap-2 px-4 py-2 rounded-t-xl text-xs font-extrabold transition-all cursor-pointer ${
             activeTab === 'logs'
-              ? 'bg-[#181714]/90 backdrop-blur-md text-[#e5e5e0] border-[#2e2d27] border-t-emerald-400 shadow-lg'
-              : 'bg-white/[0.03] backdrop-blur-sm text-[#a3a39e] border-transparent hover:text-white hover:bg-white/[0.08] hover:border-white/10'
+              ? 'macos-glass-tab-active text-[#e5e5e0] shadow-lg'
+              : 'macos-glass-tab-inactive text-[#a3a39e]'
           }`}
         >
           <Terminal size={14} />
