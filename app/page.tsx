@@ -64,7 +64,10 @@ export default async function LandingPage() {
       {user && (
         <div className="rounded-2xl border border-[#2e2d27] bg-[#161512] p-4.5 flex flex-col sm:flex-row items-center justify-between gap-4 font-sans">
           <div className="flex items-center gap-3">
-            <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></div>
+            <span className="relative flex h-2.5 w-2.5 items-center justify-center shrink-0">
+              <span className="radar-ring absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,1)]" />
+            </span>
             <span className="text-sm font-bold text-[#e5e5e0]">
               Welcome back, <strong className="text-white">{user.username}</strong>! Your live dashboard telemetry is active.
             </span>
@@ -273,16 +276,28 @@ export default async function LandingPage() {
                 <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-white group-hover:scale-110 group-hover:bg-emerald-500/10 group-hover:text-emerald-400 transition-all duration-200">
                   <Layers size={22} />
                 </div>
-                {/* 5 PDU Status Dots */}
-                <div className="flex items-center gap-2" title="Active PDU Status Feed">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                {/* 5 Staggered Active PDU Radar Status Dots */}
+                <div className="flex items-center gap-2" title="Active PDU Telemetry Feed">
+                  <span className="relative flex h-2 w-2 shrink-0">
+                    <span className="radar-ring absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,1)]" />
                   </span>
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.6)]" />
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.6)]" />
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.6)]" />
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 opacity-80" />
+                  <span className="relative flex h-2 w-2 shrink-0">
+                    <span className="radar-ring-stagger-1 absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,1)]" />
+                  </span>
+                  <span className="relative flex h-2 w-2 shrink-0">
+                    <span className="radar-ring-stagger-2 absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,1)]" />
+                  </span>
+                  <span className="relative flex h-2 w-2 shrink-0">
+                    <span className="radar-ring-stagger-3 absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,1)]" />
+                  </span>
+                  <span className="relative flex h-2 w-2 shrink-0">
+                    <span className="radar-ring-stagger-4 absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,1)]" />
+                  </span>
                 </div>
               </div>
 

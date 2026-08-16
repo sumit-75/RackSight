@@ -204,12 +204,15 @@ export default async function DashboardPage() {
                         {room.tempThreshold}°C
                       </td>
                       <td className="px-6 py-4">
-                        <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[0.65rem] font-mono font-extrabold uppercase border ${
+                        <span className={`inline-flex items-center gap-2 px-2.5 py-1 rounded-md text-[0.65rem] font-mono font-extrabold uppercase border ${
                           hasAlert
                             ? 'bg-rose-500/10 text-rose-400 border-rose-500/30'
                             : 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30'
                         }`}>
-                          <span className={`w-1.5 h-1.5 rounded-full ${hasAlert ? 'bg-rose-400 animate-pulse' : 'bg-emerald-400'}`}></span>
+                          <span className="relative flex h-2 w-2 shrink-0">
+                            <span className={`radar-ring absolute inline-flex h-full w-full rounded-full opacity-75 ${hasAlert ? 'bg-rose-400' : 'bg-emerald-400'}`} />
+                            <span className={`relative inline-flex rounded-full h-2 w-2 ${hasAlert ? 'bg-rose-400 shadow-[0_0_8px_rgba(244,63,94,1)]' : 'bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,1)]'}`} />
+                          </span>
                           {hasAlert ? `${room.alertsCount} Alert` : 'Optimal'}
                         </span>
                       </td>

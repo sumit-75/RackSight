@@ -143,3 +143,36 @@ body {
   border-color: rgba(16, 185, 129, 0.35);
   box-shadow: 0 22px 40px -12px rgba(0, 0, 0, 0.8), 0 0 30px 0 rgba(16, 185, 129, 0.14);
 }
+
+/* Perfect Dual-Layer Radar Pulse Ring Animation */
+@keyframes radar-pulse-ring {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.9;
+  }
+  70%, 100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+.radar-ring {
+  animation: radar-pulse-ring 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.radar-ring-stagger-1 {
+  animation: radar-pulse-ring 1.8s cubic-bezier(0, 0, 0.2, 1) 0.3s infinite;
+}
+
+.radar-ring-stagger-2 {
+  animation: radar-pulse-ring 1.8s cubic-bezier(0, 0, 0.2, 1) 0.6s infinite;
+}
+
+.radar-ring-stagger-3 {
+  animation: radar-pulse-ring 1.8s cubic-bezier(0, 0, 0.2, 1) 0.9s infinite;
+}
+
+.radar-ring-stagger-4 {
+  animation: radar-pulse-ring 1.8s cubic-bezier(0, 0, 0.2, 1) 1.2s infinite;
+}
+

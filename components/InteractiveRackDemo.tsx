@@ -179,8 +179,11 @@ export default function InteractiveRackDemo() {
               <div className="lg:col-span-7 space-y-4 bg-[#161512] border border-[#24231f] rounded-2xl p-5">
                 <div className="flex justify-between items-center text-xs font-extrabold text-[#a3a39e]">
                   <span>42U Cabinet Physical Slots</span>
-                  <span className="flex items-center gap-1.5 text-emerald-400">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                  <span className="flex items-center gap-2 text-emerald-400">
+                    <span className="relative flex h-2 w-2 shrink-0">
+                      <span className="radar-ring absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,1)]" />
+                    </span>
                     Polling Active
                   </span>
                 </div>
