@@ -41,7 +41,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         {/* Floating Glassmorphic Pill Navbar */}
         <FloatingNavbar session={session ? { user: session.user as string } : null} />
 
-        <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-10">
+        <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 pt-4">
           {children}
         </main>
       </body>

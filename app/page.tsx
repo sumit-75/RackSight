@@ -72,7 +72,7 @@ export default async function LandingPage() {
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#0e0d09] to-transparent" />
       </div>
 
-      <div className="relative z-10 space-y-24">
+      <div className="relative z-10 space-y-12 sm:space-y-16">
         <ScrollToHash />
         {/* Logged in User Quick Banner */}
       {user && (
@@ -95,7 +95,7 @@ export default async function LandingPage() {
       )}
 
       {/* Hero Section */}
-      <section className="relative text-center space-y-8 max-w-4xl mx-auto pt-4 font-sans">
+      <section className="relative text-center space-y-6 max-w-4xl mx-auto pt-2 font-sans">
         {/* Release Pill */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#2e2d27] bg-[#161512] text-[#e5e5e0] text-xs font-extrabold font-sans">
           <Sparkles size={14} className="text-emerald-400 animate-pulse" />
