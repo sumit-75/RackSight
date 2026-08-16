@@ -201,11 +201,11 @@ export default function RackLayout({
     }
   }
 
-  // Stats calculations
+  // Stats calculations based on server status
   const totalServers = localServers.length;
-  const onlineServers = localServers.filter(s => s.status === 'active' && s.readings[0]?.watts <= 350 && s.readings[0]?.watts > 0).length;
-  const warningServers = localServers.filter(s => s.status === 'idle' || (s.status === 'active' && s.readings[0]?.watts === 0)).length;
-  const offlineServers = localServers.filter(s => s.status === 'decommissioned' || (s.status === 'active' && s.readings[0]?.watts > 350) || !s.readings[0]).length;
+  const onlineServers = localServers.filter(s => s.status === 'active').length;
+  const warningServers = localServers.filter(s => s.status === 'idle').length;
+  const offlineServers = localServers.filter(s => s.status === 'decommissioned').length;
 
   const shelfSize = Math.max(1, Math.floor(totalUnits / 3));
   const upperStart = Math.min(totalUnits, totalUnits - shelfSize + 1);
@@ -259,12 +259,16 @@ export default function RackLayout({
             const isPowerDrop = status === 'active' && watts === 0.0;
 
             let colorClass = 'bg-emerald-500 border-emerald-400/50 hover:bg-emerald-400 text-white';
-            if (isPowerSpike) {
-              colorClass = 'bg-rose-500 border-rose-450 hover:bg-rose-450 text-white animate-pulse ring-2 ring-rose-500/30';
-            } else if (isPowerDrop || status === 'idle') {
-              colorClass = 'bg-amber-500 border-amber-400/50 hover:bg-amber-400 text-white';
-            } else if (status === 'decommissioned') {
-              colorClass = 'bg-[#282620] border-[#3a3830] hover:bg-[#35332b] text-[#a3a39e]';
+            if (status === 'decommissioned') {
+              colorClass = 'bg-[#38352e] border-[#4a463d] hover:bg-[#423f37] text-[#a3a39e]';
+            } else if (status === 'idle') {
+              colorClass = 'bg-amber-500 border-amber-400/50 hover:bg-amber-400 text-slate-950 font-bold';
+            } else if (status === 'active') {
+              if (isPowerSpike) {
+                colorClass = 'bg-rose-500 border-rose-450 hover:bg-rose-450 text-white animate-pulse ring-2 ring-rose-500/30';
+              } else {
+                colorClass = 'bg-emerald-500 border-emerald-400/50 hover:bg-emerald-400 text-white';
+              }
             }
 
             const isSelected = selectedServer?.id === server.id;
@@ -520,8 +524,8 @@ export default function RackLayout({
                         selectedServer.status === 'active'
                           ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30'
                           : selectedServer.status === 'idle'
-                          ? 'bg-[#1b1915] text-[#d4d4d0] border border-[#282620]'
-                          : 'bg-rose-500/10 text-rose-400 border-rose-500/30'
+                          ? 'bg-amber-500/10 text-amber-400 border-amber-500/30'
+                          : 'bg-zinc-500/10 text-zinc-400 border-zinc-500/30'
                       }`}>
                         {selectedServer.status}
                       </span>
