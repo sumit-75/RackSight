@@ -33,7 +33,7 @@ export default function PowerChart({ data, limit, title, subtitle }: PowerChartP
 
   if (!isMounted) {
     return (
-      <div className="h-64 flex items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-400 text-xs">
+      <div className="h-64 flex items-center justify-center rounded-2xl border border-[#24231f] bg-[#161512] text-[#a3a39e] text-xs">
         Loading chart metrics...
       </div>
     );
@@ -43,20 +43,20 @@ export default function PowerChart({ data, limit, title, subtitle }: PowerChartP
   const displaySubtitle = subtitle || "Sum of server draw over recent updates";
 
   return (
-    <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-md space-y-4">
+    <div className="rounded-2xl border border-[#24231f] bg-[#161512] p-5 shadow-md space-y-4">
       <div className="flex justify-between items-center">
         <div>
-          <h3 className="font-bold text-sm text-slate-900">{displayTitle}</h3>
-          <p className="text-xs text-slate-500 mt-0.5">{displaySubtitle}</p>
+          <h3 className="font-bold text-sm text-[#f5f5f4]">{displayTitle}</h3>
+          <p className="text-xs text-[#a3a39e] mt-0.5">{displaySubtitle}</p>
         </div>
-        <span className="text-[0.65rem] uppercase font-mono font-bold tracking-wider text-amber-600 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
+        <span className="text-[0.65rem] uppercase font-mono font-bold tracking-wider text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">
           Limit: {limit}W
         </span>
       </div>
 
       <div className="h-64 w-full">
         {data.length === 0 ? (
-          <div className="h-full flex items-center justify-center text-slate-400 text-xs">
+          <div className="h-full flex items-center justify-center text-[#a3a39e] text-xs">
             No readings recorded yet. Wait for simulation ticks.
           </div>
         ) : (

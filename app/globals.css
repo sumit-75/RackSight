@@ -126,3 +126,20 @@ body {
 .animate-dialog {
   animation: dialog-in 150ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+/* Ultra-smooth, crystal-clear Bento card hover animation */
+.smooth-bento-card {
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 220ms ease,
+              background-color 220ms ease,
+              box-shadow 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.smooth-bento-card:hover {
+  transform: translate3d(0, -6px, 0);
+  border-color: rgba(16, 185, 129, 0.35);
+  box-shadow: 0 22px 40px -12px rgba(0, 0, 0, 0.8), 0 0 30px 0 rgba(16, 185, 129, 0.14);
+}

@@ -13,19 +13,19 @@ const SelectValue = SelectPrimitive.Value;
 const SelectTrigger = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>
->(({ className, children, ...props }, ref) => (
+>(({ className = '', children, ...props }, ref) => (
   <SelectPrimitive.Trigger
     ref={ref}
     className={`
-      flex h-9 w-full items-center justify-between rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-sm text-slate-900 placeholder-slate-400
-      focus:outline-none focus:border-cyan-600 focus:ring-1 focus:ring-cyan-600/30 disabled:cursor-not-allowed disabled:opacity-50
+      flex h-10 w-full items-center justify-between rounded-xl border border-[#282620] bg-[#1b1915] px-3.5 py-2 text-sm text-[#e5e5e0] placeholder-[#73726c]
+      focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/30 disabled:cursor-not-allowed disabled:opacity-50
       [&>span]:line-clamp-1 transition-all duration-200 cursor-pointer ${className}
     `}
     {...props}
   >
     {children}
     <SelectPrimitive.Icon asChild>
-      <ChevronDown className="h-4 w-4 opacity-50 shrink-0 ml-2" />
+      <ChevronDown className="h-4 w-4 opacity-60 shrink-0 ml-2 text-[#a3a39e]" />
     </SelectPrimitive.Icon>
   </SelectPrimitive.Trigger>
 ));
@@ -34,12 +34,12 @@ SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
 const SelectContent = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof SelectPrimitive.Content>
->(({ className, children, position = 'popper', ...props }, ref) => (
+>(({ className = '', children, position = 'popper', ...props }, ref) => (
   <SelectPrimitive.Portal>
     <SelectPrimitive.Content
       ref={ref}
       className={`
-        relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-xl border border-slate-200 bg-white text-slate-950 shadow-lg
+        relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-2xl border border-[#24231f] bg-[#161512] text-[#e5e5e0] shadow-2xl
         data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95
         data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 ${className}
       `}
@@ -62,10 +62,10 @@ SelectContent.displayName = SelectPrimitive.Content.displayName;
 const SelectLabel = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Label>,
   React.ComponentPropsWithoutRef<typeof SelectPrimitive.Label>
->(({ className, ...props }, ref) => (
+>(({ className = '', ...props }, ref) => (
   <SelectPrimitive.Label
     ref={ref}
-    className={`py-1.5 pl-8 pr-2 text-xs font-bold text-slate-500 uppercase tracking-wider ${className}`}
+    className={`py-1.5 pl-8 pr-2 text-xs font-extrabold text-[#a3a39e] uppercase tracking-wider ${className}`}
     {...props}
   />
 ));
@@ -74,19 +74,19 @@ SelectLabel.displayName = SelectPrimitive.Label.displayName;
 const SelectItem = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Item>,
   React.ComponentPropsWithoutRef<typeof SelectPrimitive.Item>
->(({ className, children, ...props }, ref) => (
+>(({ className = '', children, ...props }, ref) => (
   <SelectPrimitive.Item
     ref={ref}
     className={`
-      relative flex w-full select-none items-center rounded-md py-2 pl-8 pr-2.5 text-sm text-slate-700 outline-none
-      focus:bg-slate-50 focus:text-slate-950 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 cursor-pointer
+      relative flex w-full select-none items-center rounded-lg py-2 pl-8 pr-2.5 text-sm text-[#e5e5e0] outline-none
+      focus:bg-[#1b1915] focus:text-white data-[disabled]:pointer-events-none data-[disabled]:opacity-50 cursor-pointer
       transition-colors duration-150 ${className}
     `}
     {...props}
   >
     <span className="absolute left-2.5 flex h-3.5 w-3.5 items-center justify-center">
       <SelectPrimitive.ItemIndicator>
-        <Check className="h-4 w-4 text-emerald-600 font-bold" />
+        <Check className="h-4 w-4 text-emerald-400 font-bold" />
       </SelectPrimitive.ItemIndicator>
     </span>
 

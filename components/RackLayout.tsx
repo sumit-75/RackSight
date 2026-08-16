@@ -325,10 +325,10 @@ export default function RackLayout({
       {/* Stats Cards Section */}
       <div className="lg:col-span-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Total Servers */}
-        <div className="rounded-xl border border-slate-200 bg-white p-4 flex items-center justify-between shadow-sm">
+        <div className="rounded-2xl border border-[#24231f] bg-[#161512] p-4 flex items-center justify-between shadow-md">
           <div>
-            <span className="text-[0.65rem] uppercase text-slate-500 font-semibold tracking-wider">Total Servers</span>
-            <div className="text-2xl font-black text-slate-900 mt-1">{totalServers}</div>
+            <span className="text-[0.65rem] uppercase text-[#a3a39e] font-extrabold tracking-wider">Total Servers</span>
+            <div className="text-2xl font-extrabold text-[#f5f5f4] mt-1">{totalServers}</div>
           </div>
           <div className="p-2.5 bg-cyan-500/10 border border-cyan-500/20 rounded-xl text-cyan-400 shadow-[0_0_12px_rgba(6,182,212,0.15)] flex items-center justify-center">
             <ServerIcon size={20} className="text-cyan-400" />
@@ -336,10 +336,10 @@ export default function RackLayout({
         </div>
 
         {/* Online Servers */}
-        <div className="rounded-xl border border-slate-200 bg-white p-4 flex items-center justify-between shadow-sm">
+        <div className="rounded-2xl border border-[#24231f] bg-[#161512] p-4 flex items-center justify-between shadow-md">
           <div>
-            <span className="text-[0.65rem] uppercase text-slate-500 font-semibold tracking-wider">Online</span>
-            <div className="text-2xl font-black text-emerald-400 mt-1">{onlineServers}</div>
+            <span className="text-[0.65rem] uppercase text-[#a3a39e] font-extrabold tracking-wider">Online</span>
+            <div className="text-2xl font-extrabold text-emerald-400 mt-1">{onlineServers}</div>
           </div>
           <div className="p-2.5 bg-emerald-500/10 border border-emerald-500/20 rounded-xl text-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.15)] flex items-center justify-center">
             <CheckCircle2 size={20} className="text-emerald-400" />
@@ -347,10 +347,10 @@ export default function RackLayout({
         </div>
 
         {/* Warning Servers */}
-        <div className="rounded-xl border border-slate-200 bg-white p-4 flex items-center justify-between shadow-sm">
+        <div className="rounded-2xl border border-[#24231f] bg-[#161512] p-4 flex items-center justify-between shadow-md">
           <div>
-            <span className="text-[0.65rem] uppercase text-slate-500 font-semibold tracking-wider">Warning</span>
-            <div className="text-2xl font-black text-amber-400 mt-1">{warningServers}</div>
+            <span className="text-[0.65rem] uppercase text-[#a3a39e] font-extrabold tracking-wider">Warning</span>
+            <div className="text-2xl font-extrabold text-amber-400 mt-1">{warningServers}</div>
           </div>
           <div className="p-2.5 bg-amber-500/10 border border-amber-500/20 rounded-xl text-amber-400 shadow-[0_0_12px_rgba(245,158,11,0.15)] flex items-center justify-center">
             <AlertTriangle size={20} className="text-amber-400" />
@@ -358,10 +358,10 @@ export default function RackLayout({
         </div>
 
         {/* Offline / Faulty Servers */}
-        <div className="rounded-xl border border-slate-200 bg-white p-4 flex items-center justify-between shadow-sm">
+        <div className="rounded-2xl border border-[#24231f] bg-[#161512] p-4 flex items-center justify-between shadow-md">
           <div>
-            <span className="text-[0.65rem] uppercase text-slate-500 font-semibold tracking-wider">Offline / Faulty</span>
-            <div className="text-2xl font-black text-rose-400 mt-1">{offlineServers}</div>
+            <span className="text-[0.65rem] uppercase text-[#a3a39e] font-extrabold tracking-wider">Offline / Faulty</span>
+            <div className="text-2xl font-extrabold text-rose-400 mt-1">{offlineServers}</div>
           </div>
           <div className="p-2.5 bg-rose-500/10 border border-rose-500/20 rounded-xl text-rose-400 shadow-[0_0_12px_rgba(244,63,94,0.15)] flex items-center justify-center">
             <XCircle size={20} className="text-rose-400" />
@@ -371,26 +371,26 @@ export default function RackLayout({
 
       {/* Left Column: Grid Blocks Shelf Matrix (8 cols) */}
       <div className="lg:col-span-8 space-y-6">
-        <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm space-y-6">
+        <div className="rounded-2xl border border-[#24231f] bg-[#161512] p-6 shadow-md space-y-6">
           <div>
-            <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2.5">
+            <h2 className="text-lg font-extrabold text-[#f5f5f4] flex items-center gap-2.5">
               <div className="p-1.5 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center">
                 <ServerIcon className="text-cyan-400" size={18} />
               </div>
               All Cabinet Shelves
             </h2>
-            <p className="text-xs text-slate-500 mt-0.5">Real-time status of all cabinet U-slots</p>
+            <p className="text-xs text-[#a3a39e] mt-0.5">Real-time status of all cabinet U-slots</p>
           </div>
           <div className="space-y-4">
             {shelves.map((shelf) => (
-              <div key={shelf.name} className="flex flex-col md:flex-row items-start md:items-center justify-between p-4 bg-slate-50 border border-slate-200 rounded-xl gap-4 hover:border-slate-350 transition-colors shadow-sm">
+              <div key={shelf.name} className="flex flex-col md:flex-row items-start md:items-center justify-between p-4 bg-[#1b1915] border border-[#282620] rounded-xl gap-4 hover:border-[#383630] transition-colors shadow-sm">
                 <div className="flex items-center gap-3 w-40 shrink-0">
                   <div className={`p-2.5 rounded-lg border flex items-center justify-center ${shelf.color}`}>
                     {shelf.icon}
                   </div>
                   <div>
-                    <h4 className="font-bold text-sm text-slate-800">{shelf.name}</h4>
-                    <span className="text-[0.65rem] text-slate-500 font-mono font-bold">{shelf.range}</span>
+                    <h4 className="font-bold text-sm text-[#f5f5f4]">{shelf.name}</h4>
+                    <span className="text-[0.65rem] text-[#a3a39e] font-mono font-bold">{shelf.range}</span>
                   </div>
                 </div>
                 <div className="flex-1 min-w-0">
@@ -423,23 +423,23 @@ export default function RackLayout({
       {/* Control Panel (4 cols) */}
       <div className="lg:col-span-4 space-y-6">
         {/* Status / Alert Banner */}
-        <div className={`rounded-xl border p-5 ${
+        <div className={`rounded-2xl border p-5 ${
           isOverLimit
-            ? 'border-rose-200 bg-rose-50 text-rose-800'
-            : 'border-slate-200 bg-white text-slate-800'
+            ? 'border-rose-500/40 bg-rose-500/10 text-rose-300'
+            : 'border-[#24231f] bg-[#161512] text-[#f5f5f4]'
         }`}>
           <div className="flex justify-between items-center">
             <div>
-              <h3 className="font-bold text-sm text-slate-650">Rack Power Consumption</h3>
+              <h3 className="font-extrabold text-sm text-[#a3a39e]">Rack Power Consumption</h3>
               <div className="flex items-baseline gap-2 mt-1">
-                <span className={`text-2xl font-black ${isOverLimit ? 'text-rose-600' : 'text-emerald-600'}`}>
+                <span className={`text-2xl font-black ${isOverLimit ? 'text-rose-400' : 'text-emerald-400'}`}>
                   {totalPower.toFixed(1)} W
                 </span>
-                <span className="text-xs text-slate-500">/ {powerLimitWatts} W Limit</span>
+                <span className="text-xs text-[#a3a39e]">/ {powerLimitWatts} W Limit</span>
               </div>
             </div>
             {isOverLimit && (
-              <span className="animate-pulse bg-rose-100 text-rose-700 border border-rose-200 text-[0.65rem] font-black uppercase tracking-wider px-2 py-1 rounded">
+              <span className="animate-pulse bg-rose-500/20 text-rose-400 border border-rose-500/30 text-[0.65rem] font-black uppercase tracking-wider px-2 py-1 rounded">
                 OVER LIMIT
               </span>
             )}
@@ -448,9 +448,9 @@ export default function RackLayout({
 
         {/* Error notification */}
         {errorMsg && (
-          <div className="rounded-xl border border-rose-200 bg-rose-50 text-rose-800 p-4 text-xs font-semibold flex justify-between items-center">
+          <div className="rounded-xl border border-rose-500/30 bg-rose-500/10 text-rose-300 p-4 text-xs font-semibold flex justify-between items-center">
             <span>{errorMsg}</span>
-            <button onClick={() => setErrorMsg(null)} className="text-rose-600 hover:text-rose-800 cursor-pointer">
+            <button onClick={() => setErrorMsg(null)} className="text-rose-400 hover:text-rose-200 cursor-pointer">
               <X size={14} />
             </button>
           </div>
@@ -459,7 +459,7 @@ export default function RackLayout({
         {/* Dynamic Detail Card / Forms */}
         {selectedServer ? (
           /* Inspect & Edit Section */
-          <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-md space-y-6">
+          <div className="rounded-2xl border border-[#24231f] bg-[#161512] p-6 shadow-md space-y-6">
             {!isEditing ? (
               // Read-only Details
               <div className="space-y-4">
@@ -468,13 +468,13 @@ export default function RackLayout({
                     <div className="p-1.5 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center">
                       <ServerIcon className="text-cyan-400" size={18} />
                     </div>
-                    <h3 className="font-bold text-lg text-slate-900">{selectedServer.name}</h3>
+                    <h3 className="font-bold text-lg text-[#f5f5f4]">{selectedServer.name}</h3>
                   </div>
                   <div className="flex gap-2">
                     <Tooltip content="Edit Server">
                       <button
                         onClick={() => setIsEditing(true)}
-                        className="text-slate-500 hover:text-cyan-655 p-1.5 rounded bg-slate-50 border border-slate-200 transition-colors cursor-pointer"
+                        className="text-[#a3a39e] hover:text-emerald-400 p-1.5 rounded bg-[#1b1915] border border-[#282620] transition-colors cursor-pointer"
                         aria-label="Edit Server"
                       >
                         <Edit size={14} />
@@ -484,7 +484,7 @@ export default function RackLayout({
                       <button
                         onClick={() => triggerDeleteConfirm(selectedServer.id)}
                         disabled={isLoading}
-                        className="text-slate-500 hover:text-rose-600 p-1.5 rounded bg-slate-50 border border-slate-200 transition-colors cursor-pointer disabled:opacity-60 flex items-center justify-center"
+                        className="text-[#a3a39e] hover:text-rose-400 p-1.5 rounded bg-[#1b1915] border border-[#282620] transition-colors cursor-pointer disabled:opacity-60 flex items-center justify-center"
                         aria-label="Delete Server"
                       >
                         {isLoading ? (
@@ -497,32 +497,32 @@ export default function RackLayout({
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4 pt-4 border-t border-slate-100">
+                <div className="grid grid-cols-2 gap-4 pt-4 border-t border-[#24231f]">
                   <div>
-                    <div className="text-[0.65rem] text-slate-500 uppercase tracking-wider font-semibold">Start Unit</div>
-                    <div className="text-sm font-bold text-slate-800 mt-0.5">U{selectedServer.startUnit}</div>
+                    <div className="text-[0.65rem] text-[#a3a39e] uppercase tracking-wider font-extrabold">Start Unit</div>
+                    <div className="text-sm font-bold text-[#f5f5f4] mt-0.5">U{selectedServer.startUnit}</div>
                   </div>
                   <div>
-                    <div className="text-[0.65rem] text-slate-500 uppercase tracking-wider font-semibold">Height</div>
-                    <div className="text-sm font-bold text-slate-800 mt-0.5">{selectedServer.sizeUnits} U</div>
+                    <div className="text-[0.65rem] text-[#a3a39e] uppercase tracking-wider font-extrabold">Height</div>
+                    <div className="text-sm font-bold text-[#f5f5f4] mt-0.5">{selectedServer.sizeUnits} U</div>
                   </div>
                   <div>
-                    <div className="text-[0.65rem] text-slate-500 uppercase tracking-wider font-semibold">Status</div>
+                    <div className="text-[0.65rem] text-[#a3a39e] uppercase tracking-wider font-extrabold">Status</div>
                     <div className="mt-1">
-                      <span className={`text-[0.65rem] font-extrabold uppercase px-2 py-0.5 rounded border ${
+                      <span className={`text-[0.65rem] font-mono font-extrabold uppercase px-2 py-0.5 rounded border ${
                         selectedServer.status === 'active'
-                          ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                          ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30'
                           : selectedServer.status === 'idle'
-                          ? 'bg-slate-50 text-slate-650 border border-slate-200'
-                          : 'bg-rose-50 text-rose-700 border-rose-200'
+                          ? 'bg-[#1b1915] text-[#a3a39e] border border-[#282620]'
+                          : 'bg-rose-500/10 text-rose-400 border-rose-500/30'
                       }`}>
                         {selectedServer.status}
                       </span>
                     </div>
                   </div>
                   <div>
-                    <div className="text-[0.65rem] text-slate-500 uppercase tracking-wider font-semibold">Live Power</div>
-                    <div className="text-sm font-bold text-emerald-600 mt-0.5">
+                    <div className="text-[0.65rem] text-[#a3a39e] uppercase tracking-wider font-extrabold">Live Power</div>
+                    <div className="text-sm font-bold text-emerald-400 mt-0.5">
                       {selectedServer.readings[0] ? `${selectedServer.readings[0].watts.toFixed(1)} W` : '0.0 W'}
                     </div>
                   </div>
@@ -532,15 +532,15 @@ export default function RackLayout({
               // Edit Form
               <div className="space-y-4">
                 <div className="flex justify-between items-center mb-2">
-                  <h3 className="font-bold text-lg text-slate-900">Edit Server</h3>
-                  <button onClick={() => setIsEditing(false)} className="text-slate-400 hover:text-white cursor-pointer">
+                  <h3 className="font-bold text-lg text-[#f5f5f4]">Edit Server</h3>
+                  <button onClick={() => setIsEditing(false)} className="text-[#a3a39e] hover:text-white cursor-pointer">
                     <X size={16} />
                   </button>
                 </div>
                 <form onSubmit={handleEditSubmit} className="space-y-4">
                   <input type="hidden" name="rackId" value={rackId} />
                   <div>
-                    <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">
+                    <label className="block text-xs font-extrabold text-[#a3a39e] uppercase tracking-wider mb-1">
                       Server Name
                     </label>
                     <input
@@ -549,13 +549,13 @@ export default function RackLayout({
                       required
                       value={formName}
                       onChange={(e) => setFormName(e.target.value)}
-                      className="w-full bg-white border border-slate-300 rounded-lg px-3 py-1.5 text-sm text-slate-900 focus:outline-none focus:border-cyan-600"
+                      className="w-full bg-[#1b1915] border border-[#282620] text-[#e5e5e0] rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-emerald-500"
                     />
                   </div>
 
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">
+                      <label className="block text-xs font-extrabold text-[#a3a39e] uppercase tracking-wider mb-1">
                         Start Unit (U)
                       </label>
                       <input
@@ -564,11 +564,11 @@ export default function RackLayout({
                         required
                         value={formStartUnit}
                         onChange={(e) => setFormStartUnit(parseInt(e.target.value) || 1)}
-                        className="w-full bg-white border border-slate-300 rounded-lg px-3 py-1.5 text-sm text-slate-900 focus:outline-none focus:border-cyan-600"
+                        className="w-full bg-[#1b1915] border border-[#282620] text-[#e5e5e0] rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-emerald-500"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">
+                      <label className="block text-xs font-extrabold text-[#a3a39e] uppercase tracking-wider mb-1">
                         Size (U Height)
                       </label>
                       <input
@@ -577,13 +577,13 @@ export default function RackLayout({
                         required
                         value={formSizeUnits}
                         onChange={(e) => setFormSizeUnits(parseInt(e.target.value) || 1)}
-                        className="w-full bg-white border border-slate-300 rounded-lg px-3 py-1.5 text-sm text-slate-900 focus:outline-none focus:border-cyan-600"
+                        className="w-full bg-[#1b1915] border border-[#282620] text-[#e5e5e0] rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-emerald-500"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-extrabold text-[#a3a39e] uppercase tracking-wider mb-1.5">
                       Status
                     </label>
                     <input type="hidden" name="status" value={formStatus} />
@@ -606,7 +606,7 @@ export default function RackLayout({
                     <button
                       type="submit"
                       disabled={isLoading}
-                      className="flex-1 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-slate-950 font-bold py-2 rounded-lg text-sm cursor-pointer disabled:opacity-60 flex items-center justify-center gap-1.5"
+                      className="flex-1 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-2 rounded-xl text-sm cursor-pointer disabled:opacity-60 flex items-center justify-center gap-1.5"
                     >
                       {isLoading ? (
                         <span className="w-3.5 h-3.5 border-2 border-slate-950 border-t-transparent rounded-full animate-spin"></span>
@@ -617,7 +617,7 @@ export default function RackLayout({
                     <button
                       type="button"
                       onClick={() => setIsEditing(false)}
-                      className="px-4 py-2 border border-[#2e2d27] bg-[#1b1915] rounded-lg text-sm text-[#e5e5e0] hover:text-white hover:bg-[#24231f] cursor-pointer"
+                      className="px-4 py-2 border border-[#282620] bg-[#1b1915] rounded-xl text-sm text-[#e5e5e0] hover:text-white hover:bg-[#24231f] cursor-pointer"
                     >
                       Cancel
                     </button>
@@ -628,8 +628,8 @@ export default function RackLayout({
           </div>
         ) : (
           /* Add Server Form */
-          <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-md">
-            <h3 className="font-bold text-lg text-slate-900 mb-4 flex items-center gap-2.5">
+          <div className="rounded-2xl border border-[#24231f] bg-[#161512] p-6 shadow-md">
+            <h3 className="font-extrabold text-lg text-[#f5f5f4] mb-4 flex items-center gap-2.5">
               <div className="p-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center">
                 <Plus size={18} className="text-emerald-400" />
               </div>
@@ -638,7 +638,7 @@ export default function RackLayout({
             <form onSubmit={handleAddSubmit} className="space-y-4">
               <input type="hidden" name="rackId" value={rackId} />
               <div>
-                <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">
+                <label className="block text-xs font-extrabold text-[#a3a39e] uppercase tracking-wider mb-1">
                   Server Name
                 </label>
                 <input
@@ -648,13 +648,13 @@ export default function RackLayout({
                   placeholder="e.g., AppServer-01"
                   value={formName}
                   onChange={(e) => setFormName(e.target.value)}
-                  className="w-full bg-white border border-slate-300 rounded-lg px-3 py-1.5 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-cyan-600"
+                  className="w-full bg-[#1b1915] border border-[#282620] text-[#e5e5e0] rounded-xl px-3.5 py-2 text-sm placeholder-[#73726c] focus:outline-none focus:border-emerald-500"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">
+                  <label className="block text-xs font-extrabold text-[#a3a39e] uppercase tracking-wider mb-1">
                     Start Unit (U)
                   </label>
                   <input
@@ -665,11 +665,11 @@ export default function RackLayout({
                     max="42"
                     value={formStartUnit}
                     onChange={(e) => setFormStartUnit(parseInt(e.target.value) || 1)}
-                    className="w-full bg-white border border-slate-300 rounded-lg px-3 py-1.5 text-sm text-slate-900 focus:outline-none focus:border-cyan-650"
+                    className="w-full bg-[#1b1915] border border-[#282620] text-[#e5e5e0] rounded-xl px-3.5 py-2 text-sm focus:outline-none focus:border-emerald-500"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">
+                  <label className="block text-xs font-extrabold text-[#a3a39e] uppercase tracking-wider mb-1">
                     Size (U Height)
                   </label>
                   <input
@@ -680,13 +680,13 @@ export default function RackLayout({
                     max="42"
                     value={formSizeUnits}
                     onChange={(e) => setFormSizeUnits(parseInt(e.target.value) || 1)}
-                    className="w-full bg-white border border-slate-300 rounded-lg px-3 py-1.5 text-sm text-slate-900 focus:outline-none focus:border-cyan-650"
+                    className="w-full bg-[#1b1915] border border-[#282620] text-[#e5e5e0] rounded-xl px-3.5 py-2 text-sm focus:outline-none focus:border-emerald-500"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-extrabold text-[#a3a39e] uppercase tracking-wider mb-1.5">
                   Status
                 </label>
                 <input type="hidden" name="status" value={formStatus} />
