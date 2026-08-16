@@ -84,15 +84,24 @@ export default async function RoomDetailsPage({ params }: PageProps) {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Racks List (Left 2 cols) */}
-        <div className="lg:col-span-2 space-y-4">
-          <h2 className="text-lg font-extrabold text-[#f5f5f4]">Racks in this Room</h2>
+        {/* Racks List Section Panel */}
+        <div className="lg:col-span-2 rounded-3xl border border-[#24231f] bg-[#141310]/90 p-6 sm:p-7 shadow-xl space-y-5">
+          <div className="flex items-center justify-between pb-2 border-b border-[#24231f]">
+            <h2 className="text-lg font-extrabold text-[#f5f5f4] flex items-center gap-2">
+              <span className="h-2 w-2 rounded-full bg-cyan-400" />
+              Racks in this Room
+            </h2>
+            <span className="text-xs font-bold text-[#a3a39e] bg-[#1c1a16] border border-[#2e2c26] px-2.5 py-1 rounded-full">
+              {room.racks.length} {room.racks.length === 1 ? 'Rack' : 'Racks'}
+            </span>
+          </div>
+
           {room.racks.length === 0 ? (
-            <div className="rounded-2xl border border-dashed border-[#24231f] bg-[#161512] p-8 text-center text-[#d4d4d0] text-sm font-medium">
+            <div className="rounded-2xl border border-dashed border-[#282620] bg-[#1c1a16] p-8 text-center text-[#d4d4d0] text-sm font-medium">
               No racks created in this room yet. Use the form to add one.
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4.5">
               {room.racks.map((rack) => {
                 // Calculate current power draw as sum of latest readings of its servers
                 const currentPower = rack.servers.reduce((sum, server) => {
@@ -108,7 +117,7 @@ export default async function RoomDetailsPage({ params }: PageProps) {
                     className={`group relative rounded-2xl border p-5 flex flex-col justify-between transition-all duration-300 shadow-md ${
                       isOverLimit
                         ? 'border-rose-500/40 bg-rose-500/10 shadow-rose-950/20'
-                        : 'border-[#24231f] bg-[#161512] hover:bg-[#191814] hover:border-[#383630]'
+                        : 'border-[#2e2c26] bg-[#1a1915] hover:border-emerald-500/40 hover:bg-[#1e1c18]'
                     }`}
                   >
                     <div>
@@ -162,7 +171,7 @@ export default async function RoomDetailsPage({ params }: PageProps) {
                       </div>
                     </div>
 
-                    <div className="mt-6 pt-4 border-t border-[#24231f] flex justify-end">
+                    <div className="mt-6 pt-4 border-t border-[#2e2c26] flex justify-end">
                       <Link
                         href={`/racks/${rack.id}`}
                         className="flex items-center gap-1.5 text-sm font-extrabold text-emerald-400 hover:text-emerald-300 group/link transition-colors"
@@ -178,10 +187,10 @@ export default async function RoomDetailsPage({ params }: PageProps) {
           )}
         </div>
 
-        {/* Add Rack Form */}
+        {/* Add Rack Form Section Panel */}
         <div>
-          <div className="rounded-2xl border border-[#24231f] bg-[#161512] p-6 shadow-md sticky top-24">
-            <h2 className="text-lg font-extrabold text-[#f5f5f4] mb-4 flex items-center gap-2">
+          <div className="rounded-3xl border border-[#24231f] bg-[#141310]/90 p-6 sm:p-7 shadow-xl sticky top-24 space-y-5">
+            <h2 className="text-lg font-extrabold text-[#f5f5f4] flex items-center gap-2 pb-2 border-b border-[#24231f]">
               <Plus size={18} className="text-emerald-400" />
               Add New Rack
             </h2>

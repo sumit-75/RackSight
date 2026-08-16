@@ -322,62 +322,64 @@ export default function RackLayout({
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
       {isLoading && <LineLoader />}
 
-      {/* Stats Cards Section */}
-      <div className="lg:col-span-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {/* Total Servers */}
-        <div className="rounded-2xl border border-[#24231f] bg-[#161512] p-5 flex items-center justify-between shadow-md">
-          <div>
-            <span className="text-xs uppercase text-[#d4d4d0] font-extrabold tracking-wider">Total Servers</span>
-            <div className="text-2xl sm:text-3xl font-extrabold text-[#f5f5f4] mt-1">{totalServers}</div>
+      {/* Stats Cards Section Panel */}
+      <div className="lg:col-span-12 rounded-3xl border border-[#24231f] bg-[#141310]/90 p-6 shadow-xl">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {/* Total Servers */}
+          <div className="rounded-2xl border border-[#2e2c26] bg-[#1a1915] p-5 flex items-center justify-between shadow-md">
+            <div>
+              <span className="text-xs uppercase text-[#d4d4d0] font-extrabold tracking-wider">Total Servers</span>
+              <div className="text-2xl sm:text-3xl font-extrabold text-[#f5f5f4] mt-1">{totalServers}</div>
+            </div>
+            <div className="p-3 bg-cyan-500/10 border border-cyan-500/20 rounded-xl text-cyan-400 shadow-[0_0_12px_rgba(6,182,212,0.15)] flex items-center justify-center">
+              <ServerIcon size={20} className="text-cyan-400" />
+            </div>
           </div>
-          <div className="p-3 bg-cyan-500/10 border border-cyan-500/20 rounded-xl text-cyan-400 shadow-[0_0_12px_rgba(6,182,212,0.15)] flex items-center justify-center">
-            <ServerIcon size={20} className="text-cyan-400" />
-          </div>
-        </div>
 
-        {/* Online Servers */}
-        <div className="rounded-2xl border border-[#24231f] bg-[#161512] p-5 flex items-center justify-between shadow-md">
-          <div>
-            <span className="text-xs uppercase text-[#d4d4d0] font-extrabold tracking-wider">Online</span>
-            <div className="text-2xl sm:text-3xl font-extrabold text-emerald-400 mt-1">{onlineServers}</div>
+          {/* Online Servers */}
+          <div className="rounded-2xl border border-[#2e2c26] bg-[#1a1915] p-5 flex items-center justify-between shadow-md">
+            <div>
+              <span className="text-xs uppercase text-[#d4d4d0] font-extrabold tracking-wider">Online</span>
+              <div className="text-2xl sm:text-3xl font-extrabold text-emerald-400 mt-1">{onlineServers}</div>
+            </div>
+            <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-xl text-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.15)] flex items-center justify-center">
+              <CheckCircle2 size={20} className="text-emerald-400" />
+            </div>
           </div>
-          <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-xl text-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.15)] flex items-center justify-center">
-            <CheckCircle2 size={20} className="text-emerald-400" />
-          </div>
-        </div>
 
-        {/* Warning Servers */}
-        <div className="rounded-2xl border border-[#24231f] bg-[#161512] p-5 flex items-center justify-between shadow-md">
-          <div>
-            <span className="text-xs uppercase text-[#d4d4d0] font-extrabold tracking-wider">Warning</span>
-            <div className="text-2xl sm:text-3xl font-extrabold text-amber-400 mt-1">{warningServers}</div>
+          {/* Warning Servers */}
+          <div className="rounded-2xl border border-[#2e2c26] bg-[#1a1915] p-5 flex items-center justify-between shadow-md">
+            <div>
+              <span className="text-xs uppercase text-[#d4d4d0] font-extrabold tracking-wider">Warning</span>
+              <div className="text-2xl sm:text-3xl font-extrabold text-amber-400 mt-1">{warningServers}</div>
+            </div>
+            <div className="p-3 bg-amber-500/10 border border-amber-500/20 rounded-xl text-amber-400 shadow-[0_0_12px_rgba(245,158,11,0.15)] flex items-center justify-center">
+              <AlertTriangle size={20} className="text-amber-400" />
+            </div>
           </div>
-          <div className="p-3 bg-amber-500/10 border border-amber-500/20 rounded-xl text-amber-400 shadow-[0_0_12px_rgba(245,158,11,0.15)] flex items-center justify-center">
-            <AlertTriangle size={20} className="text-amber-400" />
-          </div>
-        </div>
 
-        {/* Offline / Faulty Servers */}
-        <div className="rounded-2xl border border-[#24231f] bg-[#161512] p-5 flex items-center justify-between shadow-md">
-          <div>
-            <span className="text-xs uppercase text-[#d4d4d0] font-extrabold tracking-wider">Offline / Faulty</span>
-            <div className="text-2xl sm:text-3xl font-extrabold text-rose-400 mt-1">{offlineServers}</div>
-          </div>
-          <div className="p-3 bg-rose-500/10 border border-rose-500/20 rounded-xl text-rose-400 shadow-[0_0_12px_rgba(244,63,94,0.15)] flex items-center justify-center">
-            <XCircle size={20} className="text-rose-400" />
+          {/* Offline / Faulty Servers */}
+          <div className="rounded-2xl border border-[#2e2c26] bg-[#1a1915] p-5 flex items-center justify-between shadow-md">
+            <div>
+              <span className="text-xs uppercase text-[#d4d4d0] font-extrabold tracking-wider">Offline / Faulty</span>
+              <div className="text-2xl sm:text-3xl font-extrabold text-rose-400 mt-1">{offlineServers}</div>
+            </div>
+            <div className="p-3 bg-rose-500/10 border border-rose-500/20 rounded-xl text-rose-400 shadow-[0_0_12px_rgba(244,63,94,0.15)] flex items-center justify-center">
+              <XCircle size={20} className="text-rose-400" />
+            </div>
           </div>
         </div>
       </div>
 
       {/* Left Column: Grid Blocks Shelf Matrix (8 cols) */}
       <div className="lg:col-span-8 space-y-6">
-        <div className="rounded-2xl border border-[#24231f] bg-[#161512] p-6 shadow-md space-y-6">
-          <div>
+        <div className="rounded-3xl border border-[#24231f] bg-[#141310]/90 p-6 sm:p-7 shadow-xl space-y-6">
+          <div className="pb-2 border-b border-[#24231f]">
             <h2 className="text-lg font-extrabold text-[#f5f5f4] flex items-center gap-2.5">
               <div className="p-1.5 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center">
                 <ServerIcon className="text-cyan-400" size={18} />
               </div>
-              All Cabinet Shelves
+              All Cabinet Shelves Categorized
             </h2>
             <p className="text-sm text-[#d4d4d0] font-medium mt-1">Real-time status of all cabinet U-slots</p>
           </div>
@@ -420,13 +422,13 @@ export default function RackLayout({
         />
       </div>
 
-      {/* Control Panel (4 cols) */}
-      <div className="lg:col-span-4 space-y-6">
+      {/* Control Panel Section Panel (4 cols) */}
+      <div className="lg:col-span-4 rounded-3xl border border-[#24231f] bg-[#141310]/90 p-6 sm:p-7 shadow-xl space-y-6">
         {/* Status / Alert Banner */}
         <div className={`rounded-2xl border p-5 ${
           isOverLimit
             ? 'border-rose-500/40 bg-rose-500/10 text-rose-300'
-            : 'border-[#24231f] bg-[#161512] text-[#f5f5f4]'
+            : 'border-[#2e2c26] bg-[#1a1915] text-[#f5f5f4]'
         }`}>
           <div className="flex justify-between items-center">
             <div>
@@ -459,7 +461,7 @@ export default function RackLayout({
         {/* Dynamic Detail Card / Forms */}
         {selectedServer ? (
           /* Inspect & Edit Section */
-          <div className="rounded-2xl border border-[#24231f] bg-[#161512] p-6 shadow-md space-y-6">
+          <div className="rounded-2xl border border-[#2e2c26] bg-[#1a1915] p-6 shadow-md space-y-6">
             {!isEditing ? (
               // Read-only Details
               <div className="space-y-4">
@@ -628,7 +630,7 @@ export default function RackLayout({
           </div>
         ) : (
           /* Add Server Form */
-          <div className="rounded-2xl border border-[#24231f] bg-[#161512] p-6 shadow-md">
+          <div className="rounded-2xl border border-[#2e2c26] bg-[#1a1915] p-6 shadow-md">
             <h3 className="font-extrabold text-lg text-[#f5f5f4] mb-4 flex items-center gap-2.5">
               <div className="p-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center">
                 <Plus size={18} className="text-emerald-400" />

@@ -42,21 +42,30 @@ export default async function RoomsPage() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Rooms List (Left 2 cols) */}
-        <div className="lg:col-span-2 space-y-4">
-          <h2 className="text-lg font-extrabold text-[#f5f5f4]">Active Rooms</h2>
+        {/* Rooms List Section Panel */}
+        <div className="lg:col-span-2 rounded-3xl border border-[#24231f] bg-[#141310]/90 p-6 sm:p-7 shadow-xl space-y-5">
+          <div className="flex items-center justify-between pb-2 border-b border-[#24231f]">
+            <h2 className="text-lg font-extrabold text-[#f5f5f4] flex items-center gap-2">
+              <span className="h-2 w-2 rounded-full bg-emerald-400" />
+              Active Rooms Categorized
+            </h2>
+            <span className="text-xs font-bold text-[#a3a39e] bg-[#1c1a16] border border-[#2e2c26] px-2.5 py-1 rounded-full">
+              {rooms.length} {rooms.length === 1 ? 'Room' : 'Rooms'}
+            </span>
+          </div>
+
           {rooms.length === 0 ? (
-            <div className="rounded-2xl border border-dashed border-[#24231f] bg-[#161512] p-8 text-center text-[#d4d4d0] text-sm font-medium">
+            <div className="rounded-2xl border border-dashed border-[#282620] bg-[#1c1a16] p-8 text-center text-[#d4d4d0] text-sm font-medium">
               No rooms created yet. Use the form to add one.
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4.5">
               {rooms.map((room) => {
                 const totalServers = room.racks.reduce((acc, r) => acc + r.servers.length, 0);
                 return (
                   <div
                     key={room.id}
-                    className="group relative rounded-2xl border border-[#24231f] bg-[#161512] hover:border-[#383630] hover:bg-[#191814] p-5.5 flex flex-col justify-between transition-all duration-300 shadow-md"
+                    className="group relative rounded-2xl border border-[#2e2c26] bg-[#1a1915] hover:border-emerald-500/40 hover:bg-[#1e1c18] p-5.5 flex flex-col justify-between transition-all duration-300 shadow-md"
                   >
                     <div>
                       <div className="flex justify-between items-start">
@@ -90,7 +99,7 @@ export default async function RoomsPage() {
                       </div>
                     </div>
 
-                    <div className="mt-6 pt-4 border-t border-[#24231f] flex justify-end">
+                    <div className="mt-6 pt-4 border-t border-[#2e2c26] flex justify-end">
                       <Link
                         href={`/rooms/${room.id}`}
                         className="flex items-center gap-1.5 text-sm font-extrabold text-emerald-400 hover:text-emerald-300 group/link transition-colors"
@@ -106,10 +115,10 @@ export default async function RoomsPage() {
           )}
         </div>
 
-        {/* Add Room Form (Right 1 col) */}
+        {/* Add Room Form Section Panel */}
         <div>
-          <div className="rounded-2xl border border-[#24231f] bg-[#161512] p-6 shadow-md sticky top-24">
-            <h2 className="text-lg font-extrabold text-[#f5f5f4] mb-4 flex items-center gap-2">
+          <div className="rounded-3xl border border-[#24231f] bg-[#141310]/90 p-6 sm:p-7 shadow-xl sticky top-24 space-y-5">
+            <h2 className="text-lg font-extrabold text-[#f5f5f4] flex items-center gap-2 pb-2 border-b border-[#24231f]">
               <Plus size={18} className="text-emerald-400" />
               Add New Room
             </h2>

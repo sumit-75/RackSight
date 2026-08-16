@@ -89,59 +89,71 @@ export default async function DashboardPage() {
         </p>
       </div>
 
-      {/* Metrics Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {/* Total Rooms */}
-        <div className="rounded-2xl border border-[#24231f] bg-[#161512] p-5 flex items-center justify-between shadow-md hover:border-[#383630] transition-colors">
-          <div>
-            <span className="text-xs uppercase text-[#d4d4d0] font-extrabold tracking-wider">Total Rooms</span>
-            <div className="text-2xl sm:text-3xl font-extrabold text-[#f5f5f4] mt-1">{totalRooms}</div>
-          </div>
-          <div className="p-3 bg-purple-500/10 border border-purple-500/20 rounded-xl text-purple-400 shadow-[0_0_12px_rgba(168,85,247,0.15)] flex items-center justify-center">
-            <Layers size={20} className="text-purple-400" />
-          </div>
+      {/* Metrics Cards Section Panel */}
+      <div className="rounded-3xl border border-[#24231f] bg-[#141310]/90 p-6 shadow-xl space-y-4">
+        <div className="flex items-center justify-between pb-2 border-b border-[#24231f]">
+          <h2 className="text-base sm:text-lg font-extrabold text-[#f5f5f4] flex items-center gap-2">
+            <span className="h-2 w-2 rounded-full bg-emerald-400" />
+            Infrastructure Telemetry Metrics
+          </h2>
+          <span className="text-xs font-bold text-[#a3a39e] bg-[#1c1a16] border border-[#2e2c26] px-2.5 py-1 rounded-full">
+            Realtime Matrix
+          </span>
         </div>
 
-        {/* Total Racks */}
-        <div className="rounded-2xl border border-[#24231f] bg-[#161512] p-5 flex items-center justify-between shadow-md hover:border-[#383630] transition-colors">
-          <div>
-            <span className="text-xs uppercase text-[#d4d4d0] font-extrabold tracking-wider">Active Racks</span>
-            <div className="text-2xl sm:text-3xl font-extrabold text-[#f5f5f4] mt-1">{totalRacks}</div>
-          </div>
-          <div className="p-3 bg-cyan-500/10 border border-cyan-500/20 rounded-xl text-cyan-400 shadow-[0_0_12px_rgba(6,182,212,0.15)] flex items-center justify-center">
-            <Server size={20} className="text-cyan-400" />
-          </div>
-        </div>
-
-        {/* Total Power Draw */}
-        <div className="rounded-2xl border border-[#24231f] bg-[#161512] p-5 flex items-center justify-between shadow-md hover:border-[#383630] transition-colors">
-          <div>
-            <span className="text-xs uppercase text-[#d4d4d0] font-extrabold tracking-wider">Total Power Draw</span>
-            <div className="text-2xl sm:text-3xl font-extrabold text-emerald-400 mt-1">{totalPowerDraw.toFixed(0)} W</div>
-          </div>
-          <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-xl text-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.15)] flex items-center justify-center">
-            <Zap size={20} className="text-emerald-400" />
-          </div>
-        </div>
-
-        {/* Active Threshold Alerts */}
-        <div className={`rounded-2xl border p-5 flex items-center justify-between shadow-md transition-colors ${
-          activeAlerts > 0
-            ? 'border-rose-500/40 bg-rose-500/10 shadow-rose-950/20'
-            : 'border-[#24231f] bg-[#161512] hover:border-[#383630]'
-        }`}>
-          <div>
-            <span className="text-xs uppercase text-[#d4d4d0] font-extrabold tracking-wider">Active Alerts</span>
-            <div className={`text-2xl sm:text-3xl font-extrabold mt-1 ${activeAlerts > 0 ? 'text-rose-400' : 'text-[#f5f5f4]'}`}>
-              {activeAlerts}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {/* Total Rooms */}
+          <div className="rounded-2xl border border-[#2e2c26] bg-[#1a1915] p-5 flex items-center justify-between shadow-md hover:border-[#383630] transition-colors">
+            <div>
+              <span className="text-xs uppercase text-[#d4d4d0] font-extrabold tracking-wider">Total Rooms</span>
+              <div className="text-2xl sm:text-3xl font-extrabold text-[#f5f5f4] mt-1">{totalRooms}</div>
+            </div>
+            <div className="p-3 bg-purple-500/10 border border-purple-500/20 rounded-xl text-purple-400 shadow-[0_0_12px_rgba(168,85,247,0.15)] flex items-center justify-center">
+              <Layers size={20} className="text-purple-400" />
             </div>
           </div>
-          <div className={`p-3 rounded-xl border flex items-center justify-center ${
+
+          {/* Total Racks */}
+          <div className="rounded-2xl border border-[#2e2c26] bg-[#1a1915] p-5 flex items-center justify-between shadow-md hover:border-[#383630] transition-colors">
+            <div>
+              <span className="text-xs uppercase text-[#d4d4d0] font-extrabold tracking-wider">Active Racks</span>
+              <div className="text-2xl sm:text-3xl font-extrabold text-[#f5f5f4] mt-1">{totalRacks}</div>
+            </div>
+            <div className="p-3 bg-cyan-500/10 border border-cyan-500/20 rounded-xl text-cyan-400 shadow-[0_0_12px_rgba(6,182,212,0.15)] flex items-center justify-center">
+              <Server size={20} className="text-cyan-400" />
+            </div>
+          </div>
+
+          {/* Total Power Draw */}
+          <div className="rounded-2xl border border-[#2e2c26] bg-[#1a1915] p-5 flex items-center justify-between shadow-md hover:border-[#383630] transition-colors">
+            <div>
+              <span className="text-xs uppercase text-[#d4d4d0] font-extrabold tracking-wider">Total Power Draw</span>
+              <div className="text-2xl sm:text-3xl font-extrabold text-emerald-400 mt-1">{totalPowerDraw.toFixed(0)} W</div>
+            </div>
+            <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-xl text-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.15)] flex items-center justify-center">
+              <Zap size={20} className="text-emerald-400" />
+            </div>
+          </div>
+
+          {/* Active Threshold Alerts */}
+          <div className={`rounded-2xl border p-5 flex items-center justify-between shadow-md transition-colors ${
             activeAlerts > 0
-              ? 'bg-rose-500/10 border-rose-500/30 text-rose-400 shadow-[0_0_12px_rgba(244,63,94,0.2)]'
-              : 'bg-[#1b1915] border-[#282620] text-[#a3a39e]'
+              ? 'border-rose-500/40 bg-rose-500/10 shadow-rose-950/20'
+              : 'border-[#2e2c26] bg-[#1a1915] hover:border-[#383630]'
           }`}>
-            <AlertTriangle size={20} className={activeAlerts > 0 ? 'text-rose-400' : 'text-[#a3a39e]'} />
+            <div>
+              <span className="text-xs uppercase text-[#d4d4d0] font-extrabold tracking-wider">Active Alerts</span>
+              <div className={`text-2xl sm:text-3xl font-extrabold mt-1 ${activeAlerts > 0 ? 'text-rose-400' : 'text-[#f5f5f4]'}`}>
+                {activeAlerts}
+              </div>
+            </div>
+            <div className={`p-3 rounded-xl border flex items-center justify-center ${
+              activeAlerts > 0
+                ? 'bg-rose-500/10 border-rose-500/30 text-rose-400 shadow-[0_0_12px_rgba(244,63,94,0.2)]'
+                : 'bg-[#1b1915] border-[#282620] text-[#a3a39e]'
+            }`}>
+              <AlertTriangle size={20} className={activeAlerts > 0 ? 'text-rose-400' : 'text-[#a3a39e]'} />
+            </div>
           </div>
         </div>
       </div>
@@ -159,10 +171,13 @@ export default async function DashboardPage() {
         </div>
       )}
 
-      {/* Room summary breakdown */}
-      <div className="space-y-4">
-        <div className="flex justify-between items-center">
-          <h2 className="text-lg font-extrabold text-[#f5f5f4]">Room Status Matrix</h2>
+      {/* Room Summary Breakdown Section Panel */}
+      <div className="rounded-3xl border border-[#24231f] bg-[#141310]/90 p-6 sm:p-7 shadow-xl space-y-5">
+        <div className="flex justify-between items-center pb-2 border-b border-[#24231f]">
+          <h2 className="text-lg font-extrabold text-[#f5f5f4] flex items-center gap-2">
+            <span className="h-2 w-2 rounded-full bg-emerald-400" />
+            Room Status Matrix Categorized
+          </h2>
           <Link
             href="/rooms"
             className="text-sm font-extrabold text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1"
@@ -172,11 +187,11 @@ export default async function DashboardPage() {
         </div>
 
         {roomSummaries.length === 0 ? (
-          <div className="rounded-2xl border border-dashed border-[#24231f] bg-[#161512] p-8 text-center text-[#d4d4d0] text-sm font-medium">
+          <div className="rounded-2xl border border-dashed border-[#282620] bg-[#1c1a16] p-8 text-center text-[#d4d4d0] text-sm font-medium">
             No rooms created yet. Click "Manage Rooms" to add one.
           </div>
         ) : (
-          <div className="overflow-hidden rounded-2xl border border-[#24231f] bg-[#161512] shadow-md">
+          <div className="overflow-hidden rounded-2xl border border-[#2e2c26] bg-[#1a1915] shadow-md">
             <table className="min-w-full divide-y divide-[#24231f] text-left text-sm">
               <thead className="bg-[#1b1915] text-[#d4d4d0] text-xs sm:text-sm font-extrabold uppercase tracking-wider">
                 <tr>
