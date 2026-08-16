@@ -58,25 +58,23 @@ export default async function LandingPage() {
   ];
 
   return (
-    <div className="relative space-y-24 py-6 animate-in fade-in duration-500 font-sans text-[#e5e5e0]">
-      {/* Cool Data Center Ambient Background Layer */}
-      <div className="pointer-events-none absolute -top-12 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[820px] overflow-hidden -z-10 rounded-3xl">
-        {/* Data Center Server Hall Image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.24] mix-blend-luminosity scale-105"
-          style={{ backgroundImage: `url('/images/datacenter_bg.jpg')` }}
+    <div className="relative py-6 animate-in fade-in duration-500 font-sans text-[#e5e5e0]">
+      {/* Cyber Data Center Abstract Background Layer */}
+      <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-screen h-[1100px] pointer-events-none z-0 overflow-hidden select-none">
+        {/* Abstract Isometric Cyber Data Center Graphic */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-35 mix-blend-screen scale-105"
+          style={{ backgroundImage: "url('/datacenter-bg.jpg')" }}
         />
-        {/* Ambient Emerald Radial Spotlight */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_20%,rgba(16,185,129,0.16),transparent_80%)]" />
-        {/* Cyber Grid Overlay */}
-        <div className="absolute inset-0 datacenter-grid-overlay opacity-70" />
-        {/* Vignette Gradients for 100% Text Legibility */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0e0d09]/70 via-transparent to-[#0e0d09]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_85%_85%_at_50%_50%,transparent_35%,#0e0d09_100%)]" />
+        {/* Radial Dark Vignette & Emerald Cyber Glow Overlays */}
+        <div className="absolute inset-0 cyber-bg-vignette" />
+        <div className="absolute inset-0 cyber-bg-glow" />
+        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#0e0d09] to-transparent" />
       </div>
 
-      <ScrollToHash />
-      {/* Logged in User Quick Banner */}
+      <div className="relative z-10 space-y-24">
+        <ScrollToHash />
+        {/* Logged in User Quick Banner */}
       {user && (
         <div className="rounded-2xl border border-[#2e2d27] bg-[#161512] p-4.5 flex flex-col sm:flex-row items-center justify-between gap-4 font-sans">
           <div className="flex items-center gap-3">
@@ -552,6 +550,7 @@ export default async function LandingPage() {
           </Link>
         </div>
       </section>
+      </div>
     </div>
   );
 }

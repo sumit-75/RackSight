@@ -176,11 +176,13 @@ body {
   animation: radar-pulse-ring 1.8s cubic-bezier(0, 0, 0.2, 1) 1.2s infinite;
 }
 
-/* Futuristic Cyber Grid Pattern Overlay */
-.datacenter-grid-overlay {
-  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-  background-size: 48px 48px;
+/* Ambient Cyber Data Center Background Styling */
+.cyber-bg-vignette {
+  background: radial-gradient(circle at 50% 30%, rgba(14, 13, 9, 0.45) 0%, rgba(14, 13, 9, 0.85) 65%, #0e0d09 100%);
+}
+
+.cyber-bg-glow {
+  background: radial-gradient(circle at 50% 20%, rgba(16, 185, 129, 0.12) 0%, rgba(14, 13, 9, 0) 70%);
 }
 
 
