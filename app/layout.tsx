@@ -6,6 +6,7 @@ import { cookies } from 'next/headers';
 import { verifyJWT } from '@/lib/auth';
 import FormValidator from '@/components/FormValidator';
 import FloatingNavbar from '@/components/FloatingNavbar';
+import SmoothScroll from '@/components/SmoothScroll';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,6 +35,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       suppressHydrationWarning
     >
       <body className="relative min-h-full flex flex-col bg-background text-[#e5e5e0] font-sans">
+        <SmoothScroll />
         <FormValidator />
         
         {/* Floating Glassmorphic Pill Navbar */}
