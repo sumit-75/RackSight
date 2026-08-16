@@ -33,7 +33,7 @@ export default function Tooltip({ content, children, delay = 0, className }: Too
     >
       {children}
       {visible && (
-        <div className="absolute z-[9999] bottom-full left-1/2 mb-2 w-max max-w-xs px-2.5 py-1.5 text-[0.7rem] font-semibold text-slate-950 bg-[#161512] border border-[#24231f] rounded-lg shadow-xl animate-tooltip origin-bottom select-none pointer-events-none">
+        <div className="absolute z-[9999] bottom-full left-1/2 mb-2 w-max max-w-xs px-2.5 py-1.5 text-[0.7rem] font-semibold text-[#e5e5e0] bg-[#161512] border border-[#2e2c26] rounded-lg shadow-xl animate-tooltip origin-bottom select-none pointer-events-none font-sans">
           {content}
           <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-[#161512]" />
           <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#24231f] -z-10" />

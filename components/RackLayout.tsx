@@ -207,28 +207,33 @@ export default function RackLayout({
   const warningServers = localServers.filter(s => s.status === 'idle' || (s.status === 'active' && s.readings[0]?.watts === 0)).length;
   const offlineServers = localServers.filter(s => s.status === 'decommissioned' || (s.status === 'active' && s.readings[0]?.watts > 350) || !s.readings[0]).length;
 
+  const shelfSize = Math.max(1, Math.floor(totalUnits / 3));
+  const upperStart = Math.min(totalUnits, totalUnits - shelfSize + 1);
+  const middleStart = Math.max(1, totalUnits - 2 * shelfSize + 1);
+  const lowerEnd = Math.max(1, middleStart - 1);
+
   const shelves = [
     {
       name: 'Upper Shelf',
-      range: 'U29 - U42',
-      startU: 29,
-      endU: 42,
+      range: `U${upperStart} - U${totalUnits}`,
+      startU: upperStart,
+      endU: totalUnits,
       color: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20 shadow-[0_0_8px_rgba(6,182,212,0.15)]',
       icon: <Layers size={18} className="text-cyan-400" />,
     },
     {
       name: 'Middle Shelf',
-      range: 'U15 - U28',
-      startU: 15,
-      endU: 28,
+      range: `U${middleStart} - U${upperStart - 1}`,
+      startU: middleStart,
+      endU: upperStart - 1,
       color: 'bg-purple-500/10 text-purple-400 border-purple-500/20 shadow-[0_0_8px_rgba(168,85,247,0.15)]',
       icon: <Database size={18} className="text-purple-400" />,
     },
     {
       name: 'Lower Shelf',
-      range: 'U1 - U14',
+      range: `U1 - U${lowerEnd}`,
       startU: 1,
-      endU: 14,
+      endU: lowerEnd,
       color: 'bg-amber-500/10 text-amber-400 border-amber-500/20 shadow-[0_0_8px_rgba(245,158,11,0.15)]',
       icon: <Cpu size={18} className="text-amber-400" />,
     },
@@ -255,11 +260,11 @@ export default function RackLayout({
 
             let colorClass = 'bg-emerald-500 border-emerald-400/50 hover:bg-emerald-400 text-white';
             if (isPowerSpike) {
-              colorClass = 'bg-rose-500 border-rose-455/55 hover:bg-rose-450 text-white animate-pulse ring-2 ring-rose-500/30';
+              colorClass = 'bg-rose-500 border-rose-450 hover:bg-rose-450 text-white animate-pulse ring-2 ring-rose-500/30';
             } else if (isPowerDrop || status === 'idle') {
               colorClass = 'bg-amber-500 border-amber-400/50 hover:bg-amber-400 text-white';
             } else if (status === 'decommissioned') {
-              colorClass = 'bg-slate-400 border-slate-350 hover:bg-slate-350 text-slate-200';
+              colorClass = 'bg-[#282620] border-[#3a3830] hover:bg-[#35332b] text-[#a3a39e]';
             }
 
             const isSelected = selectedServer?.id === server.id;
@@ -268,46 +273,46 @@ export default function RackLayout({
               <Tooltip
                 key={`block-${u}`}
                 content={
-                  <div className="space-y-0.5 text-left">
-                    <div className="font-bold text-slate-900">{server.name}</div>
-                    <div className="text-[0.65rem] text-slate-500">
+                  <div className="space-y-0.5 text-left font-sans">
+                    <div className="font-bold text-[#f5f5f4] text-xs">{server.name}</div>
+                    <div className="text-[0.65rem] text-[#a3a39e]">
                       Slot: U{server.startUnit} - U{server.startUnit + server.sizeUnits - 1} ({server.sizeUnits}U)
                     </div>
-                    <div className="text-[0.65rem] text-slate-500">
-                      Status: <span className="font-bold">{status}</span>
+                    <div className="text-[0.65rem] text-[#a3a39e]">
+                      Status: <span className="font-bold text-[#f5f5f4]">{status}</span>
                     </div>
-                    <div className="text-[0.65rem] text-slate-500">
-                      Power: <span className="font-mono font-bold">{watts.toFixed(0)}W</span>
+                    <div className="text-[0.65rem] text-[#a3a39e]">
+                      Power: <span className="font-mono font-bold text-emerald-400">{watts.toFixed(0)}W</span>
                     </div>
-                    {isPowerSpike && <span className="block text-rose-500 font-bold">⚠️ CRITICAL POWER SPIKE</span>}
-                    {isPowerDrop && <span className="block text-amber-550 font-bold">⚠️ CRITICAL POWER DROP</span>}
+                    {isPowerSpike && <span className="block text-rose-400 font-bold">⚠️ CRITICAL POWER SPIKE</span>}
+                    {isPowerDrop && <span className="block text-amber-400 font-bold">⚠️ CRITICAL POWER DROP</span>}
                   </div>
                 }
               >
                 <button
                   onClick={() => handleServerClick(server)}
                   className={`w-6 h-6 rounded-[4px] border transition-all cursor-pointer ${colorClass} ${
-                    isSelected ? 'ring-2 ring-cyan-500 scale-110 shadow-md' : ''
+                    isSelected ? 'ring-2 ring-cyan-400 scale-110 shadow-md' : ''
                   }`}
                   aria-label={`Server ${server.name} at slot U${u}`}
                 />
               </Tooltip>
             );
           } else {
-            // Empty slot (grey block)
+            // Empty slot (dark theme block)
             return (
               <Tooltip
                 key={`block-empty-${u}`}
                 content={
-                  <div className="text-left text-xs">
-                    <div className="font-bold text-slate-900">Empty Slot U{u}</div>
-                    <div className="text-slate-500">Click to mount server here</div>
+                  <div className="text-left text-xs font-sans">
+                    <div className="font-bold text-[#f5f5f4]">Empty Slot U{u}</div>
+                    <div className="text-[#a3a39e]">Click to mount server here</div>
                   </div>
                 }
               >
                 <button
                   onClick={() => handleEmptySlotClick(u)}
-                  className="w-6 h-6 rounded-[4px] bg-slate-100 hover:bg-slate-200 transition-colors cursor-pointer border border-slate-200"
+                  className="w-6 h-6 rounded-[4px] bg-[#22201b] hover:bg-emerald-500/20 hover:border-emerald-500/40 transition-colors cursor-pointer border border-[#302e28]"
                   aria-label={`Empty slot U${u}`}
                 />
               </Tooltip>
