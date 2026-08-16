@@ -71,13 +71,13 @@ export default async function RoomDetailsPage({ params }: PageProps) {
               Configuration and rack breakdown.
             </p>
           </div>
-          <div className="flex items-center gap-4 bg-[#161512] border border-[#24231f] rounded-2xl px-5 py-3 w-fit shadow-md">
-            <div className="flex items-center gap-2">
-              <Thermometer className="text-amber-400" size={18} />
-              <div>
-                <div className="text-xs text-[#d4d4d0] uppercase tracking-wider font-extrabold">Temp Limit</div>
-                <div className="text-sm font-bold text-[#f5f5f4]">{room.tempThresholdC}°C</div>
-              </div>
+          <div className="flex items-center gap-3.5 bg-[#161512] border border-[#24231f] rounded-2xl px-5 py-3 w-fit shadow-md">
+            <div className="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 shrink-0 flex items-center justify-center">
+              <Thermometer className="text-amber-400" size={24} />
+            </div>
+            <div>
+              <div className="text-xs text-[#d4d4d0] uppercase tracking-wider font-extrabold">Temp Limit</div>
+              <div className="text-base font-bold text-[#f5f5f4]">{room.tempThresholdC}°C</div>
             </div>
           </div>
         </div>

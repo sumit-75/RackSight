@@ -86,11 +86,11 @@ export default async function RoomsPage() {
 
                       <div className="mt-4 space-y-2.5">
                         <div className="flex items-center gap-2.5 text-sm text-[#d4d4d0] font-medium">
-                          <Thermometer size={16} className="text-amber-400 shrink-0" />
+                          <Thermometer size={18} className="text-amber-400 shrink-0" />
                           <span>Threshold: <strong className="text-[#f5f5f4] font-bold">{room.tempThresholdC}°C</strong></span>
                         </div>
                         <div className="flex items-center gap-2.5 text-sm text-[#d4d4d0] font-medium">
-                          <Server size={16} className="text-emerald-400 shrink-0" />
+                          <Server size={18} className="text-emerald-400 shrink-0" />
                           <span>
                             Racks: <strong className="text-[#f5f5f4] font-bold">{room.racks.length}</strong> | Servers:{' '}
                             <strong className="text-[#f5f5f4] font-bold">{totalServers}</strong>
