@@ -90,18 +90,18 @@ export default function InteractiveRackDemo() {
   };
 
   return (
-    <div className="rounded-3xl border border-[#24231f] bg-[#12110e] shadow-xl font-sans overflow-hidden">
+    <div className="rounded-3xl border border-white/10 bg-[#141310]/75 backdrop-blur-xl shadow-2xl font-sans overflow-hidden">
       {/* macOS Window Top TitleBar */}
-      <div className="bg-[#1b1915] border-b border-[#282620] px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div className="bg-[#181714]/70 backdrop-blur-md border-b border-white/10 px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-3">
         {/* macOS Traffic Lights (Top Left) */}
         <div className="flex items-center gap-2 shrink-0">
-          <span className="w-3 h-3 rounded-full bg-[#ff5f56] border border-[#e0443e] block shadow-sm"></span>
-          <span className="w-3 h-3 rounded-full bg-[#ffbd2e] border border-[#dea123] block shadow-sm"></span>
-          <span className="w-3 h-3 rounded-full bg-[#27c93f] border border-[#1aab29] block shadow-sm"></span>
+          <span className="w-3 h-3 rounded-full bg-[#ff5f56] border border-[#e0443e]/80 block shadow-[0_0_6px_rgba(255,95,86,0.35)]"></span>
+          <span className="w-3 h-3 rounded-full bg-[#ffbd2e] border border-[#dea123]/80 block shadow-[0_0_6px_rgba(255,189,46,0.35)]"></span>
+          <span className="w-3 h-3 rounded-full bg-[#27c93f] border border-[#1aab29]/80 block shadow-[0_0_6px_rgba(39,201,63,0.35)]"></span>
         </div>
 
         {/* macOS URL Address Bar (Center) */}
-        <div className="flex items-center gap-2 bg-[#12110e] border border-[#282620] px-3.5 py-1 rounded-full text-xs text-[#a3a39e] font-sans font-bold">
+        <div className="flex items-center gap-2 bg-[#0e0d09]/75 backdrop-blur-md border border-white/10 px-4 py-1.5 rounded-full text-xs text-[#a3a39e] font-sans font-bold shadow-inner">
           <Lock size={12} className="text-emerald-400 shrink-0" />
           <span>racksight://cabinet-matrix-sandbox</span>
         </div>
@@ -112,7 +112,7 @@ export default function InteractiveRackDemo() {
             variant="outline"
             size="sm"
             onClick={triggerGlobalSpike}
-            className="text-rose-400 hover:text-rose-300 text-xs py-1 h-7"
+            className="text-rose-400 hover:text-rose-300 border-rose-500/30 bg-rose-500/10 hover:bg-rose-500/20 text-xs py-1 h-7 rounded-lg"
           >
             <AlertTriangle size={13} className="mr-1" />
             Spike Load
@@ -121,7 +121,7 @@ export default function InteractiveRackDemo() {
             variant="ghost"
             size="sm"
             onClick={resetNormalLoad}
-            className="text-[#a3a39e] hover:text-white text-xs py-1 h-7"
+            className="text-[#a3a39e] hover:text-white bg-white/5 hover:bg-white/10 text-xs py-1 h-7 rounded-lg"
           >
             <RefreshCw size={13} className="mr-1" />
             Reset
@@ -130,13 +130,13 @@ export default function InteractiveRackDemo() {
       </div>
 
       {/* macOS Window Tab Bar */}
-      <div className="bg-[#181714] border-b border-[#282620] px-4 pt-2 flex items-center gap-1.5 overflow-x-auto">
+      <div className="bg-[#12110e]/60 backdrop-blur-md border-b border-white/10 px-4 pt-2.5 flex items-center gap-2 overflow-x-auto">
         <button
           onClick={() => setActiveTab('matrix')}
           className={`flex items-center gap-2 px-4 py-2 rounded-t-xl text-xs font-extrabold transition-all cursor-pointer border-t border-x ${
             activeTab === 'matrix'
-              ? 'bg-[#161512] text-white border-[#2e2d27] border-t-emerald-400 shadow-md'
-              : 'bg-[#1b1915] text-[#a3a39e] border-transparent hover:text-white hover:bg-[#201e19]'
+              ? 'bg-[#181714]/90 backdrop-blur-md text-white border-[#2e2d27] border-t-emerald-400 shadow-lg'
+              : 'bg-white/[0.03] backdrop-blur-sm text-[#a3a39e] border-transparent hover:text-white hover:bg-white/[0.08] hover:border-white/10'
           }`}
         >
           <ServerIcon size={14} />
@@ -148,8 +148,8 @@ export default function InteractiveRackDemo() {
           onClick={() => setActiveTab('analytics')}
           className={`flex items-center gap-2 px-4 py-2 rounded-t-xl text-xs font-extrabold transition-all cursor-pointer border-t border-x ${
             activeTab === 'analytics'
-              ? 'bg-[#161512] text-emerald-400 border-[#2e2d27] border-t-emerald-400 shadow-md'
-              : 'bg-[#1b1915] text-[#a3a39e] border-transparent hover:text-white hover:bg-[#201e19]'
+              ? 'bg-[#181714]/90 backdrop-blur-md text-emerald-400 border-[#2e2d27] border-t-emerald-400 shadow-lg'
+              : 'bg-white/[0.03] backdrop-blur-sm text-[#a3a39e] border-transparent hover:text-white hover:bg-white/[0.08] hover:border-white/10'
           }`}
         >
           <Zap size={14} />
@@ -160,8 +160,8 @@ export default function InteractiveRackDemo() {
           onClick={() => setActiveTab('logs')}
           className={`flex items-center gap-2 px-4 py-2 rounded-t-xl text-xs font-extrabold transition-all cursor-pointer border-t border-x ${
             activeTab === 'logs'
-              ? 'bg-[#161512] text-[#e5e5e0] border-[#2e2d27] border-t-emerald-400 shadow-md'
-              : 'bg-[#1b1915] text-[#a3a39e] border-transparent hover:text-white hover:bg-[#201e19]'
+              ? 'bg-[#181714]/90 backdrop-blur-md text-[#e5e5e0] border-[#2e2d27] border-t-emerald-400 shadow-lg'
+              : 'bg-white/[0.03] backdrop-blur-sm text-[#a3a39e] border-transparent hover:text-white hover:bg-white/[0.08] hover:border-white/10'
           }`}
         >
           <Terminal size={14} />
@@ -170,7 +170,7 @@ export default function InteractiveRackDemo() {
       </div>
 
       {/* Main Tab Content Area */}
-      <div className="p-6 sm:p-8 bg-[#12110e]">
+      <div className="p-6 sm:p-8 bg-[#12110e]/85 backdrop-blur-md">
         {activeTab === 'matrix' && (
           <div className="space-y-6 animate-in fade-in duration-200">
             {/* Grid: Left Cabinet Layout, Right Live Inspector */}
