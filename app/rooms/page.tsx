@@ -28,7 +28,7 @@ export default async function RoomsPage() {
   });
 
   return (
-    <div className="space-y-8 font-sans max-w-7xl mx-auto py-2">
+    <div className="space-y-8 font-sans max-w-7xl mx-auto pt-6 sm:pt-8 pb-2">
       {/* Page Header */}
       <div className="flex items-center justify-between">
         <div>

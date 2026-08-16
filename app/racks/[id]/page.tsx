@@ -93,7 +93,7 @@ export default async function RackDetailPage({ params }: PageProps) {
     .slice(-20); // Keep last 20 readings
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 font-sans max-w-7xl mx-auto pt-6 sm:pt-8 pb-2">
       {/* Back button and page header */}
       <div className="space-y-4">
         <Link

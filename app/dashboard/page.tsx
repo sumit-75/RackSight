@@ -77,7 +77,7 @@ export default async function DashboardPage() {
   });
 
   return (
-    <div className="space-y-8 animate-in fade-in duration-300 font-sans max-w-7xl mx-auto pt-2 sm:pt-4 pb-8">
+    <div className="space-y-8 animate-in fade-in duration-300 font-sans max-w-7xl mx-auto pt-6 sm:pt-8 pb-2">
       {/* Header */}
       <div>
         <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#f5f5f4] flex items-center gap-3 font-sans">
