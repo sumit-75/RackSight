@@ -58,18 +58,18 @@ export default async function LandingPage() {
   ];
 
   return (
-    <div className="relative py-6 animate-in fade-in duration-500 font-sans text-[#e5e5e0]">
+    <div className="relative overflow-hidden py-6 animate-in fade-in duration-500 font-sans text-[#e5e5e0]">
       {/* Cyber Data Center Abstract Background Layer */}
-      <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-screen h-[1100px] pointer-events-none z-0 overflow-hidden select-none">
+      <div className="absolute inset-x-0 top-0 h-[850px] pointer-events-none z-0 overflow-hidden select-none">
         {/* Abstract Isometric Cyber Data Center Graphic */}
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-35 mix-blend-screen scale-105"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30 mix-blend-screen"
           style={{ backgroundImage: "url('/datacenter-bg.jpg')" }}
         />
         {/* Radial Dark Vignette & Emerald Cyber Glow Overlays */}
         <div className="absolute inset-0 cyber-bg-vignette" />
         <div className="absolute inset-0 cyber-bg-glow" />
-        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#0e0d09] to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#0e0d09] to-transparent" />
       </div>
 
       <div className="relative z-10 space-y-24">
