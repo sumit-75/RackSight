@@ -12,6 +12,28 @@ function hashPassword(password: string): string {
   return crypto.createHash('sha256').update(password).digest('hex');
 }
 
+async function fixSequence(tableName: string) {
+  try {
+    await prisma.$executeRawUnsafe(
+      `SELECT setval(pg_get_serial_sequence('"${tableName}"', 'id'), COALESCE((SELECT MAX(id) FROM "${tableName}"), 0) + 1, false);`
+    );
+  } catch (e) {
+    // Ignore error if unsupported
+  }
+}
+
+async function safeCreate<T>(tableName: string, fn: () => Promise<T>): Promise<T> {
+  try {
+    return await fn();
+  } catch (error: any) {
+    if (error?.code === 'P2002' || error?.message?.includes('Unique constraint')) {
+      await fixSequence(tableName);
+      return await fn();
+    }
+    throw error;
+  }
+}
+
 export async function getCurrentUser() {
   const cookieStore = await cookies();
   const token = cookieStore.get('token')?.value;
@@ -40,13 +62,15 @@ export async function createRoom(formData: FormData) {
     throw new Error('Invalid input data');
   }
 
-  await prisma.room.create({
-    data: {
-      name,
-      tempThresholdC,
-      userId: user.id,
-    },
-  });
+  await safeCreate('Room', () =>
+    prisma.room.create({
+      data: {
+        name,
+        tempThresholdC,
+        userId: user.id,
+      },
+    })
+  );
 
   revalidatePath('/rooms');
   revalidatePath('/');
@@ -122,14 +146,16 @@ export async function createRack(formData: FormData) {
   const room = await prisma.room.findFirst({ where: { id: roomId, userId: user.id } });
   if (!room) throw new Error('Unauthorized');
 
-  await prisma.rack.create({
-    data: {
-      roomId,
-      name,
-      totalUnits,
-      powerLimitWatts,
-    },
-  });
+  await safeCreate('Rack', () =>
+    prisma.rack.create({
+      data: {
+        roomId,
+        name,
+        totalUnits,
+        powerLimitWatts,
+      },
+    })
+  );
 
   revalidatePath(`/rooms/${roomId}`);
   revalidatePath('/');
@@ -245,15 +271,17 @@ export async function createServer(formData: FormData) {
     throw new Error(`Slot conflict: U${startUnit}-${startUnit + sizeUnits - 1} is already occupied by server "${conflict.name}"`);
   }
 
-  const server = await prisma.server.create({
-    data: {
-      rackId,
-      name,
-      startUnit,
-      sizeUnits,
-      status,
-    },
-  });
+  const server = await safeCreate('Server', () =>
+    prisma.server.create({
+      data: {
+        rackId,
+        name,
+        startUnit,
+        sizeUnits,
+        status,
+      },
+    })
+  );
 
   revalidatePath(`/racks/${rackId}`);
   revalidatePath('/');
@@ -335,12 +363,14 @@ export async function loginAdmin(formData: FormData) {
     const dbUser = await prisma.user.findUnique({ where: { username } });
     if (!dbUser) {
       const hashedEnvPassword = hashPassword(expectedPassword);
-      await prisma.user.create({
-        data: {
-          username,
-          password: hashedEnvPassword,
-        },
-      });
+      await safeCreate('User', () =>
+        prisma.user.create({
+          data: {
+            username,
+            password: hashedEnvPassword,
+          },
+        })
+      );
     }
   } else {
     // 2. Check against database users
@@ -405,12 +435,14 @@ export async function createAdminUser(formData: FormData) {
   }
 
   const hashedPassword = hashPassword(password);
-  await prisma.user.create({
-    data: {
-      username,
-      password: hashedPassword,
-    },
-  });
+  await safeCreate('User', () =>
+    prisma.user.create({
+      data: {
+        username,
+        password: hashedPassword,
+      },
+    })
+  );
 
   revalidatePath('/settings');
 }
