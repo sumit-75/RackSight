@@ -35,7 +35,7 @@ export default async function RoomsPage() {
           <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#f5f5f4]">
             Rooms Management
           </h1>
-          <p className="text-[#a3a39e] text-xs sm:text-sm mt-1">
+          <p className="text-[#d4d4d0] text-sm sm:text-base font-medium mt-1">
             Monitor and configure your data center rooms.
           </p>
         </div>
@@ -46,7 +46,7 @@ export default async function RoomsPage() {
         <div className="lg:col-span-2 space-y-4">
           <h2 className="text-lg font-extrabold text-[#f5f5f4]">Active Rooms</h2>
           {rooms.length === 0 ? (
-            <div className="rounded-2xl border border-dashed border-[#24231f] bg-[#161512] p-8 text-center text-[#a3a39e] text-sm">
+            <div className="rounded-2xl border border-dashed border-[#24231f] bg-[#161512] p-8 text-center text-[#d4d4d0] text-sm font-medium">
               No rooms created yet. Use the form to add one.
             </div>
           ) : (
@@ -56,11 +56,11 @@ export default async function RoomsPage() {
                 return (
                   <div
                     key={room.id}
-                    className="group relative rounded-2xl border border-[#24231f] bg-[#161512] hover:border-[#383630] hover:bg-[#191814] p-5 flex flex-col justify-between transition-all duration-300 shadow-md"
+                    className="group relative rounded-2xl border border-[#24231f] bg-[#161512] hover:border-[#383630] hover:bg-[#191814] p-5.5 flex flex-col justify-between transition-all duration-300 shadow-md"
                   >
                     <div>
                       <div className="flex justify-between items-start">
-                        <h3 className="font-bold text-[#f5f5f4] group-hover:text-emerald-400 transition-colors">
+                        <h3 className="text-base sm:text-lg font-extrabold text-[#f5f5f4] group-hover:text-emerald-400 transition-colors">
                           {room.name}
                         </h3>
                         <Tooltip content="Delete Room">
@@ -69,22 +69,22 @@ export default async function RoomsPage() {
                             title="Delete Room"
                             message={`Are you sure you want to delete the room "${room.name}"? This will permanently remove the room, all of its rack cabinets, and all servers contained within.`}
                             tooltipText="Delete Room"
-                            className="text-[#a3a39e] hover:text-rose-400 p-1 rounded hover:bg-rose-500/10 transition-all cursor-pointer"
+                            className="text-[#a3a39e] hover:text-rose-400 p-1.5 rounded-lg hover:bg-rose-500/10 transition-all cursor-pointer"
                             iconSize={16}
                           />
                         </Tooltip>
                       </div>
 
-                      <div className="mt-4 space-y-2">
-                        <div className="flex items-center gap-2 text-xs text-[#a3a39e]">
-                          <Thermometer size={14} className="text-amber-400" />
-                          <span>Threshold: <strong className="text-[#e5e5e0]">{room.tempThresholdC}°C</strong></span>
+                      <div className="mt-4 space-y-2.5">
+                        <div className="flex items-center gap-2.5 text-sm text-[#d4d4d0] font-medium">
+                          <Thermometer size={16} className="text-amber-400 shrink-0" />
+                          <span>Threshold: <strong className="text-[#f5f5f4] font-bold">{room.tempThresholdC}°C</strong></span>
                         </div>
-                        <div className="flex items-center gap-2 text-xs text-[#a3a39e]">
-                          <Server size={14} className="text-emerald-400" />
+                        <div className="flex items-center gap-2.5 text-sm text-[#d4d4d0] font-medium">
+                          <Server size={16} className="text-emerald-400 shrink-0" />
                           <span>
-                            Racks: <strong className="text-[#e5e5e0]">{room.racks.length}</strong> | Servers:{' '}
-                            <strong className="text-[#e5e5e0]">{totalServers}</strong>
+                            Racks: <strong className="text-[#f5f5f4] font-bold">{room.racks.length}</strong> | Servers:{' '}
+                            <strong className="text-[#f5f5f4] font-bold">{totalServers}</strong>
                           </span>
                         </div>
                       </div>
@@ -93,10 +93,10 @@ export default async function RoomsPage() {
                     <div className="mt-6 pt-4 border-t border-[#24231f] flex justify-end">
                       <Link
                         href={`/rooms/${room.id}`}
-                        className="flex items-center gap-1.5 text-xs font-bold text-emerald-400 hover:text-emerald-300 group/link transition-colors"
+                        className="flex items-center gap-1.5 text-sm font-extrabold text-emerald-400 hover:text-emerald-300 group/link transition-colors"
                       >
                         Manage Room
-                        <ArrowRight size={14} className="group-hover/link:translate-x-0.5 transition-transform" />
+                        <ArrowRight size={15} className="group-hover/link:translate-x-0.5 transition-transform" />
                       </Link>
                     </div>
                   </div>
@@ -115,7 +115,7 @@ export default async function RoomsPage() {
             </h2>
             <form action={createRoom} className="space-y-4">
               <div>
-                <label className="block text-xs font-extrabold text-[#a3a39e] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs sm:text-sm font-extrabold text-[#d4d4d0] uppercase tracking-wider mb-1.5">
                   Room Name
                 </label>
                 <input
@@ -123,12 +123,12 @@ export default async function RoomsPage() {
                   name="name"
                   required
                   placeholder="e.g., Server Room Alpha"
-                  className="w-full bg-[#1b1915] border border-[#282620] text-[#e5e5e0] rounded-xl px-3.5 py-2.5 text-sm placeholder-[#73726c] focus:outline-none focus:border-emerald-500 transition-colors"
+                  className="w-full bg-[#1b1915] border border-[#282620] text-[#f5f5f4] rounded-xl px-3.5 py-2.5 text-sm placeholder-[#888680] focus:outline-none focus:border-emerald-500 transition-colors font-medium"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-extrabold text-[#a3a39e] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs sm:text-sm font-extrabold text-[#d4d4d0] uppercase tracking-wider mb-1.5">
                   Temp Threshold (°C)
                 </label>
                 <input
@@ -138,7 +138,7 @@ export default async function RoomsPage() {
                   step="0.1"
                   defaultValue="25.0"
                   placeholder="e.g., 24.5"
-                  className="w-full bg-[#1b1915] border border-[#282620] text-[#e5e5e0] rounded-xl px-3.5 py-2.5 text-sm placeholder-[#73726c] focus:outline-none focus:border-emerald-500 transition-colors"
+                  className="w-full bg-[#1b1915] border border-[#282620] text-[#f5f5f4] rounded-xl px-3.5 py-2.5 text-sm placeholder-[#888680] focus:outline-none focus:border-emerald-500 transition-colors font-medium"
                 />
               </div>
 

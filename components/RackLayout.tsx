@@ -325,45 +325,45 @@ export default function RackLayout({
       {/* Stats Cards Section */}
       <div className="lg:col-span-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Total Servers */}
-        <div className="rounded-2xl border border-[#24231f] bg-[#161512] p-4 flex items-center justify-between shadow-md">
+        <div className="rounded-2xl border border-[#24231f] bg-[#161512] p-5 flex items-center justify-between shadow-md">
           <div>
-            <span className="text-[0.65rem] uppercase text-[#a3a39e] font-extrabold tracking-wider">Total Servers</span>
-            <div className="text-2xl font-extrabold text-[#f5f5f4] mt-1">{totalServers}</div>
+            <span className="text-xs uppercase text-[#d4d4d0] font-extrabold tracking-wider">Total Servers</span>
+            <div className="text-2xl sm:text-3xl font-extrabold text-[#f5f5f4] mt-1">{totalServers}</div>
           </div>
-          <div className="p-2.5 bg-cyan-500/10 border border-cyan-500/20 rounded-xl text-cyan-400 shadow-[0_0_12px_rgba(6,182,212,0.15)] flex items-center justify-center">
+          <div className="p-3 bg-cyan-500/10 border border-cyan-500/20 rounded-xl text-cyan-400 shadow-[0_0_12px_rgba(6,182,212,0.15)] flex items-center justify-center">
             <ServerIcon size={20} className="text-cyan-400" />
           </div>
         </div>
 
         {/* Online Servers */}
-        <div className="rounded-2xl border border-[#24231f] bg-[#161512] p-4 flex items-center justify-between shadow-md">
+        <div className="rounded-2xl border border-[#24231f] bg-[#161512] p-5 flex items-center justify-between shadow-md">
           <div>
-            <span className="text-[0.65rem] uppercase text-[#a3a39e] font-extrabold tracking-wider">Online</span>
-            <div className="text-2xl font-extrabold text-emerald-400 mt-1">{onlineServers}</div>
+            <span className="text-xs uppercase text-[#d4d4d0] font-extrabold tracking-wider">Online</span>
+            <div className="text-2xl sm:text-3xl font-extrabold text-emerald-400 mt-1">{onlineServers}</div>
           </div>
-          <div className="p-2.5 bg-emerald-500/10 border border-emerald-500/20 rounded-xl text-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.15)] flex items-center justify-center">
+          <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-xl text-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.15)] flex items-center justify-center">
             <CheckCircle2 size={20} className="text-emerald-400" />
           </div>
         </div>
 
         {/* Warning Servers */}
-        <div className="rounded-2xl border border-[#24231f] bg-[#161512] p-4 flex items-center justify-between shadow-md">
+        <div className="rounded-2xl border border-[#24231f] bg-[#161512] p-5 flex items-center justify-between shadow-md">
           <div>
-            <span className="text-[0.65rem] uppercase text-[#a3a39e] font-extrabold tracking-wider">Warning</span>
-            <div className="text-2xl font-extrabold text-amber-400 mt-1">{warningServers}</div>
+            <span className="text-xs uppercase text-[#d4d4d0] font-extrabold tracking-wider">Warning</span>
+            <div className="text-2xl sm:text-3xl font-extrabold text-amber-400 mt-1">{warningServers}</div>
           </div>
-          <div className="p-2.5 bg-amber-500/10 border border-amber-500/20 rounded-xl text-amber-400 shadow-[0_0_12px_rgba(245,158,11,0.15)] flex items-center justify-center">
+          <div className="p-3 bg-amber-500/10 border border-amber-500/20 rounded-xl text-amber-400 shadow-[0_0_12px_rgba(245,158,11,0.15)] flex items-center justify-center">
             <AlertTriangle size={20} className="text-amber-400" />
           </div>
         </div>
 
         {/* Offline / Faulty Servers */}
-        <div className="rounded-2xl border border-[#24231f] bg-[#161512] p-4 flex items-center justify-between shadow-md">
+        <div className="rounded-2xl border border-[#24231f] bg-[#161512] p-5 flex items-center justify-between shadow-md">
           <div>
-            <span className="text-[0.65rem] uppercase text-[#a3a39e] font-extrabold tracking-wider">Offline / Faulty</span>
-            <div className="text-2xl font-extrabold text-rose-400 mt-1">{offlineServers}</div>
+            <span className="text-xs uppercase text-[#d4d4d0] font-extrabold tracking-wider">Offline / Faulty</span>
+            <div className="text-2xl sm:text-3xl font-extrabold text-rose-400 mt-1">{offlineServers}</div>
           </div>
-          <div className="p-2.5 bg-rose-500/10 border border-rose-500/20 rounded-xl text-rose-400 shadow-[0_0_12px_rgba(244,63,94,0.15)] flex items-center justify-center">
+          <div className="p-3 bg-rose-500/10 border border-rose-500/20 rounded-xl text-rose-400 shadow-[0_0_12px_rgba(244,63,94,0.15)] flex items-center justify-center">
             <XCircle size={20} className="text-rose-400" />
           </div>
         </div>
@@ -379,7 +379,7 @@ export default function RackLayout({
               </div>
               All Cabinet Shelves
             </h2>
-            <p className="text-xs text-[#a3a39e] mt-0.5">Real-time status of all cabinet U-slots</p>
+            <p className="text-sm text-[#d4d4d0] font-medium mt-1">Real-time status of all cabinet U-slots</p>
           </div>
           <div className="space-y-4">
             {shelves.map((shelf) => (
@@ -390,7 +390,7 @@ export default function RackLayout({
                   </div>
                   <div>
                     <h4 className="font-bold text-sm text-[#f5f5f4]">{shelf.name}</h4>
-                    <span className="text-[0.65rem] text-[#a3a39e] font-mono font-bold">{shelf.range}</span>
+                    <span className="text-xs text-[#d4d4d0] font-mono font-bold">{shelf.range}</span>
                   </div>
                 </div>
                 <div className="flex-1 min-w-0">
@@ -430,16 +430,16 @@ export default function RackLayout({
         }`}>
           <div className="flex justify-between items-center">
             <div>
-              <h3 className="font-extrabold text-sm text-[#a3a39e]">Rack Power Consumption</h3>
+              <h3 className="font-extrabold text-sm text-[#d4d4d0]">Rack Power Consumption</h3>
               <div className="flex items-baseline gap-2 mt-1">
-                <span className={`text-2xl font-black ${isOverLimit ? 'text-rose-400' : 'text-emerald-400'}`}>
+                <span className={`text-2xl sm:text-3xl font-black ${isOverLimit ? 'text-rose-400' : 'text-emerald-400'}`}>
                   {totalPower.toFixed(1)} W
                 </span>
-                <span className="text-xs text-[#a3a39e]">/ {powerLimitWatts} W Limit</span>
+                <span className="text-xs sm:text-sm text-[#d4d4d0] font-bold">/ {powerLimitWatts} W Limit</span>
               </div>
             </div>
             {isOverLimit && (
-              <span className="animate-pulse bg-rose-500/20 text-rose-400 border border-rose-500/30 text-[0.65rem] font-black uppercase tracking-wider px-2 py-1 rounded">
+              <span className="animate-pulse bg-rose-500/20 text-rose-400 border border-rose-500/30 text-xs font-black uppercase tracking-wider px-2.5 py-1 rounded-md">
                 OVER LIMIT
               </span>
             )}
@@ -448,7 +448,7 @@ export default function RackLayout({
 
         {/* Error notification */}
         {errorMsg && (
-          <div className="rounded-xl border border-rose-500/30 bg-rose-500/10 text-rose-300 p-4 text-xs font-semibold flex justify-between items-center">
+          <div className="rounded-xl border border-rose-500/30 bg-rose-500/10 text-rose-300 p-4 text-xs sm:text-sm font-semibold flex justify-between items-center">
             <span>{errorMsg}</span>
             <button onClick={() => setErrorMsg(null)} className="text-rose-400 hover:text-rose-200 cursor-pointer">
               <X size={14} />
@@ -499,21 +499,21 @@ export default function RackLayout({
 
                 <div className="grid grid-cols-2 gap-4 pt-4 border-t border-[#24231f]">
                   <div>
-                    <div className="text-[0.65rem] text-[#a3a39e] uppercase tracking-wider font-extrabold">Start Unit</div>
+                    <div className="text-xs text-[#d4d4d0] uppercase tracking-wider font-extrabold">Start Unit</div>
                     <div className="text-sm font-bold text-[#f5f5f4] mt-0.5">U{selectedServer.startUnit}</div>
                   </div>
                   <div>
-                    <div className="text-[0.65rem] text-[#a3a39e] uppercase tracking-wider font-extrabold">Height</div>
+                    <div className="text-xs text-[#d4d4d0] uppercase tracking-wider font-extrabold">Height</div>
                     <div className="text-sm font-bold text-[#f5f5f4] mt-0.5">{selectedServer.sizeUnits} U</div>
                   </div>
                   <div>
-                    <div className="text-[0.65rem] text-[#a3a39e] uppercase tracking-wider font-extrabold">Status</div>
+                    <div className="text-xs text-[#d4d4d0] uppercase tracking-wider font-extrabold">Status</div>
                     <div className="mt-1">
-                      <span className={`text-[0.65rem] font-mono font-extrabold uppercase px-2 py-0.5 rounded border ${
+                      <span className={`text-xs font-mono font-extrabold uppercase px-2.5 py-1 rounded-md border ${
                         selectedServer.status === 'active'
                           ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30'
                           : selectedServer.status === 'idle'
-                          ? 'bg-[#1b1915] text-[#a3a39e] border border-[#282620]'
+                          ? 'bg-[#1b1915] text-[#d4d4d0] border border-[#282620]'
                           : 'bg-rose-500/10 text-rose-400 border-rose-500/30'
                       }`}>
                         {selectedServer.status}

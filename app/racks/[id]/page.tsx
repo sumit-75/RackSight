@@ -98,15 +98,15 @@ export default async function RackDetailPage({ params }: PageProps) {
       <div className="space-y-4">
         <Link
           href={`/rooms/${rack.roomId}`}
-          className="inline-flex items-center gap-1 text-xs font-semibold text-slate-400 hover:text-cyan-400 transition-colors"
+          className="inline-flex items-center gap-1.5 text-sm font-extrabold text-[#d4d4d0] hover:text-emerald-400 transition-colors"
         >
-          <ArrowLeft size={14} /> Back to Room: {rack.room.name}
+          <ArrowLeft size={16} /> Back to Room: {rack.room.name}
         </Link>
         <div>
-          <h1 className="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-slate-800 to-slate-950 bg-clip-text text-transparent">
+          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#f5f5f4]">
             {rack.name} Layout
           </h1>
-          <p className="text-slate-500 text-sm mt-1">
+          <p className="text-[#d4d4d0] text-sm sm:text-base font-medium mt-1">
             Visual cabinet mapping, power details, and server management.
           </p>
         </div>
@@ -114,11 +114,11 @@ export default async function RackDetailPage({ params }: PageProps) {
 
       {/* Critical Threshold Warning Banner */}
       {isOverLimit && (
-        <div className="rounded-xl border border-rose-200 bg-rose-50 text-rose-800 px-5 py-4 flex items-start gap-3 shadow-sm animate-pulse">
-          <AlertTriangle className="text-rose-600 shrink-0 mt-0.5" size={20} />
+        <div className="rounded-2xl border border-rose-500/30 bg-rose-500/10 text-rose-300 px-6 py-4 flex items-start gap-3 shadow-md animate-pulse">
+          <AlertTriangle className="text-rose-400 shrink-0 mt-0.5" size={20} />
           <div>
-            <h4 className="font-bold text-sm">Critical Power Threshold Exceeded!</h4>
-            <p className="text-xs text-rose-700 mt-0.5">
+            <h4 className="font-bold text-sm text-rose-200">Critical Power Threshold Exceeded!</h4>
+            <p className="text-xs sm:text-sm text-rose-200 mt-0.5">
               The combined power draw of servers in this cabinet ({currentPower.toFixed(1)} W) is currently exceeding the configured power threshold of {rack.powerLimitWatts} W.
             </p>
           </div>

@@ -42,7 +42,7 @@ export default function SettingsClient({ currentUsername }: SettingsClientProps)
         <h1 className="text-2xl sm:text-3xl font-extrabold text-[#f5f5f4] tracking-tight">
           Admin Settings
         </h1>
-        <p className="text-[#a3a39e] text-xs sm:text-sm mt-1">
+        <p className="text-[#d4d4d0] text-sm sm:text-base font-medium mt-1">
           Update your administrative username and password credentials.
         </p>
       </div>
@@ -56,14 +56,14 @@ export default function SettingsClient({ currentUsername }: SettingsClientProps)
           </div>
 
           {changeError && (
-            <div className="rounded-xl border border-rose-500/30 bg-rose-500/10 text-rose-300 p-4 text-xs font-semibold flex items-center gap-2 animate-in fade-in duration-200">
+            <div className="rounded-xl border border-rose-500/30 bg-rose-500/10 text-rose-300 p-4 text-xs sm:text-sm font-semibold flex items-center gap-2 animate-in fade-in duration-200">
               <AlertCircle size={16} className="text-rose-400 shrink-0" />
               <span>{changeError}</span>
             </div>
           )}
 
           {changeSuccess && (
-            <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 text-emerald-300 p-4 text-xs font-semibold flex items-center gap-2 animate-in fade-in duration-200">
+            <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 text-emerald-300 p-4 text-xs sm:text-sm font-semibold flex items-center gap-2 animate-in fade-in duration-200">
               <CheckCircle2 size={16} className="text-emerald-400 shrink-0" />
               <span>{changeSuccess}</span>
             </div>
@@ -71,11 +71,11 @@ export default function SettingsClient({ currentUsername }: SettingsClientProps)
 
           <form onSubmit={handleChangeSubmit} className="space-y-4">
             <div>
-              <label className="block text-xs font-extrabold text-[#a3a39e] uppercase tracking-wider mb-1.5">
+              <label className="block text-xs sm:text-sm font-extrabold text-[#d4d4d0] uppercase tracking-wider mb-1.5">
                 Current Password
               </label>
               <div className="relative">
-                <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-[#73726c]">
+                <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-[#888680]">
                   <Lock size={15} />
                 </span>
                 <input
@@ -83,17 +83,17 @@ export default function SettingsClient({ currentUsername }: SettingsClientProps)
                   name="currentPassword"
                   required
                   placeholder="Verify your identity"
-                  className="w-full bg-[#1b1915] border border-[#282620] text-[#e5e5e0] rounded-xl pl-10 pr-3.5 py-2.5 text-sm placeholder-[#73726c] focus:outline-none focus:border-emerald-500 transition-colors"
+                  className="w-full bg-[#1b1915] border border-[#282620] text-[#f5f5f4] rounded-xl pl-10 pr-3.5 py-2.5 text-sm placeholder-[#888680] focus:outline-none focus:border-emerald-500 transition-colors font-medium"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-extrabold text-[#a3a39e] uppercase tracking-wider mb-1.5">
+              <label className="block text-xs sm:text-sm font-extrabold text-[#d4d4d0] uppercase tracking-wider mb-1.5">
                 New Username
               </label>
               <div className="relative">
-                <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-[#73726c]">
+                <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-[#888680]">
                   <User size={15} />
                 </span>
                 <input
@@ -102,17 +102,17 @@ export default function SettingsClient({ currentUsername }: SettingsClientProps)
                   required
                   defaultValue={currentUsername}
                   placeholder="Enter new username"
-                  className="w-full bg-[#1b1915] border border-[#282620] text-[#e5e5e0] rounded-xl pl-10 pr-3.5 py-2.5 text-sm placeholder-[#73726c] focus:outline-none focus:border-emerald-500 transition-colors"
+                  className="w-full bg-[#1b1915] border border-[#282620] text-[#f5f5f4] rounded-xl pl-10 pr-3.5 py-2.5 text-sm placeholder-[#888680] focus:outline-none focus:border-emerald-500 transition-colors font-medium"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-extrabold text-[#a3a39e] uppercase tracking-wider mb-1.5">
+              <label className="block text-xs sm:text-sm font-extrabold text-[#d4d4d0] uppercase tracking-wider mb-1.5">
                 New Password
               </label>
               <div className="relative">
-                <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-[#73726c]">
+                <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-[#888680]">
                   <Lock size={15} />
                 </span>
                 <input
@@ -121,25 +121,25 @@ export default function SettingsClient({ currentUsername }: SettingsClientProps)
                   required
                   minLength={6}
                   placeholder="Minimum 6 characters"
-                  className="w-full bg-[#1b1915] border border-[#282620] text-[#e5e5e0] rounded-xl pl-10 pr-3.5 py-2.5 text-sm placeholder-[#73726c] focus:outline-none focus:border-emerald-500 transition-colors"
+                  className="w-full bg-[#1b1915] border border-[#282620] text-[#f5f5f4] rounded-xl pl-10 pr-3.5 py-2.5 text-sm placeholder-[#888680] focus:outline-none focus:border-emerald-500 transition-colors font-medium"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-extrabold text-[#a3a39e] uppercase tracking-wider mb-1.5">
+              <label className="block text-xs sm:text-sm font-extrabold text-[#d4d4d0] uppercase tracking-wider mb-1.5">
                 Confirm New Password
               </label>
               <div className="relative">
-                <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-[#73726c]">
+                <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-[#888680]">
                   <Lock size={15} />
                 </span>
                 <input
                   type="password"
                   name="confirmNewPassword"
                   required
-                  placeholder="Confirm new password"
-                  className="w-full bg-[#1b1915] border border-[#282620] text-[#e5e5e0] rounded-xl pl-10 pr-3.5 py-2.5 text-sm placeholder-[#73726c] focus:outline-none focus:border-emerald-500 transition-colors"
+                  placeholder="Re-enter new password"
+                  className="w-full bg-[#1b1915] border border-[#282620] text-[#f5f5f4] rounded-xl pl-10 pr-3.5 py-2.5 text-sm placeholder-[#888680] focus:outline-none focus:border-emerald-500 transition-colors font-medium"
                 />
               </div>
             </div>

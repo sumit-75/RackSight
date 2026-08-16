@@ -84,7 +84,7 @@ export default async function DashboardPage() {
           <Activity className="text-emerald-400" size={30} />
           RackSight Overview
         </h1>
-        <p className="text-[#a3a39e] text-xs sm:text-sm mt-1 font-sans">
+        <p className="text-[#d4d4d0] text-sm sm:text-base font-medium mt-1 font-sans">
           Infrastructure health, power utilization, and active threshold monitoring.
         </p>
       </div>
@@ -94,7 +94,7 @@ export default async function DashboardPage() {
         {/* Total Rooms */}
         <div className="rounded-2xl border border-[#24231f] bg-[#161512] p-5 flex items-center justify-between shadow-md hover:border-[#383630] transition-colors">
           <div>
-            <span className="text-[0.65rem] uppercase text-[#a3a39e] font-extrabold tracking-wider">Total Rooms</span>
+            <span className="text-xs uppercase text-[#d4d4d0] font-extrabold tracking-wider">Total Rooms</span>
             <div className="text-2xl sm:text-3xl font-extrabold text-[#f5f5f4] mt-1">{totalRooms}</div>
           </div>
           <div className="p-3 bg-purple-500/10 border border-purple-500/20 rounded-xl text-purple-400 shadow-[0_0_12px_rgba(168,85,247,0.15)] flex items-center justify-center">
@@ -105,7 +105,7 @@ export default async function DashboardPage() {
         {/* Total Racks */}
         <div className="rounded-2xl border border-[#24231f] bg-[#161512] p-5 flex items-center justify-between shadow-md hover:border-[#383630] transition-colors">
           <div>
-            <span className="text-[0.65rem] uppercase text-[#a3a39e] font-extrabold tracking-wider">Active Racks</span>
+            <span className="text-xs uppercase text-[#d4d4d0] font-extrabold tracking-wider">Active Racks</span>
             <div className="text-2xl sm:text-3xl font-extrabold text-[#f5f5f4] mt-1">{totalRacks}</div>
           </div>
           <div className="p-3 bg-cyan-500/10 border border-cyan-500/20 rounded-xl text-cyan-400 shadow-[0_0_12px_rgba(6,182,212,0.15)] flex items-center justify-center">
@@ -116,7 +116,7 @@ export default async function DashboardPage() {
         {/* Total Power Draw */}
         <div className="rounded-2xl border border-[#24231f] bg-[#161512] p-5 flex items-center justify-between shadow-md hover:border-[#383630] transition-colors">
           <div>
-            <span className="text-[0.65rem] uppercase text-[#a3a39e] font-extrabold tracking-wider">Total Power Draw</span>
+            <span className="text-xs uppercase text-[#d4d4d0] font-extrabold tracking-wider">Total Power Draw</span>
             <div className="text-2xl sm:text-3xl font-extrabold text-emerald-400 mt-1">{totalPowerDraw.toFixed(0)} W</div>
           </div>
           <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-xl text-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.15)] flex items-center justify-center">
@@ -131,7 +131,7 @@ export default async function DashboardPage() {
             : 'border-[#24231f] bg-[#161512] hover:border-[#383630]'
         }`}>
           <div>
-            <span className="text-[0.65rem] uppercase text-[#a3a39e] font-extrabold tracking-wider">Active Alerts</span>
+            <span className="text-xs uppercase text-[#d4d4d0] font-extrabold tracking-wider">Active Alerts</span>
             <div className={`text-2xl sm:text-3xl font-extrabold mt-1 ${activeAlerts > 0 ? 'text-rose-400' : 'text-[#f5f5f4]'}`}>
               {activeAlerts}
             </div>
@@ -152,7 +152,7 @@ export default async function DashboardPage() {
           <AlertTriangle className="text-rose-400 shrink-0 mt-0.5" size={20} />
           <div>
             <h4 className="font-bold text-sm text-rose-200">Critical Threshold Exceeded!</h4>
-            <p className="text-xs text-rose-300/90 mt-0.5">
+            <p className="text-xs sm:text-sm text-rose-200 mt-0.5">
               There are currently {activeAlerts} cabinet(s) exceeding their configured power limits. Verify server workloads and layouts.
             </p>
           </div>
@@ -165,20 +165,20 @@ export default async function DashboardPage() {
           <h2 className="text-lg font-extrabold text-[#f5f5f4]">Room Status Matrix</h2>
           <Link
             href="/rooms"
-            className="text-xs font-bold text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1"
+            className="text-sm font-extrabold text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1"
           >
-            Manage Rooms <ArrowRight size={14} />
+            Manage Rooms <ArrowRight size={15} />
           </Link>
         </div>
 
         {roomSummaries.length === 0 ? (
-          <div className="rounded-2xl border border-dashed border-[#24231f] bg-[#161512] p-8 text-center text-[#a3a39e] text-sm">
+          <div className="rounded-2xl border border-dashed border-[#24231f] bg-[#161512] p-8 text-center text-[#d4d4d0] text-sm font-medium">
             No rooms created yet. Click "Manage Rooms" to add one.
           </div>
         ) : (
           <div className="overflow-hidden rounded-2xl border border-[#24231f] bg-[#161512] shadow-md">
             <table className="min-w-full divide-y divide-[#24231f] text-left text-sm">
-              <thead className="bg-[#1b1915] text-[#a3a39e] text-xs font-extrabold uppercase tracking-wider">
+              <thead className="bg-[#1b1915] text-[#d4d4d0] text-xs sm:text-sm font-extrabold uppercase tracking-wider">
                 <tr>
                   <th className="px-6 py-4">Room Name</th>
                   <th className="px-6 py-4">Cabinet Count</th>
@@ -197,14 +197,14 @@ export default async function DashboardPage() {
                       className="hover:bg-[#1b1915]/60 transition-colors duration-200"
                     >
                       <td className="px-6 py-4 font-bold text-[#f5f5f4]">{room.name}</td>
-                      <td className="px-6 py-4 text-[#a3a39e]">{room.racksCount} racks</td>
-                      <td className="px-6 py-4 text-[#e5e5e0] font-mono">{room.powerDraw.toFixed(0)} W</td>
-                      <td className="px-6 py-4 text-[#a3a39e] flex items-center gap-1">
-                        <Thermometer size={14} className="text-amber-400" />
+                      <td className="px-6 py-4 text-[#d4d4d0] font-medium">{room.racksCount} racks</td>
+                      <td className="px-6 py-4 text-[#f5f5f4] font-mono font-bold">{room.powerDraw.toFixed(0)} W</td>
+                      <td className="px-6 py-4 text-[#d4d4d0] font-medium flex items-center gap-1.5">
+                        <Thermometer size={16} className="text-amber-400" />
                         {room.tempThreshold}°C
                       </td>
                       <td className="px-6 py-4">
-                        <span className={`inline-flex items-center gap-2 px-2.5 py-1 rounded-md text-[0.65rem] font-mono font-extrabold uppercase border ${
+                        <span className={`inline-flex items-center gap-2 px-2.5 py-1 rounded-md text-xs font-mono font-extrabold uppercase border ${
                           hasAlert
                             ? 'bg-rose-500/10 text-rose-400 border-rose-500/30'
                             : 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30'
@@ -219,9 +219,9 @@ export default async function DashboardPage() {
                       <td className="px-6 py-4 text-right">
                         <Link
                           href={`/rooms/${room.id}`}
-                          className="inline-flex items-center gap-1 text-xs font-bold text-emerald-400 hover:text-emerald-300 transition-colors"
+                          className="inline-flex items-center gap-1 text-sm font-extrabold text-emerald-400 hover:text-emerald-300 transition-colors"
                         >
-                          View <ArrowRight size={12} />
+                          View <ArrowRight size={14} />
                         </Link>
                       </td>
                     </tr>

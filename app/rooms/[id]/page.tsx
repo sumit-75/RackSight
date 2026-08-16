@@ -58,16 +58,16 @@ export default async function RoomDetailsPage({ params }: PageProps) {
       <div className="space-y-4">
         <Link
           href="/rooms"
-          className="inline-flex items-center gap-1.5 text-xs font-bold text-[#a3a39e] hover:text-emerald-400 transition-colors"
+          className="inline-flex items-center gap-1.5 text-sm font-extrabold text-[#d4d4d0] hover:text-emerald-400 transition-colors"
         >
-          <ArrowLeft size={14} /> Back to Rooms
+          <ArrowLeft size={16} /> Back to Rooms
         </Link>
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#f5f5f4]">
               {room.name}
             </h1>
-            <p className="text-[#a3a39e] text-xs sm:text-sm mt-1">
+            <p className="text-[#d4d4d0] text-sm sm:text-base font-medium mt-1">
               Configuration and rack breakdown.
             </p>
           </div>
@@ -75,7 +75,7 @@ export default async function RoomDetailsPage({ params }: PageProps) {
             <div className="flex items-center gap-2">
               <Thermometer className="text-amber-400" size={18} />
               <div>
-                <div className="text-[0.65rem] text-[#a3a39e] uppercase tracking-wider font-extrabold">Temp Limit</div>
+                <div className="text-xs text-[#d4d4d0] uppercase tracking-wider font-extrabold">Temp Limit</div>
                 <div className="text-sm font-bold text-[#f5f5f4]">{room.tempThresholdC}°C</div>
               </div>
             </div>
@@ -88,7 +88,7 @@ export default async function RoomDetailsPage({ params }: PageProps) {
         <div className="lg:col-span-2 space-y-4">
           <h2 className="text-lg font-extrabold text-[#f5f5f4]">Racks in this Room</h2>
           {room.racks.length === 0 ? (
-            <div className="rounded-2xl border border-dashed border-[#24231f] bg-[#161512] p-8 text-center text-[#a3a39e] text-sm">
+            <div className="rounded-2xl border border-dashed border-[#24231f] bg-[#161512] p-8 text-center text-[#d4d4d0] text-sm font-medium">
               No racks created in this room yet. Use the form to add one.
             </div>
           ) : (
@@ -114,11 +114,11 @@ export default async function RoomDetailsPage({ params }: PageProps) {
                     <div>
                       <div className="flex justify-between items-start">
                         <div>
-                          <h3 className="font-bold text-[#f5f5f4] group-hover:text-emerald-400 transition-colors">
+                          <h3 className="text-base sm:text-lg font-extrabold text-[#f5f5f4] group-hover:text-emerald-400 transition-colors">
                             {rack.name}
                           </h3>
                           {isOverLimit && (
-                            <span className="inline-block mt-1 text-[0.6rem] font-bold uppercase tracking-wider text-rose-400 bg-rose-500/20 px-2 py-0.5 rounded border border-rose-500/30">
+                            <span className="inline-block mt-1 text-xs font-bold uppercase tracking-wider text-rose-400 bg-rose-500/20 px-2 py-0.5 rounded border border-rose-500/30">
                               Power Exceeded
                             </span>
                           )}
@@ -129,30 +129,30 @@ export default async function RoomDetailsPage({ params }: PageProps) {
                             title="Delete Rack"
                             message={`Are you sure you want to delete the rack cabinet "${rack.name}"? This will permanently remove the rack, all of its server slots, and all historical data for it.`}
                             tooltipText="Delete Rack"
-                            className="text-[#a3a39e] hover:text-rose-400 p-1 rounded hover:bg-rose-500/10 transition-all cursor-pointer"
+                            className="text-[#a3a39e] hover:text-rose-400 p-1.5 rounded-lg hover:bg-rose-500/10 transition-all cursor-pointer"
                             iconSize={16}
                           />
                         </Tooltip>
                       </div>
 
-                      <div className="mt-4 space-y-2">
-                        <div className="flex items-center justify-between text-xs text-[#a3a39e]">
+                      <div className="mt-4 space-y-2.5">
+                        <div className="flex items-center justify-between text-sm text-[#d4d4d0] font-medium">
                           <span className="flex items-center gap-1.5">
-                            <Server size={14} className="text-[#a3a39e]" />
+                            <Server size={15} className="text-[#d4d4d0]" />
                             Servers:
                           </span>
-                          <strong className="text-[#e5e5e0]">{rack.servers.length}</strong>
+                          <strong className="text-[#f5f5f4] font-bold">{rack.servers.length}</strong>
                         </div>
-                        <div className="flex items-center justify-between text-xs text-[#a3a39e]">
+                        <div className="flex items-center justify-between text-sm text-[#d4d4d0] font-medium">
                           <span className="flex items-center gap-1.5">
-                            <Zap size={14} className="text-amber-400" />
+                            <Zap size={15} className="text-amber-400" />
                             Power Limit:
                           </span>
-                          <strong className="text-[#e5e5e0]">{rack.powerLimitWatts} W</strong>
+                          <strong className="text-[#f5f5f4] font-bold">{rack.powerLimitWatts} W</strong>
                         </div>
-                        <div className="flex items-center justify-between text-xs text-[#a3a39e]">
+                        <div className="flex items-center justify-between text-sm text-[#d4d4d0] font-medium">
                           <span className="flex items-center gap-1.5">
-                            <Zap size={14} className="text-emerald-400" />
+                            <Zap size={15} className="text-emerald-400" />
                             Current Draw:
                           </span>
                           <strong className={isOverLimit ? 'text-rose-400 font-bold' : 'text-emerald-400 font-bold'}>
@@ -165,10 +165,10 @@ export default async function RoomDetailsPage({ params }: PageProps) {
                     <div className="mt-6 pt-4 border-t border-[#24231f] flex justify-end">
                       <Link
                         href={`/racks/${rack.id}`}
-                        className="flex items-center gap-1.5 text-xs font-bold text-emerald-400 hover:text-emerald-300 group/link transition-colors"
+                        className="flex items-center gap-1.5 text-sm font-extrabold text-emerald-400 hover:text-emerald-300 group/link transition-colors"
                       >
                         Inspect Rack Layout
-                        <ArrowRight size={14} className="group-hover/link:translate-x-0.5 transition-transform" />
+                        <ArrowRight size={15} className="group-hover/link:translate-x-0.5 transition-transform" />
                       </Link>
                     </div>
                   </div>
@@ -189,7 +189,7 @@ export default async function RoomDetailsPage({ params }: PageProps) {
               <input type="hidden" name="roomId" value={roomId} />
 
               <div>
-                <label className="block text-xs font-extrabold text-[#a3a39e] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs sm:text-sm font-extrabold text-[#d4d4d0] uppercase tracking-wider mb-1.5">
                   Rack Name
                 </label>
                 <input
@@ -197,12 +197,12 @@ export default async function RoomDetailsPage({ params }: PageProps) {
                   name="name"
                   required
                   placeholder="e.g., Rack A-10"
-                  className="w-full bg-[#1b1915] border border-[#282620] text-[#e5e5e0] rounded-xl px-3.5 py-2.5 text-sm placeholder-[#73726c] focus:outline-none focus:border-emerald-500 transition-colors"
+                  className="w-full bg-[#1b1915] border border-[#282620] text-[#f5f5f4] rounded-xl px-3.5 py-2.5 text-sm placeholder-[#888680] focus:outline-none focus:border-emerald-500 transition-colors font-medium"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-extrabold text-[#a3a39e] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs sm:text-sm font-extrabold text-[#d4d4d0] uppercase tracking-wider mb-1.5">
                   Total Units (U capacity)
                 </label>
                 <input
@@ -211,12 +211,12 @@ export default async function RoomDetailsPage({ params }: PageProps) {
                   required
                   defaultValue="42"
                   placeholder="e.g., 42"
-                  className="w-full bg-[#1b1915] border border-[#282620] text-[#e5e5e0] rounded-xl px-3.5 py-2.5 text-sm placeholder-[#73726c] focus:outline-none focus:border-emerald-500 transition-colors"
+                  className="w-full bg-[#1b1915] border border-[#282620] text-[#f5f5f4] rounded-xl px-3.5 py-2.5 text-sm placeholder-[#888680] focus:outline-none focus:border-emerald-500 transition-colors font-medium"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-extrabold text-[#a3a39e] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs sm:text-sm font-extrabold text-[#d4d4d0] uppercase tracking-wider mb-1.5">
                   Power Limit (Watts)
                 </label>
                 <input
@@ -224,7 +224,7 @@ export default async function RoomDetailsPage({ params }: PageProps) {
                   name="powerLimitWatts"
                   required
                   placeholder="e.g., 3000"
-                  className="w-full bg-[#1b1915] border border-[#282620] text-[#e5e5e0] rounded-xl px-3.5 py-2.5 text-sm placeholder-[#73726c] focus:outline-none focus:border-emerald-500 transition-colors"
+                  className="w-full bg-[#1b1915] border border-[#282620] text-[#f5f5f4] rounded-xl px-3.5 py-2.5 text-sm placeholder-[#888680] focus:outline-none focus:border-emerald-500 transition-colors font-medium"
                 />
               </div>
 
