@@ -90,18 +90,18 @@ export default function InteractiveRackDemo() {
   };
 
   return (
-    <div className="rounded-3xl border border-white/10 bg-[#141310]/75 backdrop-blur-xl shadow-2xl font-sans overflow-hidden">
+    <div className="rounded-3xl border border-[#282620]/80 bg-[#141310]/75 backdrop-blur-2xl shadow-2xl shadow-black/90 font-sans overflow-hidden transition-all duration-300">
       {/* macOS Window Top TitleBar */}
-      <div className="bg-[#181714]/70 backdrop-blur-md border-b border-white/10 px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div className="bg-[#1b1915]/70 backdrop-blur-xl border-b border-[#282620]/80 px-4 sm:px-6 py-3.5 flex flex-col sm:flex-row items-center justify-between gap-3">
         {/* macOS Traffic Lights (Top Left) */}
         <div className="flex items-center gap-2 shrink-0">
-          <span className="w-3 h-3 rounded-full bg-[#ff5f56] border border-[#e0443e]/80 block shadow-[0_0_6px_rgba(255,95,86,0.35)]"></span>
-          <span className="w-3 h-3 rounded-full bg-[#ffbd2e] border border-[#dea123]/80 block shadow-[0_0_6px_rgba(255,189,46,0.35)]"></span>
-          <span className="w-3 h-3 rounded-full bg-[#27c93f] border border-[#1aab29]/80 block shadow-[0_0_6px_rgba(39,201,63,0.35)]"></span>
+          <span className="w-3 h-3 rounded-full bg-[#ff5f56] border border-[#e0443e] block shadow-sm hover:opacity-80 transition-opacity cursor-pointer"></span>
+          <span className="w-3 h-3 rounded-full bg-[#ffbd2e] border border-[#dea123] block shadow-sm hover:opacity-80 transition-opacity cursor-pointer"></span>
+          <span className="w-3 h-3 rounded-full bg-[#27c93f] border border-[#1aab29] block shadow-sm hover:opacity-80 transition-opacity cursor-pointer"></span>
         </div>
 
         {/* macOS URL Address Bar (Center) */}
-        <div className="flex items-center gap-2 bg-[#0e0d09]/75 backdrop-blur-md border border-white/10 px-4 py-1.5 rounded-full text-xs text-[#a3a39e] font-sans font-bold shadow-inner">
+        <div className="flex items-center gap-2 bg-[#12110e]/80 border border-[#282620] px-4 py-1 rounded-full text-xs text-[#a3a39e] font-sans font-bold shadow-inner">
           <Lock size={12} className="text-emerald-400 shrink-0" />
           <span>racksight://cabinet-matrix-sandbox</span>
         </div>
@@ -112,7 +112,7 @@ export default function InteractiveRackDemo() {
             variant="outline"
             size="sm"
             onClick={triggerGlobalSpike}
-            className="text-rose-400 hover:text-rose-300 border-rose-500/30 bg-rose-500/10 hover:bg-rose-500/20 text-xs py-1 h-7 rounded-lg"
+            className="text-rose-400 hover:text-rose-300 text-xs py-1 h-7 border-rose-500/30 bg-rose-500/10 hover:bg-rose-500/20"
           >
             <AlertTriangle size={13} className="mr-1" />
             Spike Load
@@ -121,7 +121,7 @@ export default function InteractiveRackDemo() {
             variant="ghost"
             size="sm"
             onClick={resetNormalLoad}
-            className="text-[#a3a39e] hover:text-white bg-white/5 hover:bg-white/10 text-xs py-1 h-7 rounded-lg"
+            className="text-[#a3a39e] hover:text-white text-xs py-1 h-7 hover:bg-white/5"
           >
             <RefreshCw size={13} className="mr-1" />
             Reset
@@ -130,26 +130,26 @@ export default function InteractiveRackDemo() {
       </div>
 
       {/* macOS Window Tab Bar */}
-      <div className="bg-[#12110e]/40 backdrop-blur-xl border-b border-white/10 px-4 pt-2.5 flex items-center gap-2 overflow-x-auto">
+      <div className="bg-[#181714]/60 backdrop-blur-lg border-b border-[#282620]/80 px-4 sm:px-6 pt-2.5 flex items-center gap-2 overflow-x-auto select-none">
         <button
           onClick={() => setActiveTab('matrix')}
-          className={`flex items-center gap-2 px-4 py-2 rounded-t-xl text-xs font-extrabold transition-all cursor-pointer ${
+          className={`flex items-center gap-2 px-4 py-2.5 rounded-t-xl text-xs font-extrabold transition-all cursor-pointer border-t border-x ${
             activeTab === 'matrix'
-              ? 'macos-glass-tab-active text-white shadow-lg'
-              : 'macos-glass-tab-inactive text-[#a3a39e]'
+              ? 'bg-[#161512]/90 backdrop-blur-md text-white border-[#2e2d27] border-t-emerald-400 shadow-lg'
+              : 'bg-[#1b1915]/40 backdrop-blur-sm text-[#a3a39e] border-transparent hover:text-white hover:bg-[#1b1915]/70'
           }`}
         >
-          <ServerIcon size={14} />
+          <ServerIcon size={14} className={activeTab === 'matrix' ? 'text-emerald-400' : ''} />
           <span>Cabinet Matrix (U42)</span>
           <Badge variant="emerald" className="ml-1 text-[0.6rem] px-1.5 py-0">Live</Badge>
         </button>
 
         <button
           onClick={() => setActiveTab('analytics')}
-          className={`flex items-center gap-2 px-4 py-2 rounded-t-xl text-xs font-extrabold transition-all cursor-pointer ${
+          className={`flex items-center gap-2 px-4 py-2.5 rounded-t-xl text-xs font-extrabold transition-all cursor-pointer border-t border-x ${
             activeTab === 'analytics'
-              ? 'macos-glass-tab-active text-emerald-400 shadow-lg'
-              : 'macos-glass-tab-inactive text-[#a3a39e]'
+              ? 'bg-[#161512]/90 backdrop-blur-md text-emerald-400 border-[#2e2d27] border-t-emerald-400 shadow-lg'
+              : 'bg-[#1b1915]/40 backdrop-blur-sm text-[#a3a39e] border-transparent hover:text-white hover:bg-[#1b1915]/70'
           }`}
         >
           <Zap size={14} />
@@ -158,10 +158,10 @@ export default function InteractiveRackDemo() {
 
         <button
           onClick={() => setActiveTab('logs')}
-          className={`flex items-center gap-2 px-4 py-2 rounded-t-xl text-xs font-extrabold transition-all cursor-pointer ${
+          className={`flex items-center gap-2 px-4 py-2.5 rounded-t-xl text-xs font-extrabold transition-all cursor-pointer border-t border-x ${
             activeTab === 'logs'
-              ? 'macos-glass-tab-active text-[#e5e5e0] shadow-lg'
-              : 'macos-glass-tab-inactive text-[#a3a39e]'
+              ? 'bg-[#161512]/90 backdrop-blur-md text-[#e5e5e0] border-[#2e2d27] border-t-emerald-400 shadow-lg'
+              : 'bg-[#1b1915]/40 backdrop-blur-sm text-[#a3a39e] border-transparent hover:text-white hover:bg-[#1b1915]/70'
           }`}
         >
           <Terminal size={14} />
@@ -170,7 +170,7 @@ export default function InteractiveRackDemo() {
       </div>
 
       {/* Main Tab Content Area */}
-      <div className="p-6 sm:p-8 bg-[#12110e]/85 backdrop-blur-md">
+      <div className="p-6 sm:p-8 bg-[#12110e]/65 backdrop-blur-xl">
         {activeTab === 'matrix' && (
           <div className="space-y-6 animate-in fade-in duration-200">
             {/* Grid: Left Cabinet Layout, Right Live Inspector */}
