@@ -46,25 +46,33 @@ export default function LoginPage() {
 
       <div className="relative max-w-md w-full font-sans">
         {/* Subtle Ambient Background Radial Aura */}
-        <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-72 h-72 bg-gradient-to-b from-emerald-500/15 to-cyan-500/5 rounded-full blur-3xl pointer-events-none" />
 
-        <Card className="relative overflow-hidden border border-[#2e2d27] bg-[#141310]/95 backdrop-blur-xl shadow-[0_20px_60px_rgba(0,0,0,0.85)] rounded-3xl">
-          {/* Glowing Top Emerald Line Accent */}
-          <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-emerald-400 to-transparent opacity-80" />
+        <Card className="relative overflow-hidden border border-[#2e2d27] bg-[#141310]/95 backdrop-blur-2xl shadow-[0_25px_70px_rgba(0,0,0,0.9)] rounded-3xl">
+          {/* Vibrant Top Emerald to Cyan Line Accent */}
+          <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-500" />
 
           <CardHeader className="text-center pt-8 pb-4 space-y-3">
-            {/* Branding Logo Icon with Dual-Layer Radar Pulse */}
-            <div className="relative mx-auto w-14 h-14 rounded-2xl bg-[#1b1915] border border-emerald-500/30 flex items-center justify-center shadow-[0_0_25px_rgba(16,185,129,0.2)] group transition-transform">
+            {/* Branding Logo Icon with Dual-Layer Radar Pulse & Vibrant Dual-Tone Glow */}
+            <div className="relative mx-auto w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500/20 via-[#1b1915] to-cyan-500/15 border border-emerald-500/40 flex items-center justify-center shadow-[0_0_25px_rgba(16,185,129,0.25)]">
               <Activity className="text-emerald-400" size={26} />
               <span className="absolute -top-1 -right-1 flex h-3 w-3">
-                <span className="radar-ring absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,1)]" />
+                <span className="radar-ring absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-80" />
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,1)]" />
               </span>
             </div>
 
             <div className="space-y-1.5">
               <CardTitle className="text-2xl font-extrabold tracking-tight text-[#f5f5f4] font-sans">
-                {mode === 'signin' ? 'Authenticate Session' : 'Register Administrator'}
+                {mode === 'signin' ? (
+                  <>
+                    Authenticate <span className="bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent">Session</span>
+                  </>
+                ) : (
+                  <>
+                    Register <span className="bg-gradient-to-r from-emerald-400 to-teal-300 bg-clip-text text-transparent">Administrator</span>
+                  </>
+                )}
               </CardTitle>
               <CardDescription className="text-xs text-[#a3a39e] max-w-xs mx-auto font-sans">
                 {mode === 'signin'
@@ -77,7 +85,7 @@ export default function LoginPage() {
           <CardContent className="space-y-5 px-6 sm:px-8">
             {/* Success Notification */}
             {successMsg && (
-              <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 text-emerald-300 p-3.5 text-xs font-semibold flex items-start gap-2.5 animate-in fade-in duration-250 font-sans">
+              <div className="rounded-xl border border-emerald-500/35 bg-emerald-500/10 text-emerald-300 p-3.5 text-xs font-semibold flex items-start gap-2.5 animate-in fade-in duration-250 font-sans shadow-[0_0_15px_rgba(16,185,129,0.1)]">
                 <CheckCircle2 size={16} className="text-emerald-400 shrink-0 mt-0.5" />
                 <span>{successMsg}</span>
               </div>
@@ -85,7 +93,7 @@ export default function LoginPage() {
 
             {/* Error Notification */}
             {errorMsg && (
-              <div className="rounded-xl border border-rose-500/30 bg-rose-500/10 text-rose-300 p-3.5 text-xs font-semibold flex items-start gap-2.5 animate-in fade-in duration-250 font-sans">
+              <div className="rounded-xl border border-rose-500/35 bg-rose-500/10 text-rose-300 p-3.5 text-xs font-semibold flex items-start gap-2.5 animate-in fade-in duration-250 font-sans shadow-[0_0_15px_rgba(244,63,94,0.1)]">
                 <ShieldAlert size={16} className="text-rose-400 shrink-0 mt-0.5" />
                 <span>{errorMsg}</span>
               </div>
@@ -99,8 +107,8 @@ export default function LoginPage() {
                   <label className="block text-[0.65rem] font-mono font-extrabold text-[#a3a39e] uppercase tracking-wider mb-1.5 font-sans">
                     Username
                   </label>
-                  <div className="relative">
-                    <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-[#73726c]">
+                  <div className="relative group">
+                    <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-[#73726c] group-focus-within:text-emerald-400 transition-colors">
                       <User size={15} />
                     </span>
                     <input
@@ -108,7 +116,7 @@ export default function LoginPage() {
                       name="username"
                       required
                       placeholder={mode === 'signin' ? 'admin' : 'new_admin'}
-                      className="w-full bg-[#1b1915] border border-[#282620] rounded-xl pl-10 pr-3.5 py-2.5 text-sm text-[#f5f5f4] placeholder-[#63625c] focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/30 transition-all font-sans"
+                      className="w-full bg-[#181713] border border-[#2e2d27] rounded-xl pl-10 pr-3.5 py-2.5 text-sm text-[#f5f5f4] placeholder-[#63625c] focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/20 transition-all font-sans"
                     />
                   </div>
                 </div>
@@ -118,8 +126,8 @@ export default function LoginPage() {
                   <label className="block text-[0.65rem] font-mono font-extrabold text-[#a3a39e] uppercase tracking-wider mb-1.5 font-sans">
                     Password
                   </label>
-                  <div className="relative">
-                    <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-[#73726c]">
+                  <div className="relative group">
+                    <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-[#73726c] group-focus-within:text-emerald-400 transition-colors">
                       <Lock size={15} />
                     </span>
                     <input
@@ -128,7 +136,7 @@ export default function LoginPage() {
                       required
                       minLength={mode === 'signup' ? 6 : undefined}
                       placeholder="••••••••"
-                      className="w-full bg-[#1b1915] border border-[#282620] rounded-xl pl-10 pr-10 py-2.5 text-sm text-[#f5f5f4] placeholder-[#63625c] focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/30 transition-all font-sans"
+                      className="w-full bg-[#181713] border border-[#2e2d27] rounded-xl pl-10 pr-10 py-2.5 text-sm text-[#f5f5f4] placeholder-[#63625c] focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/20 transition-all font-sans"
                     />
                     <button
                       type="button"
@@ -147,8 +155,8 @@ export default function LoginPage() {
                     <label className="block text-[0.65rem] font-mono font-extrabold text-[#a3a39e] uppercase tracking-wider mb-1.5 font-sans">
                       Confirm Password
                     </label>
-                    <div className="relative">
-                      <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-[#73726c]">
+                    <div className="relative group">
+                      <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center text-[#73726c] group-focus-within:text-emerald-400 transition-colors">
                         <KeyRound size={15} />
                       </span>
                       <input
@@ -156,7 +164,7 @@ export default function LoginPage() {
                         name="confirmPassword"
                         required
                         placeholder="••••••••"
-                        className="w-full bg-[#1b1915] border border-[#282620] rounded-xl pl-10 pr-10 py-2.5 text-sm text-[#f5f5f4] placeholder-[#63625c] focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/30 transition-all font-sans"
+                        className="w-full bg-[#181713] border border-[#2e2d27] rounded-xl pl-10 pr-10 py-2.5 text-sm text-[#f5f5f4] placeholder-[#63625c] focus:outline-none focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/20 transition-all font-sans"
                       />
                       <button
                         type="button"
@@ -175,10 +183,10 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full mt-2 bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-400 hover:from-emerald-400 hover:to-teal-400 text-slate-955 font-extrabold py-3 px-6 rounded-xl text-sm shadow-[0_0_25px_rgba(16,185,129,0.25)] hover:shadow-[0_0_35px_rgba(16,185,129,0.4)] active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-55 font-sans"
+                className="w-full mt-3 bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 hover:from-emerald-300 hover:to-cyan-300 text-slate-950 font-black py-3.5 px-6 rounded-xl text-sm shadow-[0_0_30px_rgba(16,185,129,0.3)] hover:shadow-[0_0_45px_rgba(16,185,129,0.5)] active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-55 font-sans"
               >
                 {isLoading ? (
-                  <span className="w-4 h-4 border-2 border-slate-955 border-t-transparent rounded-full animate-spin"></span>
+                  <span className="w-4 h-4 border-2 border-slate-950 border-t-transparent rounded-full animate-spin"></span>
                 ) : mode === 'signin' ? (
                   <>
                     <Lock size={15} />
@@ -196,7 +204,7 @@ export default function LoginPage() {
             </form>
           </CardContent>
 
-          <CardFooter className="flex flex-col space-y-4 px-6 sm:px-8 pb-7 pt-2 border-t border-[#24231f]">
+          <CardFooter className="flex flex-col space-y-4 px-6 sm:px-8 pb-7 pt-3 border-t border-[#24231f]">
             {/* Mode Switcher Link */}
             <button
               type="button"
@@ -215,8 +223,8 @@ export default function LoginPage() {
             </button>
 
             {/* Encrypted Session Security Footnote */}
-            <div className="flex items-center justify-center gap-1.5 text-[0.65rem] font-mono text-[#73726c] pt-1">
-              <ShieldCheck size={13} className="text-emerald-400" />
+            <div className="flex items-center justify-center gap-1.5 text-[0.65rem] font-mono text-[#a3a39e] pt-1">
+              <ShieldCheck size={14} className="text-emerald-400" />
               <span>256-Bit Encrypted Session</span>
             </div>
           </CardFooter>
