@@ -33,8 +33,6 @@ export default async function DashboardPage() {
   // Calculate high-level stats
   const totalRooms = rooms.length;
   let totalRacks = 0;
-  let totalServers = 0;
-  let activeServers = 0;
   let totalPowerDraw = 0;
   let activeAlerts = 0;
 
@@ -48,9 +46,6 @@ export default async function DashboardPage() {
       let rackPower = 0;
 
       rack.servers.forEach((server) => {
-        totalServers++;
-        if (server.status === 'active') activeServers++;
-
         const latestReading = server.readings[0];
         if (latestReading) {
           rackPower += latestReading.watts;
@@ -188,11 +183,11 @@ export default async function DashboardPage() {
 
         {roomSummaries.length === 0 ? (
           <div className="rounded-2xl border border-dashed border-[#282620] bg-[#1c1a16] p-8 text-center text-[#d4d4d0] text-sm font-medium">
-            No rooms created yet. Click "Manage Rooms" to add one.
+            No rooms created yet. Click &quot;Manage Rooms&quot; to add one.
           </div>
         ) : (
-          <div className="overflow-hidden rounded-2xl border border-[#2e2c26] bg-[#1a1915] shadow-md">
-            <table className="min-w-full divide-y divide-[#24231f] text-left text-sm">
+          <div className="overflow-x-auto rounded-2xl border border-[#2e2c26] bg-[#1a1915] shadow-md no-scrollbar">
+            <table className="min-w-full divide-y divide-[#24231f] text-left text-sm whitespace-nowrap sm:whitespace-normal">
               <thead className="bg-[#1b1915] text-[#d4d4d0] text-xs sm:text-sm font-extrabold uppercase tracking-wider">
                 <tr>
                   <th className="px-6 py-4">Room Name</th>

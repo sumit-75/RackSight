@@ -25,7 +25,7 @@ export default async function RackDetailPage({ params }: PageProps) {
   }
 
   // Restrict historical query to the last 10 minutes to prevent massive table scans
-  const limitDate = new Date(Date.now() - 10 * 60 * 1000);
+  const limitDate = new Date(new Date().getTime() - 10 * 60 * 1000);
 
   const [rack, readings] = await Promise.all([
     prisma.rack.findUnique({

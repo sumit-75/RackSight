@@ -17,7 +17,7 @@ async function fixSequence(tableName: string) {
     await prisma.$executeRawUnsafe(
       `SELECT setval(pg_get_serial_sequence('"${tableName}"', 'id'), COALESCE((SELECT MAX(id) FROM "${tableName}"), 0) + 1, false);`
     );
-  } catch (e) {
+  } catch {
     // Ignore error if unsupported
   }
 }
@@ -25,8 +25,9 @@ async function fixSequence(tableName: string) {
 async function safeCreate<T>(tableName: string, fn: () => Promise<T>): Promise<T> {
   try {
     return await fn();
-  } catch (error: any) {
-    if (error?.code === 'P2002' || error?.message?.includes('Unique constraint')) {
+  } catch (error: unknown) {
+    const err = error as { code?: string; message?: string };
+    if (err?.code === 'P2002' || err?.message?.includes('Unique constraint')) {
       await fixSequence(tableName);
       return await fn();
     }

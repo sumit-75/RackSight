@@ -130,10 +130,10 @@ export default function InteractiveRackDemo() {
       </div>
 
       {/* macOS Window Tab Bar */}
-      <div className="bg-[#181714] border-b border-[#282620] px-4 pt-2 flex items-center gap-1.5 overflow-x-auto">
+      <div className="bg-[#181714] border-b border-[#282620] px-3 sm:px-4 pt-2 flex items-center gap-1.5 overflow-x-auto no-scrollbar">
         <button
           onClick={() => setActiveTab('matrix')}
-          className={`flex items-center gap-2 px-4 py-2 rounded-t-xl text-xs font-extrabold transition-all cursor-pointer border-t border-x ${
+          className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-t-xl text-xs font-extrabold transition-all cursor-pointer border-t border-x shrink-0 ${
             activeTab === 'matrix'
               ? 'bg-[#161512] text-white border-[#2e2d27] border-t-emerald-400 shadow-md'
               : 'bg-[#1b1915] text-[#a3a39e] border-transparent hover:text-white hover:bg-[#201e19]'
@@ -146,7 +146,7 @@ export default function InteractiveRackDemo() {
 
         <button
           onClick={() => setActiveTab('analytics')}
-          className={`flex items-center gap-2 px-4 py-2 rounded-t-xl text-xs font-extrabold transition-all cursor-pointer border-t border-x ${
+          className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-t-xl text-xs font-extrabold transition-all cursor-pointer border-t border-x shrink-0 ${
             activeTab === 'analytics'
               ? 'bg-[#161512] text-emerald-400 border-[#2e2d27] border-t-emerald-400 shadow-md'
               : 'bg-[#1b1915] text-[#a3a39e] border-transparent hover:text-white hover:bg-[#201e19]'
@@ -158,7 +158,7 @@ export default function InteractiveRackDemo() {
 
         <button
           onClick={() => setActiveTab('logs')}
-          className={`flex items-center gap-2 px-4 py-2 rounded-t-xl text-xs font-extrabold transition-all cursor-pointer border-t border-x ${
+          className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-t-xl text-xs font-extrabold transition-all cursor-pointer border-t border-x shrink-0 ${
             activeTab === 'logs'
               ? 'bg-[#161512] text-[#e5e5e0] border-[#2e2d27] border-t-emerald-400 shadow-md'
               : 'bg-[#1b1915] text-[#a3a39e] border-transparent hover:text-white hover:bg-[#201e19]'
@@ -170,13 +170,13 @@ export default function InteractiveRackDemo() {
       </div>
 
       {/* Main Tab Content Area */}
-      <div className="p-6 sm:p-8 bg-[#12110e]">
+      <div className="p-4 sm:p-8 bg-[#12110e]">
         {activeTab === 'matrix' && (
           <div className="space-y-6 animate-in fade-in duration-200">
             {/* Grid: Left Cabinet Layout, Right Live Inspector */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
               {/* Left Column: Cabinet Slot View (7 cols) */}
-              <div className="lg:col-span-7 space-y-4 bg-[#161512] border border-[#24231f] rounded-2xl p-5">
+              <div className="lg:col-span-7 space-y-4 bg-[#161512] border border-[#24231f] rounded-2xl p-4 sm:p-5">
                 <div className="flex justify-between items-center text-xs font-extrabold text-[#a3a39e]">
                   <span>42U Cabinet Physical Slots</span>
                   <span className="flex items-center gap-2 text-emerald-400">
@@ -212,16 +212,16 @@ export default function InteractiveRackDemo() {
                           toggleSlotStatus(slot.u);
                           setSelectedSlot(slot);
                         }}
-                        className={`w-full flex items-center justify-between p-3 rounded-xl border transition-all text-xs cursor-pointer ${statusBg} ${
+                        className={`w-full flex flex-col sm:flex-row items-start sm:items-center justify-between p-3 rounded-xl border transition-all text-xs cursor-pointer gap-2 ${statusBg} ${
                           isSelected ? 'ring-1 ring-emerald-500/50 scale-[1.01]' : ''
                         }`}
                       >
-                        <div className="flex items-center gap-3">
-                          <span className="font-extrabold text-[#73726c] w-8">U{slot.u}</span>
-                          <span className={`w-2 h-2 rounded-full ${dotColor}`}></span>
-                          <span className="font-extrabold text-[#f5f5f4] text-left">{slot.name}</span>
+                        <div className="flex items-center gap-2.5 min-w-0">
+                          <span className="font-extrabold text-[#73726c] w-7 shrink-0">U{slot.u}</span>
+                          <span className={`w-2 h-2 rounded-full shrink-0 ${dotColor}`}></span>
+                          <span className="font-extrabold text-[#f5f5f4] text-left truncate">{slot.name}</span>
                         </div>
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-2.5 self-end sm:self-auto shrink-0">
                           <span className="text-[#e5e5e0] font-extrabold">{slot.watts} W</span>
                           <span className="uppercase text-[0.6rem] font-extrabold px-2 py-0.5 rounded bg-[#0e0d09] border border-[#24231f]">
                             {slot.status}

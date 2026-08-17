@@ -33,8 +33,8 @@ export default function LoginPage() {
         setMode('signin');
         setIsLoading(false);
       }
-    } catch (err: any) {
-      setErrorMsg(err.message || 'Action failed. Please try again.');
+    } catch (err: unknown) {
+      setErrorMsg((err as Error).message || 'Action failed. Please try again.');
       setIsLoading(false);
     }
   };

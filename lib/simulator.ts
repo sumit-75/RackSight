@@ -4,13 +4,26 @@ const START_PORT = 10081;
 const NUM_RACKS = 5;
 const CONTROL_URL = 'http://127.0.0.1:9000/api/control';
 
+interface SimulatorServer {
+  id: number;
+  name: string;
+  startUnit: number;
+  sizeUnits: number;
+  status: 'active' | 'idle' | 'decommissioned';
+}
+
+interface TelemetryReading {
+  id: number;
+  power: number | null;
+}
+
 export async function runSimulation() {
   try {
     // 1. Trigger simulation tick in the standalone simulator service
     try {
       await fetch(`${CONTROL_URL}/tick`, { method: 'POST' });
-    } catch (err: any) {
-      console.warn('[Discovery/Poller] Could not trigger tick on Control API server:', err.message);
+    } catch (err: unknown) {
+      console.warn('[Discovery/Poller] Could not trigger tick on Control API server:', (err as Error).message);
     }
 
     // Find or create default Room to link discovered racks to
@@ -72,10 +85,10 @@ export async function runSimulation() {
         // Query Rack Servers
         const serversRes = await fetch(`${rackUrl}/api/servers`);
         if (!serversRes.ok) continue;
-        const serversList: any[] = await serversRes.json();
+        const serversList: SimulatorServer[] = await serversRes.json();
 
         // Sync Servers in DB
-        const serverMap: { [startUnit: number]: any } = {};
+        const serverMap: { [startUnit: number]: { id: number } } = {};
         for (const s of serversList) {
           let dbServer = await prisma.server.findFirst({
             where: {
@@ -113,7 +126,7 @@ export async function runSimulation() {
         if (!telemetryRes.ok) continue;
         const telemetryData = await telemetryRes.json();
 
-        for (const t of telemetryData.telemetry) {
+        for (const t of (telemetryData.telemetry as TelemetryReading[])) {
           // Find matching server by checking unit mappings
           const serverListObj = serversList.find(s => s.id === t.id);
           if (!serverListObj) continue;
@@ -133,15 +146,15 @@ export async function runSimulation() {
             newReadingsCount++;
           }
         }
-      } catch (err: any) {
+      } catch (err: unknown) {
         // Fetch failed (network connection refused) - Rack is offline
-        console.log(`[Discovery/Poller] Could not connect to Rack ${r} on port ${port}:`, err.message);
+        console.log(`[Discovery/Poller] Could not connect to Rack ${r} on port ${port}:`, (err as Error).message);
       }
     }
 
     console.log(`[Discovery/Poller] Sync complete. Processed ${syncedServersCount} servers, added ${newReadingsCount} new power readings.`);
     return { success: true, count: newReadingsCount, syncedServers: syncedServersCount };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('[Discovery/Poller Error] Ingestion failed:', error);
     throw error;
   }

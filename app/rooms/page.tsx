@@ -1,7 +1,7 @@
 import { prisma } from '@/lib/prisma';
 import { createRoom, deleteRoom, getCurrentUser } from '@/app/actions';
 import Link from 'next/link';
-import { Server, Thermometer, Plus, Trash2, ArrowRight } from 'lucide-react';
+import { Server, Thermometer, Plus, ArrowRight } from 'lucide-react';
 import SubmitButton from '@/components/SubmitButton';
 import Tooltip from '@/components/Tooltip';
 import DeleteConfirmButton from '@/components/DeleteConfirmButton';
@@ -117,7 +117,7 @@ export default async function RoomsPage() {
 
         {/* Add Room Form Section Panel */}
         <div>
-          <div className="rounded-3xl border border-[#24231f] bg-[#141310]/90 p-6 sm:p-7 shadow-xl sticky top-24 space-y-5">
+          <div className="rounded-3xl border border-[#24231f] bg-[#141310]/90 p-6 sm:p-7 shadow-xl lg:sticky lg:top-24 space-y-5">
             <h2 className="text-lg font-extrabold text-[#f5f5f4] flex items-center gap-2 pb-2 border-b border-[#24231f]">
               <Plus size={18} className="text-emerald-400" />
               Add New Room

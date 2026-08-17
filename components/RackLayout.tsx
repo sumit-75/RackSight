@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Server, ServerStatus, PowerReading } from '@prisma/client';
 import { createServer, updateServer, deleteServer } from '@/app/actions';
-import { Trash2, Edit, Plus, X, Zap, Cpu, Server as ServerIcon, AlertTriangle, Layers, Database, XCircle, CheckCircle2, ShieldCheck, Activity, HardDrive } from 'lucide-react';
+import { Trash2, Edit, Plus, X, Cpu, Server as ServerIcon, AlertTriangle, Layers, Database, XCircle, CheckCircle2 } from 'lucide-react';
 import PowerChart from './PowerChart';
 import LineLoader from './LineLoader';
 import Tooltip from './Tooltip';
@@ -49,7 +49,8 @@ export default function RackLayout({
   const [deleteServerId, setDeleteServerId] = useState<number | null>(null);
 
   useEffect(() => {
-    setLocalServers(servers);
+    const timer = setTimeout(() => setLocalServers(servers), 0);
+    return () => clearTimeout(timer);
   }, [servers]);
 
   // Form values
@@ -113,8 +114,8 @@ export default function RackLayout({
       setFormStartUnit(1);
       setFormSizeUnits(1);
       setFormStatus('active');
-    } catch (err: any) {
-      setErrorMsg(err.message || 'Failed to add server');
+    } catch (err: unknown) {
+      setErrorMsg((err as Error).message || 'Failed to add server');
     } finally {
       setIsLoading(false);
     }
@@ -146,8 +147,8 @@ export default function RackLayout({
       );
       setSelectedServer(updatedServer);
       setIsEditing(false);
-    } catch (err: any) {
-      setErrorMsg(err.message || 'Failed to update server');
+    } catch (err: unknown) {
+      setErrorMsg((err as Error).message || 'Failed to update server');
     } finally {
       setIsLoading(false);
     }
@@ -168,38 +169,12 @@ export default function RackLayout({
       setLocalServers((prev) => prev.filter((s) => s.id !== serverId));
       setSelectedServer(null);
       setIsEditing(false);
-    } catch (err: any) {
-      setErrorMsg(err.message || 'Failed to delete server');
+    } catch (err: unknown) {
+      setErrorMsg((err as Error).message || 'Failed to delete server');
     } finally {
       setIsLoading(false);
     }
   };
-
-  // Render slots from top (totalUnits) down to 1
-  const renderedSlots = [];
-  let skipCount = 0;
-  
-  for (let u = totalUnits; u >= 1; u--) {
-    const server = occupancyMap[u];
-    
-    if (server) {
-      // Since we go from top to bottom, we only render the server block at its top-most slot (startUnit + sizeUnits - 1)
-      const topSlotOfServer = server.startUnit + server.sizeUnits - 1;
-      if (u === topSlotOfServer) {
-        renderedSlots.push({
-          type: 'server',
-          u,
-          server,
-          size: server.sizeUnits,
-        });
-      }
-    } else {
-      renderedSlots.push({
-        type: 'empty',
-        u,
-      });
-    }
-  }
 
   // Stats calculations based on server status
   const totalServers = localServers.length;

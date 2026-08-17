@@ -1,11 +1,11 @@
-import { SignJWT, jwtVerify } from 'jose';
+import { SignJWT, jwtVerify, JWTPayload } from 'jose';
 
 const getSecretKey = () => {
   const secret = process.env.JWT_SECRET || 'fallback-secret-key-32-chars-long-min-temp';
   return new TextEncoder().encode(secret);
 };
 
-export async function signJWT(payload: any): Promise<string> {
+export async function signJWT(payload: JWTPayload): Promise<string> {
   return await new SignJWT(payload)
     .setProtectedHeader({ alg: 'HS256' })
     .setIssuedAt()
@@ -17,7 +17,7 @@ export async function verifyJWT(token: string) {
   try {
     const { payload } = await jwtVerify(token, getSecretKey());
     return payload;
-  } catch (error) {
+  } catch {
     return null;
   }
 }

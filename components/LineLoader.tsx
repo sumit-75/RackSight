@@ -3,12 +3,9 @@
 import React, { useEffect, useState } from 'react';
 
 export default function LineLoader() {
-  const [progress, setProgress] = useState(0);
+  const [progress, setProgress] = useState(5);
 
   useEffect(() => {
-    // Start with a small progress immediately
-    setProgress(5);
-
     // Simulate progress growth
     const timer = setInterval(() => {
       setProgress((oldProgress) => {

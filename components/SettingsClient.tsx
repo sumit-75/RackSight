@@ -27,9 +27,9 @@ export default function SettingsClient({ currentUsername }: SettingsClientProps)
       setChangeError(null);
       setChangeSuccess('Credentials updated successfully!');
       form.reset();
-    } catch (err: any) {
+    } catch (err: unknown) {
       setChangeSuccess(null);
-      setChangeError(err.message || 'Failed to update credentials.');
+      setChangeError((err as Error).message || 'Failed to update credentials.');
     } finally {
       setIsChanging(false);
     }
