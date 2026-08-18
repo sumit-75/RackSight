@@ -55,7 +55,7 @@ export default async function LandingPage() {
   ];
 
   return (
-    <div className="relative py-6 animate-in fade-in duration-500 font-sans text-[#e5e5e0]">
+    <div className="relative overflow-hidden py-6 animate-in fade-in duration-500 font-sans text-[#e5e5e0]">
       {/* Cyber Data Center Abstract Background Layer */}
       <div className="absolute inset-x-0 top-0 h-[850px] pointer-events-none z-0 overflow-hidden select-none">
         {/* Abstract Isometric Cyber Data Center Graphic */}
@@ -95,7 +95,7 @@ export default async function LandingPage() {
 
         {/* Hero Section */}
         <ScrollReveal variant="fade-up" duration={800}>
-          <section className="relative text-center space-y-6 max-w-4xl mx-auto pt-4 font-sans">
+          <section className="relative text-center space-y-6 max-w-4xl mx-auto pt-2 font-sans">
             {/* Release Pill */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#2e2d27] bg-[#161512] text-[#e5e5e0] text-xs font-extrabold font-sans">
               <Sparkles size={14} className="text-emerald-400 animate-pulse" />
@@ -138,7 +138,7 @@ export default async function LandingPage() {
         </ScrollReveal>
 
         {/* Interactive Sandbox Section */}
-        <ScrollReveal variant="fade-up" duration={500} threshold={0.01}>
+        <ScrollReveal variant="scale-up" duration={850} threshold={0.08}>
           <section id="interactive-demo" className="scroll-mt-36 space-y-6 font-sans">
             <div className="text-center space-y-2">
               <Badge variant="secondary">Live Interactive Sandbox</Badge>

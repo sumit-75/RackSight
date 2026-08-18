@@ -1,13 +1,10 @@
 @import "tailwindcss";
 @import "lenis/dist/lenis.css";
 
-html {
+html, body {
   font-size: 18px;
   scroll-behavior: smooth;
   scroll-padding-top: 100px;
-}
-
-body {
   width: 100%;
   max-width: 100vw;
   overflow-x: hidden;

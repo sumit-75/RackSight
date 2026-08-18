@@ -8,7 +8,7 @@ export default function TryDemoButton() {
     e.preventDefault();
     const target = document.getElementById('interactive-demo');
     if (target) {
-      const navHeight = 130;
+      const navHeight = 90;
       const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
       window.scrollTo({ top: targetPosition, behavior: 'smooth' });
     }

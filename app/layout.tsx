@@ -30,10 +30,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} min-h-screen antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="relative min-h-screen flex flex-col bg-background text-[#e5e5e0] font-sans overflow-x-hidden">
+      <body className="relative min-h-full flex flex-col bg-background text-[#e5e5e0] font-sans">
         <SmoothScroll />
         <FormValidator />
         

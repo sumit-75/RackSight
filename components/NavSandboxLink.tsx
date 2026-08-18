@@ -9,7 +9,7 @@ export default function NavSandboxLink() {
       e.preventDefault();
       const target = document.getElementById('interactive-demo');
       if (target) {
-        const navHeight = 130;
+        const navHeight = 90;
         const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
         window.scrollTo({
           top: targetPosition,

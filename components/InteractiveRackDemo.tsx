@@ -188,7 +188,7 @@ export default function InteractiveRackDemo() {
                   </span>
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-2 max-h-[520px] overflow-y-auto pr-1.5">
                   {slots.map((slot) => {
                     const isSelected = selectedSlot?.u === slot.u;
                     let statusBg = 'bg-emerald-500/10 border-emerald-500/20 text-emerald-300 hover:bg-emerald-500/20 hover:text-white';
