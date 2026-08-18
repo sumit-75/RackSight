@@ -11,7 +11,7 @@ let prismaInstance: PrismaClient;
 if (globalForPrisma.prisma) {
   prismaInstance = globalForPrisma.prisma;
 } else {
-  const connectionString = process.env.DATABASE_URL;
+  const connectionString = process.env.DATABASE_URL || 'postgresql://postgres:postgres@localhost:5432/racksight?schema=public';
   const pool = new Pool({ connectionString });
   const adapter = new PrismaPg(pool);
   prismaInstance = new PrismaClient({ adapter });
