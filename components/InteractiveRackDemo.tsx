@@ -92,7 +92,7 @@ export default function InteractiveRackDemo() {
   return (
     <div className="rounded-3xl border border-[#24231f] bg-[#12110e] shadow-xl font-sans overflow-hidden">
       {/* macOS Window Top TitleBar */}
-      <div className="bg-[#1b1915] border-b border-[#282620] px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div className="relative bg-[#1b1915] border-b border-[#282620] px-4 py-3 flex items-center justify-between gap-3">
         {/* macOS Traffic Lights (Top Left) */}
         <div className="flex items-center gap-2 shrink-0">
           <span className="w-3 h-3 rounded-full bg-[#ff5f56] border border-[#e0443e] block shadow-sm"></span>
@@ -100,8 +100,8 @@ export default function InteractiveRackDemo() {
           <span className="w-3 h-3 rounded-full bg-[#27c93f] border border-[#1aab29] block shadow-sm"></span>
         </div>
 
-        {/* macOS URL Address Bar (Center) */}
-        <div className="flex items-center gap-2 bg-[#12110e] border border-[#282620] px-3.5 py-1 rounded-full text-xs text-[#a3a39e] font-sans font-bold">
+        {/* macOS URL Address Bar (Centered) */}
+        <div className="hidden sm:flex absolute left-1/2 -translate-x-1/2 items-center gap-2 bg-[#12110e] border border-[#282620] px-4 py-1 rounded-full text-xs text-[#a3a39e] font-sans font-bold shadow-inner">
           <Lock size={12} className="text-emerald-400 shrink-0" />
           <span>racksight://cabinet-matrix-sandbox</span>
         </div>
@@ -188,7 +188,11 @@ export default function InteractiveRackDemo() {
                   </span>
                 </div>
 
-                <div className="space-y-2 max-h-[520px] overflow-y-auto pr-1.5">
+                <div 
+                  data-lenis-prevent="true"
+                  className="space-y-2 max-h-[520px] overflow-y-auto overscroll-contain pr-1.5 focus:outline-none"
+                  tabIndex={0}
+                >
                   {slots.map((slot) => {
                     const isSelected = selectedSlot?.u === slot.u;
                     let statusBg = 'bg-emerald-500/10 border-emerald-500/20 text-emerald-300 hover:bg-emerald-500/20 hover:text-white';
