@@ -18,8 +18,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "RackSight Dashboard",
-  description: "Simplified Data Center Infrastructure Management",
+  title: "RackSight — Next-Gen DCIM & Cabinet Telemetry",
+  description: "Real-time 42U rack cabinet mapping, server power telemetry, and thermal guard alerts with zero vendor lock-in.",
+  icons: {
+    icon: "/icon.png",
+    shortcut: "/icon.png",
+    apple: "/apple-icon.png",
+  },
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
