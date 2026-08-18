@@ -22,7 +22,14 @@ export default function SmoothScroll() {
 
     animationFrameId = requestAnimationFrame(raf);
 
+    // Recalculate document height on resize and initial render
+    const handleResize = () => lenis.resize();
+    window.addEventListener('resize', handleResize);
+    const timer = setTimeout(() => lenis.resize(), 300);
+
     return () => {
+      clearTimeout(timer);
+      window.removeEventListener('resize', handleResize);
       cancelAnimationFrame(animationFrameId);
       lenis.destroy();
     };

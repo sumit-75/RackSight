@@ -55,7 +55,7 @@ export default async function LandingPage() {
   ];
 
   return (
-    <div className="relative overflow-hidden py-6 animate-in fade-in duration-500 font-sans text-[#e5e5e0]">
+    <div className="relative py-6 animate-in fade-in duration-500 font-sans text-[#e5e5e0]">
       {/* Cyber Data Center Abstract Background Layer */}
       <div className="absolute inset-x-0 top-0 h-[850px] pointer-events-none z-0 overflow-hidden select-none">
         {/* Abstract Isometric Cyber Data Center Graphic */}
