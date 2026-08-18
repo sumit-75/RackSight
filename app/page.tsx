@@ -75,12 +75,12 @@ export default async function LandingPage() {
         {/* Hero Section */}
         <ScrollReveal variant="fade-up" duration={800}>
           <section className="relative text-center space-y-6 max-w-4xl mx-auto pt-2 font-sans">
-            {/* Pill Badge */}
+            {/* Release / User Welcome Pill */}
             {user ? (
-              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-emerald-500/30 bg-[#161512] text-[#e5e5e0] text-xs font-extrabold font-sans">
+              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-emerald-500/30 bg-[#161512] text-[#e5e5e0] text-xs font-extrabold font-sans shadow-[0_0_12px_rgba(16,185,129,0.15)]">
                 <span className="relative flex h-2 w-2 items-center justify-center shrink-0">
                   <span className="radar-ring absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,1)]" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,1)]" />
                 </span>
                 <span>Welcome back, <strong className="text-white">{user.username}</strong>! Live Telemetry Active</span>
               </div>
