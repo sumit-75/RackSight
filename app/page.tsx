@@ -71,25 +71,36 @@ export default async function LandingPage() {
 
       <div className="relative z-10 space-y-12 sm:space-y-16">
         <ScrollToHash />
+        {/* Logged in User Quick Banner */}
+        {user && (
+          <ScrollReveal variant="fade-in" duration={500}>
+            <div className="rounded-2xl border border-[#2e2d27] bg-[#161512] p-4.5 flex flex-col sm:flex-row items-center justify-between gap-4 font-sans">
+              <div className="flex items-center gap-3">
+                <span className="relative flex h-2.5 w-2.5 items-center justify-center shrink-0">
+                  <span className="radar-ring absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,1)]" />
+                </span>
+                <span className="text-sm font-bold text-[#e5e5e0]">
+                  Welcome back, <strong className="text-white">{user.username}</strong>! Your live dashboard telemetry is active.
+                </span>
+              </div>
+              <Link href="/dashboard">
+                <Button variant="gradient" size="sm">
+                  Launch Dashboard Matrix <ArrowRight size={14} className="ml-1.5" />
+                </Button>
+              </Link>
+            </div>
+          </ScrollReveal>
+        )}
 
         {/* Hero Section */}
         <ScrollReveal variant="fade-up" duration={800}>
-          <section className="relative text-center space-y-6 max-w-4xl mx-auto pt-2 font-sans">
-            {/* Release / User Welcome Pill */}
-            {user ? (
-              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-emerald-500/30 bg-[#161512] text-[#e5e5e0] text-xs font-extrabold font-sans shadow-[0_0_12px_rgba(16,185,129,0.15)]">
-                <span className="relative flex h-2 w-2 items-center justify-center shrink-0">
-                  <span className="radar-ring absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,1)]" />
-                </span>
-                <span>Welcome back, <strong className="text-white">{user.username}</strong>! Live Telemetry Active</span>
-              </div>
-            ) : (
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#2e2d27] bg-[#161512] text-[#e5e5e0] text-xs font-extrabold font-sans">
-                <Sparkles size={14} className="text-emerald-400 animate-pulse" />
-                <span>RackSight v1.0 — Next-Gen Cabinet Infrastructure Visibility</span>
-              </div>
-            )}
+          <section className="relative text-center space-y-6 max-w-4xl mx-auto pt-4 font-sans">
+            {/* Release Pill */}
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#2e2d27] bg-[#161512] text-[#e5e5e0] text-xs font-extrabold font-sans">
+              <Sparkles size={14} className="text-emerald-400 animate-pulse" />
+              <span>RackSight v1.0 — Next-Gen Cabinet Infrastructure Visibility</span>
+            </div>
 
             {/* Headline */}
             <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-[#f5f5f4] leading-[1.1] font-sans">
@@ -127,7 +138,7 @@ export default async function LandingPage() {
         </ScrollReveal>
 
         {/* Interactive Sandbox Section */}
-        <ScrollReveal variant="scale-up" duration={850} threshold={0.08}>
+        <ScrollReveal variant="fade-up" duration={500} threshold={0.01}>
           <section id="interactive-demo" className="scroll-mt-36 space-y-6 font-sans">
             <div className="text-center space-y-2">
               <Badge variant="secondary">Live Interactive Sandbox</Badge>
