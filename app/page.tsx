@@ -95,7 +95,7 @@ export default async function LandingPage() {
 
         {/* Hero Section */}
         <ScrollReveal variant="fade-up" duration={800}>
-          <section className="relative text-center space-y-8 max-w-4xl mx-auto min-h-[72vh] sm:min-h-[78vh] flex flex-col justify-center items-center py-12 sm:py-20 font-sans">
+          <section className="relative text-center space-y-6 max-w-4xl mx-auto pt-2 font-sans">
             {/* Release Pill */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#2e2d27] bg-[#161512] text-[#e5e5e0] text-xs font-extrabold font-sans">
               <Sparkles size={14} className="text-emerald-400 animate-pulse" />
@@ -103,7 +103,7 @@ export default async function LandingPage() {
             </div>
 
             {/* Headline */}
-            <h1 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight text-[#f5f5f4] leading-[1.1] font-sans">
+            <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-[#f5f5f4] leading-[1.1] font-sans">
               Real-Time Data Center Visibility &{' '}
               <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent">
                 Cabinet Telemetry
@@ -116,7 +116,7 @@ export default async function LandingPage() {
             </p>
 
             {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
               {user ? (
                 <Link href="/dashboard">
                   <Button variant="gradient" size="lg" className="w-full sm:w-auto text-base">
