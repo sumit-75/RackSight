@@ -20,11 +20,12 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "RackSight — Next-Gen DCIM & Cabinet Telemetry",
   description: "Real-time 42U rack cabinet mapping, server power telemetry, and thermal guard alerts with zero vendor lock-in.",
-  icons: {
-    icon: "/icon.png",
-    shortcut: "/icon.png",
-    apple: "/apple-icon.png",
-  },
+  icons: [
+    { rel: 'icon', url: '/icon.png' },
+    { rel: 'icon', type: 'image/png', url: '/icon.png' },
+    { rel: 'shortcut icon', url: '/icon.png' },
+    { rel: 'apple-touch-icon', url: '/apple-icon.png' },
+  ],
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
@@ -38,6 +39,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
+      <head>
+        <link rel="icon" href="/icon.png" sizes="any" />
+        <link rel="shortcut icon" href="/icon.png" />
+        <link rel="apple-touch-icon" href="/apple-icon.png" />
+      </head>
       <body className="relative min-h-full flex flex-col bg-background text-[#e5e5e0] font-sans">
         <SmoothScroll />
         <FormValidator />
